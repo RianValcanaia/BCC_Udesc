@@ -1,0 +1,10 @@
+Nome: rina
+Credenciamento: 123
+Endereço: dskjfn asdkfn
+Telefone: 123
+E-mail: asdjklfn@.com
+CPF: 1231231312
+Tipo de Contrato: autonomo
+Valor (por hora): 20,00
+Data de Início: 01/01/0001
+
