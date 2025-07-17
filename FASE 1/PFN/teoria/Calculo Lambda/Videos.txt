@@ -1,0 +1,5 @@
+Uma Brevíssima Introdução ao Cálculo Lambda (Aula 8).
+https://www.youtube.com/watch?v=jvAkNij65W4&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 9).
+https://www.youtube.com/watch?v=zTwbvOTDxic&ab_channel=CristianoVasconcellos
