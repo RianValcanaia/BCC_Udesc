@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore Trie </title><link rel="stylesheet" href="../style.css"><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore Trie </title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -677,5 +677,78 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
+/* ================================== */
+/*         ESTILOS TEMA DARK          */
+/* ================================== */
+@media (prefers-color-scheme: dark) {
+	/* === Cores Base === */
+	@media only screen {
+		body {
+			background-color: rgb(25, 25, 25); /* Fundo escuro */
+			color: rgb(222, 222, 222);         /* Texto claro */
+		}
+	}
+
+	/* === Elementos Gerais === */
+	hr {
+		border-bottom: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	blockquote {
+		border-left: 3px solid rgb(222, 222, 222);
+	}
+	
+	/* === Tabelas === */
+	table, th, td {
+		border: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	th {
+		color: rgba(222, 222, 222, 0.6);
+	}
+	.simple-table-header-color {
+		background: rgb(55, 53, 47);
+		color: white;
+	}
+
+	/* === Código === */
+	.code, code {
+		background: rgba(110, 110, 110, 0.3);
+	}
+	code {
+		color: #ff7979; /* Um vermelho mais vibrante para o escuro */
+	}
+
+	/* === Bookmarks e Descrições === */
+	.bookmark-description {
+		color: rgba(222, 222, 222, 0.6);
+	}
+
+	/* === Fundos de Destaque (Highlights) === */
+	.highlight-gray_background { background: rgba(81, 81, 81, 1); }
+	.highlight-brown_background { background: rgba(84, 61, 55, 1); }
+	.highlight-orange_background { background: rgba(119, 78, 43, 1); }
+	.highlight-yellow_background { background: rgba(100, 83, 33, 1); }
+	.highlight-teal_background { background: rgba(39, 78, 62, 1); }
+	.highlight-blue_background { background: rgba(38, 76, 102, 1); }
+	.highlight-purple_background { background: rgba(84, 60, 105, 1); }
+	.highlight-pink_background { background: rgba(108, 48, 81, 1); }
+	.highlight-red_background { background: rgba(113, 45, 48, 1); }
+
+	/* === Cores de Bloco (Callouts) === */
+	.block-color-gray_background { background: rgba(56, 56, 56, 1); }
+	.block-color-brown_background { background: rgba(60, 50, 50, 1); }
+	.block-color-orange_background { background: rgba(87, 58, 29, 1); }
+	.block-color-yellow_background { background: rgba(83, 71, 29, 1); }
+	.block-color-teal_background { background: rgba(29, 58, 46, 1); }
+	.block-color-blue_background { background: rgba(28, 56, 76, 1); }
+	.block-color-purple_background { background: rgba(62, 45, 78, 1); }
+	.block-color-pink_background { background: rgba(79, 36, 59, 1); }
+	.block-color-red_background { background: rgba(83, 34, 36, 1); }
+
+	/* === Checkbox === */
+	.checkbox-off {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22rgb(25,25,25)%22%20stroke%3D%22rgb(222,222,222)%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+	}
+}
+
 </style></head><body><article id="2217d5d3-8a13-809f-ad2f-d3c5ec7cc2f3" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔤</span></div><h1 class="page-title">Árvore Trie </h1><p class="page-description"></p></header><div class="page-body"><h1 id="2217d5d3-8a13-8016-8f36-e52b5d814d8c" class="">Sumário</h1><nav id="2217d5d3-8a13-80dc-bf29-d0184db8a60e" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2217d5d3-8a13-8016-8f36-e52b5d814d8c">Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-80cb-b660-c8599188c445">Árvore Trie</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-809c-ba02-dc84240d5909">Conceito e Objetivo</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80a2-8faf-c064155c4d91">Conceito</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-806f-ae36-ebe3dd0bb37f">Objetivo</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-8073-bfe0-e053d40d6afe">Estrutura da Árvore</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80ee-9ab7-f75c5ae16804">Aplicações</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-804d-9aed-e51497cfb68f">Corretor Ortográfico</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80d1-a720-e29fcb82a354">Operações para correção:</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80bc-b48f-f0842242b2ba">Autocompletar</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80d0-933c-c20de0742fd2">Operações</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8010-a383-f3ca90d2b7e0">Adição</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80a1-9525-c014e9a699fb">Remoção</a></div></nav><h1 id="2227d5d3-8a13-80cb-b660-c8599188c445" class="">Árvore Trie</h1><h2 id="2227d5d3-8a13-809c-ba02-dc84240d5909" class="">Conceito e Objetivo</h2><h3 id="2227d5d3-8a13-80a2-8faf-c064155c4d91" class="">Conceito</h3><p id="2227d5d3-8a13-8005-8d9b-c94cfe188888" class="">A <strong>Árvore Trie</strong> (do inglês <em>retrieval</em>, que significa &quot;recuperar&quot;) foi introduzida por <strong>Edward Fredkin</strong> em 1960. Seu objetivo é facilitar a recuperação de dados estruturados, especialmente em contextos <strong>lexicográficos</strong>, como:</p><ul id="2227d5d3-8a13-808c-b08c-f23cdf48c33b" class="bulleted-list"><li style="list-style-type:disc">Manipulação de dicionários</li></ul><ul id="2227d5d3-8a13-808a-8776-d42d43c984db" class="bulleted-list"><li style="list-style-type:disc">Pesquisa em textos de grande dimensão</li></ul><ul id="2227d5d3-8a13-80c0-a306-c3fb39f8a3bd" class="bulleted-list"><li style="list-style-type:disc">Construção de índices baseados em léxico</li></ul><ul id="2227d5d3-8a13-8051-ab2d-cafe6ea5243f" class="bulleted-list"><li style="list-style-type:disc">Expressões regulares como padrão de busca</li></ul><p id="2227d5d3-8a13-8077-8b32-ea0c0b88f917" class="">Características principais:</p><ul id="2227d5d3-8a13-80a4-991d-cd5cf1eb6fbd" class="bulleted-list"><li style="list-style-type:disc">Um caminho da raiz até qualquer nó representa um <strong>prefixo</strong> de uma string.</li></ul><ul id="2227d5d3-8a13-804b-a0c1-cbb0b7ffe041" class="bulleted-list"><li style="list-style-type:disc">Todos os descendentes de um mesmo pai compartilham o mesmo prefixo.</li></ul><ul id="2227d5d3-8a13-80b4-957b-e13bef897277" class="bulleted-list"><li style="list-style-type:disc">O último caractere de uma palavra leva a um nó terminal (folha ou nó especial).</li></ul><ul id="2227d5d3-8a13-8061-b2a7-c2b37735ef73" class="bulleted-list"><li style="list-style-type:disc">Cada nível da árvore representa o avanço de um símbolo na chave de pesquisa.</li></ul><ul id="2227d5d3-8a13-80be-acbd-f7e537ee42e5" class="bulleted-list"><li style="list-style-type:disc">Os nós armazenam símbolos do alfabeto utilizado.</li></ul><p id="2227d5d3-8a13-8014-960d-cab32ac17159" class="">Não há limites fixos para:</p><ul id="2227d5d3-8a13-80b0-bdab-e2f761b76fdf" class="bulleted-list"><li style="list-style-type:disc">O número de filhos de um nó</li></ul><ul id="2227d5d3-8a13-8013-bb42-e85447623d68" class="bulleted-list"><li style="list-style-type:disc">O tamanho das chaves inseridas</li></ul><h3 id="2227d5d3-8a13-806f-ae36-ebe3dd0bb37f" class="">Objetivo</h3><p id="2227d5d3-8a13-80ab-9c6d-e2dfb2652cd8" class="">Localizar dados a partir de chaves pertencentes a um <strong>léxico</strong> (conjunto de símbolos definidos). A busca pode considerar <strong>correspondência aproximada</strong>, útil em sistemas como corretores ortográficos ou sugestões automáticas.</p><h2 id="2227d5d3-8a13-8073-bfe0-e053d40d6afe" class="">Estrutura da Árvore</h2><p id="2227d5d3-8a13-80c9-9cf7-c322b1d364dd" class="">Cada nó da Trie pode conter um ou mais símbolos do léxico. O léxico é finito e pode incluir:</p><ul id="2227d5d3-8a13-80da-895f-e66d62950b4f" class="bulleted-list"><li style="list-style-type:disc">Dígitos: <code>{0, 1, 2, ...}</code></li></ul><ul id="2227d5d3-8a13-8016-b2bd-f404c0ca460e" class="bulleted-list"><li style="list-style-type:disc">Caracteres: <code>{A, B, C, ...}</code></li></ul><ul id="2227d5d3-8a13-80f3-a0fd-e8bae48d6ec0" class="bulleted-list"><li style="list-style-type:disc">Espaços ou símbolos especiais: <code>{ }</code>, entre outros</li></ul><h2 id="2227d5d3-8a13-80ee-9ab7-f75c5ae16804" class="">Aplicações</h2><h3 id="2227d5d3-8a13-804d-9aed-e51497cfb68f" class="">Corretor Ortográfico</h3><ul id="2227d5d3-8a13-8023-b6b6-e5cd01a2a422" class="bulleted-list"><li style="list-style-type:disc">As palavras digitadas são comparadas com um dicionário armazenado na Trie.</li></ul><ul id="2227d5d3-8a13-8035-bf8d-f68bb00351d8" class="bulleted-list"><li style="list-style-type:disc">Se a palavra não for encontrada, o algoritmo sugere correções com base nos prefixos comuns.</li></ul><h3 id="2227d5d3-8a13-80d1-a720-e29fcb82a354" class="">Operações para correção:</h3><ul id="2227d5d3-8a13-80b9-99a9-f971a859fffa" class="bulleted-list"><li style="list-style-type:disc"><strong>Substituição</strong>: avança um caractere na chave e um nível na árvore.</li></ul><ul id="2227d5d3-8a13-80e9-8eb1-f0bf1a8b4707" class="bulleted-list"><li style="list-style-type:disc"><strong>Deleção</strong>: avança um nível na árvore (omitindo o caractere da chave).</li></ul><ul id="2227d5d3-8a13-80a2-866e-ef18470390c5" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserção</strong>: avança um caractere na chave.</li></ul><ul id="2227d5d3-8a13-80d7-b22e-cc8f44b2b12e" class="bulleted-list"><li style="list-style-type:disc"><strong>Transposição</strong>: troca dois caracteres consecutivos e tenta validar o novo caminho, retrocedendo para confirmar.</li></ul><h3 id="2227d5d3-8a13-80bc-b48f-f0842242b2ba" class="">Autocompletar</h3><ul id="2227d5d3-8a13-80eb-af6e-cde200fac624" class="bulleted-list"><li style="list-style-type:disc">Palavras mais utilizadas são armazenadas na Trie.</li></ul><ul id="2227d5d3-8a13-8009-8798-c4eaea2d1de9" class="bulleted-list"><li style="list-style-type:disc">Conforme o usuário digita, sugestões baseadas no prefixo atual são exibidas.</li></ul><h2 id="2227d5d3-8a13-80d0-933c-c20de0742fd2" class="">Operações</h2><h3 id="2227d5d3-8a13-8010-a383-f3ca90d2b7e0" class="">Adição</h3><ul id="2227d5d3-8a13-80c8-949e-ea4f96b99de2" class="bulleted-list"><li style="list-style-type:disc">Realiza uma busca pela palavra.</li></ul><ul id="2227d5d3-8a13-80d2-a8cf-d8312c7de9e1" class="bulleted-list"><li style="list-style-type:disc">Se já existir, não faz nada.</li></ul><ul id="2227d5d3-8a13-8035-9fcc-e09d92c75df8" class="bulleted-list"><li style="list-style-type:disc">Caso contrário, localiza o maior prefixo comum e adiciona os caracteres restantes a partir do último nó encontrado.</li></ul><h3 id="2227d5d3-8a13-80a1-9525-c014e9a699fb" class="">Remoção</h3><ul id="2227d5d3-8a13-803e-aebf-f5c9644c9d5c" class="bulleted-list"><li style="list-style-type:disc">Busca pela palavra a ser removida.</li></ul><ul id="2227d5d3-8a13-8000-b2e1-e719df307873" class="bulleted-list"><li style="list-style-type:disc">Ao encontrar o nó final, remove recursivamente os nós do caminho que não têm outros filhos.</li></ul><ul id="2227d5d3-8a13-806f-813d-c5cf40732111" class="bulleted-list"><li style="list-style-type:disc">A remoção para ao encontrar um nó com múltiplos filhos (ou seja, compartilhado com outras palavras).</li></ul><p id="2217d5d3-8a13-80b8-bfd3-c8b996f79643" class="">
 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

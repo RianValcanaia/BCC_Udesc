@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore B+ </title><link rel="stylesheet" href="../style.css"><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore B+ </title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -676,7 +676,80 @@ blockquote {
 .checkbox-off {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
+
+/* ================================== */
+/*         ESTILOS TEMA DARK          */
+/* ================================== */
+@media (prefers-color-scheme: dark) {
+	/* === Cores Base === */
+	@media only screen {
+		body {
+			background-color: rgb(25, 25, 25); /* Fundo escuro */
+			color: rgb(222, 222, 222);         /* Texto claro */
+		}
+	}
+
+	/* === Elementos Gerais === */
+	hr {
+		border-bottom: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	blockquote {
+		border-left: 3px solid rgb(222, 222, 222);
+	}
 	
+	/* === Tabelas === */
+	table, th, td {
+		border: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	th {
+		color: rgba(222, 222, 222, 0.6);
+	}
+	.simple-table-header-color {
+		background: rgb(55, 53, 47);
+		color: white;
+	}
+
+	/* === Código === */
+	.code, code {
+		background: rgba(110, 110, 110, 0.3);
+	}
+	code {
+		color: #ff7979; /* Um vermelho mais vibrante para o escuro */
+	}
+
+	/* === Bookmarks e Descrições === */
+	.bookmark-description {
+		color: rgba(222, 222, 222, 0.6);
+	}
+
+	/* === Fundos de Destaque (Highlights) === */
+	.highlight-gray_background { background: rgba(81, 81, 81, 1); }
+	.highlight-brown_background { background: rgba(84, 61, 55, 1); }
+	.highlight-orange_background { background: rgba(119, 78, 43, 1); }
+	.highlight-yellow_background { background: rgba(100, 83, 33, 1); }
+	.highlight-teal_background { background: rgba(39, 78, 62, 1); }
+	.highlight-blue_background { background: rgba(38, 76, 102, 1); }
+	.highlight-purple_background { background: rgba(84, 60, 105, 1); }
+	.highlight-pink_background { background: rgba(108, 48, 81, 1); }
+	.highlight-red_background { background: rgba(113, 45, 48, 1); }
+
+	/* === Cores de Bloco (Callouts) === */
+	.block-color-gray_background { background: rgba(56, 56, 56, 1); }
+	.block-color-brown_background { background: rgba(60, 50, 50, 1); }
+	.block-color-orange_background { background: rgba(87, 58, 29, 1); }
+	.block-color-yellow_background { background: rgba(83, 71, 29, 1); }
+	.block-color-teal_background { background: rgba(29, 58, 46, 1); }
+	.block-color-blue_background { background: rgba(28, 56, 76, 1); }
+	.block-color-purple_background { background: rgba(62, 45, 78, 1); }
+	.block-color-pink_background { background: rgba(79, 36, 59, 1); }
+	.block-color-red_background { background: rgba(83, 34, 36, 1); }
+
+	/* === Checkbox === */
+	.checkbox-off {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22rgb(25,25,25)%22%20stroke%3D%22rgb(222,222,222)%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+	}
+}
+
 </style></head><body><article id="2207d5d3-8a13-8071-9703-e777e2a4779e" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">➕</span></div><h1 class="page-title">Árvore B+ </h1><p class="page-description"></p></header><div class="page-body"><h1 id="2207d5d3-8a13-8046-81cc-fb1380c3a957" class="">Sumário</h1><nav id="2207d5d3-8a13-80e6-b17b-d3bd76794d49" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2207d5d3-8a13-8046-81cc-fb1380c3a957">Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-807e-8f01-dff51bed5f6a">Árvore B+</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8021-a225-d4b382a014ee">Estrutura e Características</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-807d-be34-e69245e566aa">Inserção (Resumo do Processo)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8046-8683-c68f0c24cb2d">Considerações de Implementação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80e5-a128-c779dd82d417">Aplicações</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-8033-93d4-e7e3856fe060">Algoritmos</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8064-9e5a-edcb23562d29">Nós</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-808f-ac24-d9688c060971">Árvore </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-801a-8dbd-e4b17c2eb83b">Cria nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-805a-b3f0-f315c408be01">Cria Árvore</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80b5-8dbd-e543f67ed214">Busca</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8023-a793-c9318e0ffb5f">Inserção</a></div></nav><h2 id="2207d5d3-8a13-807e-8f01-dff51bed5f6a" class="">Árvore B+</h2><p id="2207d5d3-8a13-8046-95f2-d05d47eb36cf" class="">A <strong>Árvore B+</strong> é uma estrutura de dados <strong>autobalanceada</strong>, derivada da Árvore B, otimizada para <strong>armazenamento e recuperação eficiente de dados</strong>, especialmente em <strong>memória secundária</strong> (ex: bancos de dados, sistemas de arquivos).</p><h3 id="2207d5d3-8a13-8021-a225-d4b382a014ee" class="">Estrutura e Características</h3><ul id="2207d5d3-8a13-8028-9f7e-ee3f1c53fa91" class="bulleted-list"><li style="list-style-type:disc"><strong>Chaves apenas em folhas</strong><p id="2207d5d3-8a13-80a1-8828-d014b444c50a" class="">Os <strong>dados reais ou ponteiros para os dados</strong> são armazenados <strong>somente nos nós folha</strong>.</p></li></ul><ul id="2207d5d3-8a13-803d-8d42-cbffdab04825" class="bulleted-list"><li style="list-style-type:disc"><strong>Índices com chaves duplicadas</strong><p id="2207d5d3-8a13-80b5-99d4-e258e12e4932" class="">Os <strong>nós internos</strong> (índices) armazenam <strong>somente as chaves de busca</strong>, <strong>sem dados</strong> associados.</p></li></ul><ul id="2207d5d3-8a13-806b-9a12-c955aea0b915" class="bulleted-list"><li style="list-style-type:disc"><strong>Ligação sequencial entre folhas</strong><p id="2207d5d3-8a13-8029-828e-c9af7e73ec83" class="">As folhas estão encadeadas, permitindo <strong>acesso sequencial em O(1)</strong>.</p></li></ul><ul id="2207d5d3-8a13-8036-8398-eda87ec0518c" class="bulleted-list"><li style="list-style-type:disc"><strong>Separação entre dados e índices</strong><p id="2207d5d3-8a13-80f2-a000-c4af80c0d5da" class="">Índices e dados podem ser armazenados em arquivos distintos.</p></li></ul><ul id="2207d5d3-8a13-80b0-9088-f01b5204ff0d" class="bulleted-list"><li style="list-style-type:disc"><strong>Ordem da árvore (M)</strong><ul id="2207d5d3-8a13-803a-8847-fefc44a05807" class="bulleted-list"><li style="list-style-type:circle">Cada nó (exceto raiz) armazena entre <strong>M/2 e M–1 chaves</strong>, para M &gt; 3.</li></ul><ul id="2207d5d3-8a13-800e-84a1-e7084451bace" class="bulleted-list"><li style="list-style-type:circle">Garante balanceamento e eficiência.</li></ul></li></ul><ul id="2207d5d3-8a13-804f-9ee1-d8f4d7fd7c0b" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexidade</strong><ul id="2207d5d3-8a13-80e5-846a-f0757d880cb9" class="bulleted-list"><li style="list-style-type:circle"><strong>Busca aleatória</strong>: O(log n)</li></ul><ul id="2207d5d3-8a13-8036-b783-df2ebe1477a4" class="bulleted-list"><li style="list-style-type:circle"><strong>Inserção</strong>: O(log n)</li></ul><ul id="2207d5d3-8a13-802e-abec-e81b78cf2dfc" class="bulleted-list"><li style="list-style-type:circle"><strong>Remoção</strong>: O(log n)</li></ul></li></ul><h3 id="2207d5d3-8a13-807d-be34-e69245e566aa" class="">Inserção (Resumo do Processo)</h3><ol type="1" id="2207d5d3-8a13-80b9-82e1-f8b24a418e89" class="numbered-list" start="1"><li>Localiza-se a <strong>folha correta</strong>.</li></ol><ol type="1" id="2207d5d3-8a13-8014-973f-ec25eceae577" class="numbered-list" start="2"><li>Insere-se a chave na <strong>posição adequada</strong>.</li></ol><ol type="1" id="2207d5d3-8a13-8041-b1ee-dcfee9a884e6" class="numbered-list" start="3"><li>Se houver <strong>transbordo</strong>, ocorre divisão da página:<ul id="2207d5d3-8a13-8053-ab20-ca6a15c7cdfa" class="bulleted-list"><li style="list-style-type:disc">As M–1 chaves são divididas.</li></ul><ul id="2207d5d3-8a13-80f3-8002-dc85e700cd8d" class="bulleted-list"><li style="list-style-type:disc">A <strong>menor chave da nova folha direita é copiada para o nó pai</strong>.</li></ul><ul id="2207d5d3-8a13-8074-8d31-e5e8b9d37732" class="bulleted-list"><li style="list-style-type:disc">Diferente da Árvore B, a chave <strong>não é removida da folha</strong>, apenas <strong>copiada</strong>.</li></ul></li></ol><h3 id="2207d5d3-8a13-8046-8683-c68f0c24cb2d" class="">Considerações de Implementação</h3><ul id="2207d5d3-8a13-8038-a238-cd90a324937b" class="bulleted-list"><li style="list-style-type:disc"><strong>Três arquivos recomendados</strong>:<ol type="1" id="2207d5d3-8a13-80f8-a2c0-db3ecdf72013" class="numbered-list" start="1"><li><strong>Metadados</strong>: ponteiro da raiz, flag de folha.</li></ol><ol type="1" id="2207d5d3-8a13-8076-8309-f82accb56910" class="numbered-list" start="2"><li><strong>Índices</strong>: nós internos, com chaves e ponteiros.</li></ol><ol type="1" id="2207d5d3-8a13-80d8-b74a-f6fa8053d259" class="numbered-list" start="3"><li><strong>Dados</strong>: nós folha com registros e ponteiros sequenciais.</li></ol></li></ul><ul id="2207d5d3-8a13-8018-83d0-e992feb55298" class="bulleted-list"><li style="list-style-type:disc"><strong>Cálculo da ordem mínima (d)</strong>:<p id="2207d5d3-8a13-80db-be3d-daf50a169fd8" class="">d=(Bk)−1d = \left(\frac{B}{k}\right) - 1</p><p id="2207d5d3-8a13-8075-99a9-e6e5a32bb225" class="">Onde:</p><ul id="2207d5d3-8a13-8064-bdb9-e0b66e9c03bc" class="bulleted-list"><li style="list-style-type:circle"><strong>B</strong> = tamanho do bloco</li></ul><ul id="2207d5d3-8a13-80f1-90e7-f40d1e6eaacb" class="bulleted-list"><li style="list-style-type:circle"><strong>k</strong> = tamanho da chave</li></ul></li></ul><h3 id="2207d5d3-8a13-80e5-a128-c779dd82d417" class="">Aplicações</h3><ul id="2207d5d3-8a13-80ce-b684-efa3b39578e0" class="bulleted-list"><li style="list-style-type:disc"><strong>Bancos de Dados</strong>: SQL Server, Oracle, PostgreSQL, MariaDB, SQLite.</li></ul><ul id="2207d5d3-8a13-80b9-9dd7-f5980cae3f1c" class="bulleted-list"><li style="list-style-type:disc"><strong>Sistemas de Arquivos</strong>: ReiserFS, XFS, JFS2.</li></ul><ul id="2207d5d3-8a13-808f-b020-d4e884ab83bf" class="bulleted-list"><li style="list-style-type:disc"><strong>Gerência de Dados</strong>: CouchDB, Tokyo Cabinet, Tokyo Tyrant.</li></ul><h2 id="2207d5d3-8a13-8033-93d4-e7e3856fe060" class="">Algoritmos</h2><h3 id="2207d5d3-8a13-8064-9e5a-edcb23562d29" class="">Nós</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-80c6-a7e4-dec62e698d79" class="code"><code class="language-C">typedef struct _no{
 		bool folha;
 		int total;

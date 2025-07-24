@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tabelas Hash </title><link rel="stylesheet" href="../style.css"><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tabelas Hash </title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -677,6 +677,79 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
+/* ================================== */
+/*         ESTILOS TEMA DARK          */
+/* ================================== */
+@media (prefers-color-scheme: dark) {
+	/* === Cores Base === */
+	@media only screen {
+		body {
+			background-color: rgb(25, 25, 25); /* Fundo escuro */
+			color: rgb(222, 222, 222);         /* Texto claro */
+		}
+	}
+
+	/* === Elementos Gerais === */
+	hr {
+		border-bottom: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	blockquote {
+		border-left: 3px solid rgb(222, 222, 222);
+	}
+	
+	/* === Tabelas === */
+	table, th, td {
+		border: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	th {
+		color: rgba(222, 222, 222, 0.6);
+	}
+	.simple-table-header-color {
+		background: rgb(55, 53, 47);
+		color: white;
+	}
+
+	/* === Código === */
+	.code, code {
+		background: rgba(110, 110, 110, 0.3);
+	}
+	code {
+		color: #ff7979; /* Um vermelho mais vibrante para o escuro */
+	}
+
+	/* === Bookmarks e Descrições === */
+	.bookmark-description {
+		color: rgba(222, 222, 222, 0.6);
+	}
+
+	/* === Fundos de Destaque (Highlights) === */
+	.highlight-gray_background { background: rgba(81, 81, 81, 1); }
+	.highlight-brown_background { background: rgba(84, 61, 55, 1); }
+	.highlight-orange_background { background: rgba(119, 78, 43, 1); }
+	.highlight-yellow_background { background: rgba(100, 83, 33, 1); }
+	.highlight-teal_background { background: rgba(39, 78, 62, 1); }
+	.highlight-blue_background { background: rgba(38, 76, 102, 1); }
+	.highlight-purple_background { background: rgba(84, 60, 105, 1); }
+	.highlight-pink_background { background: rgba(108, 48, 81, 1); }
+	.highlight-red_background { background: rgba(113, 45, 48, 1); }
+
+	/* === Cores de Bloco (Callouts) === */
+	.block-color-gray_background { background: rgba(56, 56, 56, 1); }
+	.block-color-brown_background { background: rgba(60, 50, 50, 1); }
+	.block-color-orange_background { background: rgba(87, 58, 29, 1); }
+	.block-color-yellow_background { background: rgba(83, 71, 29, 1); }
+	.block-color-teal_background { background: rgba(29, 58, 46, 1); }
+	.block-color-blue_background { background: rgba(28, 56, 76, 1); }
+	.block-color-purple_background { background: rgba(62, 45, 78, 1); }
+	.block-color-pink_background { background: rgba(79, 36, 59, 1); }
+	.block-color-red_background { background: rgba(83, 34, 36, 1); }
+
+	/* === Checkbox === */
+	.checkbox-off {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22rgb(25,25,25)%22%20stroke%3D%22rgb(222,222,222)%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+	}
+}
+
 </style></head><body><article id="2227d5d3-8a13-809f-849e-cb9e51702e6b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔑</span></div><h1 class="page-title">Tabelas Hash </h1><p class="page-description"></p></header><div class="page-body"><h1 id="2227d5d3-8a13-806d-bfff-ee23abd10d54" class="">Sumário</h1><nav id="2227d5d3-8a13-8091-ae3c-d7057db622a3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-806d-bfff-ee23abd10d54">Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-80e0-a802-cc33777c085b">Conceitos e Estratégia de Armazenamento</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80cc-ad3c-cb7fa5e0ef51">Problema de Busca</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80f4-bb4e-e33fc6214f8d">Acesso Direto em Vetores</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80ed-8f6c-cd9cb9b46c57">Tabelas Hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8009-a5f5-cfabee5514a0">Conceito</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8044-87cf-c86bb3139d07">Estrutura de uma tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80fc-bbfc-c7446b36afb6">Criar uma tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8016-ae78-d6e2459b8f12">Apagar/limpar a tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-8074-81d8-e6936345ba34">Funções de Dispersão (Hashing)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8082-9ced-fb59a5748ec3">Exemplos de Funções Hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e5-b682-d672ce410ad1">1. Método da Divisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b4-9379-dc58c6608080">2. Método da Multiplicação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-809a-a9f8-eaf81a2ca546">3. Método da dobra</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-8056-b75c-c7bd06a79099">Operações</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80c5-9201-ca915daf07e9">Leitura e gravação</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80a4-9ad9-cee2cd3597d4">Insersão</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-8073-b28f-c84c220fae97">Busca</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80bd-9cd1-ca6b4f1e31c2">Tratamento de colisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8044-a2a8-c03df2c52beb">Endereçamento Aberto</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b8-b6d3-e7ecff0215f3">Vantagens</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8036-8167-f51146f4ced4">Desvantagens</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8059-9f4a-d4ba28b131e1">Endereçamento Separado (Encadeamento)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8082-9dcf-ed59e485177a">Estrutura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80b8-81dc-e16f63796c8a">Criar</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80d6-a709-f042158bc72e">Inserção com colisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-807d-8086-c0fa58558a46">Buscar </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80ef-93dd-f5da507c219a">Vantagens das Tabelas Hash</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-80d8-9b45-cce0a0627053">Desvantagens</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e1-9adf-e7ea47a80ce4">Aplicações</a></div></nav><h1 id="2227d5d3-8a13-80e0-a802-cc33777c085b" class="">Conceitos e Estratégia de Armazenamento</h1><h3 id="2227d5d3-8a13-80cc-ad3c-cb7fa5e0ef51" class="">Problema de Busca</h3><p id="2237d5d3-8a13-8090-bf86-f16da9198437" class="">A maioria dos métodos de busca realiza <strong>comparações de chaves</strong>. Dada uma chave de pesquisa, comparam-se sucessivamente os dados armazenados.</p><ul id="2237d5d3-8a13-80ee-aeec-fe67612f9b69" class="bulleted-list"><li style="list-style-type:disc">Algoritmos eficientes requerem dados ordenados.</li></ul><ul id="2237d5d3-8a13-8003-ad88-fa9cb5b841bd" class="bulleted-list"><li style="list-style-type:disc">O limite inferior para algoritmos de ordenação é <strong>O(N log N)</strong>.</li></ul><ul id="2237d5d3-8a13-801b-873f-f92dcf2311cc" class="bulleted-list"><li style="list-style-type:disc">Algoritmos de busca eficientes possuem complexidade <strong>O(log N)</strong>.</li></ul><ul id="2237d5d3-8a13-8088-aebb-f9d5983e7d51" class="bulleted-list"><li style="list-style-type:disc">A busca ideal seria com <strong>acesso direto (O(1))</strong>, sem varredura do conjunto de dados.</li></ul><h3 id="2227d5d3-8a13-80f4-bb4e-e33fc6214f8d" class="">Acesso Direto em Vetores</h3><p id="2237d5d3-8a13-80be-9dc0-e8fd9b905077" class="">Vetores usam <strong>índices</strong> para armazenar e acessar dados com complexidade <strong>O(1)</strong>.</p><ul id="2237d5d3-8a13-80da-99a9-e82f8c2a4e7e" class="bulleted-list"><li style="list-style-type:disc">Contudo, <strong>não há mecanismo interno para calcular o índice a partir de um valor</strong>.</li></ul><ul id="2237d5d3-8a13-80d0-a1b4-d659266bd8e6" class="bulleted-list"><li style="list-style-type:disc">Assim, a busca pode se tornar <strong>O(N)</strong> no pior caso.</li></ul><ul id="2237d5d3-8a13-8044-ab4b-e29d22c44b37" class="bulleted-list"><li style="list-style-type:disc">Uma alternativa são as <strong>Tabelas Hash</strong>, que calculam o índice com base em uma <strong>função de dispersão (hashing)</strong>.</li></ul><h2 id="2227d5d3-8a13-80ed-8f6c-cd9cb9b46c57" class="">Tabelas Hash</h2><h3 id="2237d5d3-8a13-8009-a5f5-cfabee5514a0" class="">Conceito</h3><p id="2237d5d3-8a13-802f-8d72-c8fc6b672b46" class="">Também chamada de <strong>tabela de dispersão</strong>, é uma estrutura de dados que associa chaves a valores de forma eficiente, generalizando o conceito de vetor.</p><ul id="2237d5d3-8a13-8078-92b3-ca16cb1684e8" class="bulleted-list"><li style="list-style-type:disc">A posição de armazenamento é obtida por uma função de dispersão (hashing).</li></ul><ul id="2237d5d3-8a13-8006-8556-e91970043fdb" class="bulleted-list"><li style="list-style-type:disc">O objetivo é calcular um <strong>endereço único</strong> (índice) para cada chave.</li></ul><h3 id="2227d5d3-8a13-8044-87cf-c86bb3139d07" class="">Estrutura de uma tabela hash</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80a2-83e6-f63a7ad1b38b" class="code"><code class="language-C">typedef struct {
 		int chave;
 		void *valor;
