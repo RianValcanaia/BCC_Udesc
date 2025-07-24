@@ -1,0 +1,863 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore B </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2207d5d3-8a13-804b-b4e0-d3efb71b00fd" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🌳</span></div><h1 class="page-title">Árvore B </h1><p class="page-description"></p></header><div class="page-body"><nav id="2207d5d3-8a13-804d-ae25-e2c034e09257" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2207d5d3-8a13-804e-a5b8-eb9eeda80bec">Árvore B</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-80fd-ad8f-fcb94fb01ab1">Conceito Geral</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-8073-95ff-d06d75ff4420">Principais Características</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8029-a824-d3c4adb13d39">Nós (ou Páginas)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8024-b627-ebad1916f79e">Ocupação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80e7-b7df-db56480f9ed2">Propriedades Fundamentais</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-80a3-8057-d2a0a4ddf72d">Estrutura de Dados</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8053-80b8-c2677670046e">Árvore</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80d8-9ccf-dc8c9fb73d47">Nó</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-80c8-8a6f-e8b8247d87d3">Operações</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-800e-bd7c-ec3b777620b0">Cria nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8083-b192-c20a0dcc1569">Localiza Nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80f1-9c08-c96d73895a0c">Adiciona chave em um nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-8007-b1d0-e8cc48ad7add">Transbordo, se houve overflow em um nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-805e-abbc-ed96e9807c47">Dividi nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-800c-b201-c4d8ad0aabc7">Inserção</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-809b-8119-e8ee8507c7d0">Remoção</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-800d-8e29-eb0eda297aca">Busca</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2207d5d3-8a13-80a4-964b-f85eae848407">Percurso</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2207d5d3-8a13-80a2-9267-c4ba39f00129">Aplicações</a></div></nav><h1 id="2207d5d3-8a13-804e-a5b8-eb9eeda80bec" class="">Árvore B</h1><p id="2207d5d3-8a13-80fc-b80a-f66b7fa81201" class="">A <strong>árvore B</strong> é uma estrutura de dados auto balanceada idealizada por <strong>Rudolf Bayer</strong> e <strong>Edward McCreight</strong> em 1971. É amplamente utilizada em <strong>sistemas de arquivos</strong> e <strong>bancos de dados</strong>, pois foi projetada para <strong>otimizar o acesso à memória secundária</strong>, minimizando operações de entrada/saída (E/S).</p><h2 id="2207d5d3-8a13-80fd-ad8f-fcb94fb01ab1" class="">Conceito Geral</h2><ul id="2207d5d3-8a13-80c0-a712-ede316de0b6c" class="bulleted-list"><li style="list-style-type:disc">Estrutura de dados do tipo árvore balanceada.</li></ul><ul id="2207d5d3-8a13-8066-9394-d7a5165a19c4" class="bulleted-list"><li style="list-style-type:disc">Ideal para <strong>classificação externa</strong>, com dados armazenados fora da memória principal.</li></ul><ul id="2207d5d3-8a13-808c-8f24-efc07ee7b19f" class="bulleted-list"><li style="list-style-type:disc">Generaliza árvores binárias: <strong>cada nó pode ter mais de dois filhos</strong>.</li></ul><ul id="2207d5d3-8a13-80c8-a66f-c70164d7f3ad" class="bulleted-list"><li style="list-style-type:disc">Operações com tempo logarítmico: <strong>O(log n)</strong>.</li></ul><h2 id="2207d5d3-8a13-8073-95ff-d06d75ff4420" class="">Principais Características</h2><h3 id="2207d5d3-8a13-8029-a824-d3c4adb13d39" class="">Nós (ou Páginas)</h3><ul id="2207d5d3-8a13-804b-87ce-ec0ffab83d32" class="bulleted-list"><li style="list-style-type:disc">Contêm <strong>chaves ordenadas</strong> e <strong>ponteiros para filhos</strong>.</li></ul><ul id="2207d5d3-8a13-8090-8bf8-ea9904e913db" class="bulleted-list"><li style="list-style-type:disc">Objetivo: agrupar dados para reduzir acessos à memória secundária.</li></ul><ul id="2207d5d3-8a13-8049-a380-e115da8809b9" class="bulleted-list"><li style="list-style-type:disc">Um nó com <code>k</code> chaves possui <code>k+1</code> ponteiros para filhos.</li></ul><h3 id="2207d5d3-8a13-8024-b627-ebad1916f79e" class="">Ocupação</h3><ul id="2207d5d3-8a13-8000-923a-cafa791f18a3" class="bulleted-list"><li style="list-style-type:disc">Cada nó (exceto a raiz) deve ter:<ul id="2207d5d3-8a13-8090-acd1-c6e4c3373b54" class="bulleted-list"><li style="list-style-type:circle"><strong>No mínimo ⌈M/2⌉ chaves</strong> (50% da ocupação).</li></ul><ul id="2207d5d3-8a13-8003-8470-c95f080104f6" class="bulleted-list"><li style="list-style-type:circle"><strong>No máximo M−1 chaves</strong>, onde <code>M</code> é a ordem da árvore.</li></ul></li></ul><ul id="2207d5d3-8a13-80a5-b01a-d235f3768d70" class="bulleted-list"><li style="list-style-type:disc">A raiz pode ter menos que o mínimo.</li></ul><h3 id="2207d5d3-8a13-80e7-b7df-db56480f9ed2" class="">Propriedades Fundamentais</h3><ul id="2207d5d3-8a13-8022-961f-da739dd1e16d" class="bulleted-list"><li style="list-style-type:disc">Todos os <strong>nós folhas estão no mesmo nível</strong>.</li></ul><ul id="2207d5d3-8a13-800c-840a-e13e65200652" class="bulleted-list"><li style="list-style-type:disc">A árvore <strong>cresce para cima</strong> (a partir da raiz).</li></ul><ul id="2207d5d3-8a13-801b-8e5a-d18ccf214ad7" class="bulleted-list"><li style="list-style-type:disc">As <strong>chaves dentro de um nó estão ordenadas</strong>.</li></ul><h2 id="2237d5d3-8a13-80a3-8057-d2a0a4ddf72d" class="">Estrutura de Dados</h2><h3 id="2207d5d3-8a13-8053-80b8-c2677670046e" class="">Árvore</h3><ul id="2207d5d3-8a13-8051-8fc9-de94ad7ebc35" class="bulleted-list"><li style="list-style-type:disc">Ponteiro para o <strong>nó raiz</strong>.</li></ul><ul id="2207d5d3-8a13-801e-a74d-d9c7fd51082e" class="bulleted-list"><li style="list-style-type:disc">Parâmetro <code>M</code>: <strong>ordem da árvore</strong>, determina a capacidade dos nós.</li></ul><ul id="2207d5d3-8a13-8078-8197-e56958d60bb0" class="bulleted-list"><li style="list-style-type:disc">Funções de inserção, remoção, busca, percurso, e tratamento de overflow/underflow.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-8055-96c5-c1eaaeadeaa9" class="code"><code class="language-C">struct arvore{
+		No *raiz;
+		int ordem;  // ordem &gt;=3 geralmente
+}Arvore;</code></pre><h3 id="2207d5d3-8a13-80d8-9ccf-dc8c9fb73d47" class="">Nó</h3><p id="2207d5d3-8a13-80c2-84fe-e25c8361ff97" class="">Contém:</p><ul id="2207d5d3-8a13-8013-88b2-c134ed16bed3" class="bulleted-list"><li style="list-style-type:disc">Vetor de <strong>chaves</strong>.</li></ul><ul id="2207d5d3-8a13-80c3-bb96-e304a3917987" class="bulleted-list"><li style="list-style-type:disc">Vetor de <strong>ponteiros para filhos</strong>.</li></ul><ul id="2207d5d3-8a13-80cd-80e2-c38b2dca0d00" class="bulleted-list"><li style="list-style-type:disc">Indicador de <strong>folha</strong> ou <strong>interno</strong>.</li></ul><ul id="2207d5d3-8a13-806e-bf34-dd3db0b5e5f2" class="bulleted-list"><li style="list-style-type:disc">Capacidade máxima de <code>M−1</code> chaves.</li></ul><figure id="2207d5d3-8a13-8018-b78a-f9e8210c533d" class="image"><a href="A%CC%81rvore%20B%202207d5d38a13804bb4e0d3efb71b00fd/image.png"><img style="width:709.984375px" src="A%CC%81rvore%20B%202207d5d38a13804bb4e0d3efb71b00fd/image.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-8069-ba8c-cad5d9558290" class="code"><code class="language-C">typedef struct _no {
+		int total;  // indica o total de chaves, do vetor chaves;
+		int *chaves;  // vetor de chaves;
+		struct _no **filhos;  //vetor de nós filhos tem sempre total+1 filhos
+		struct _no *pai;  
+}No;</code></pre><h2 id="2207d5d3-8a13-80c8-8a6f-e8b8247d87d3" class="">Operações</h2><h3 id="2207d5d3-8a13-800e-bd7c-ec3b777620b0" class="">Cria nó</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-8070-a225-fcc9b7e346cc" class="code"><code class="language-C">No* criaNo(int ordem) {
+    No* no = malloc(sizeof(No));
+    if (no == NULL) {
+        perror(&quot;Erro ao alocar nó&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    int maxChaves = ordem - 1;
+    int maxFilhos = ordem;
+
+    no-&gt;pai = NULL;
+
+    no-&gt;chaves = malloc(sizeof(int) * maxChaves);
+    if (no-&gt;chaves == NULL) {
+        perror(&quot;Erro ao alocar chaves&quot;);
+        free(no);
+        exit(EXIT_FAILURE);
+    }
+
+    no-&gt;filhos = malloc(sizeof(No*) * maxFilhos);
+    if (no-&gt;filhos == NULL) {
+        perror(&quot;Erro ao alocar filhos&quot;);
+        free(no-&gt;chaves);
+        free(no);
+        exit(EXIT_FAILURE);
+    }
+
+    no-&gt;total = 0;
+
+    for (int i = 0; i &lt; maxFilhos; i++) {
+        no-&gt;filhos[i] = NULL;
+    }
+
+    return no;
+}
+</code></pre><h3 id="2207d5d3-8a13-8083-b192-c20a0dcc1569" class="">Localiza Nó</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-80c0-9cbb-e20f05603055" class="code"><code class="language-C">No* localizaNo(Arvore *arvore, int chave) {
+    if (arvore-&gt;raiz == NULL)
+        return NULL;
+
+    No* no = arvore-&gt;raiz;
+    while (no != NULL) {
+        if (no-&gt;filhos[0] == NULL)
+            return no;  // chegou em uma folha
+
+        int i = pesquisaBinaria(no, chave);
+        no = no-&gt;filhos[i];  // desce para o filho correspondente
+    }
+    return NULL;  // segurança extra, mas não deve chegar aqui
+}
+</code></pre><h3 id="2207d5d3-8a13-80f1-9c08-c96d73895a0c" class="">Adiciona chave em um nó</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-804a-960d-f6e23316c7ab" class="code"><code class="language-C">void adicionaChaveNo(No* no, No* direita, int chave) {
+    int i = pesquisaBinaria(no, chave);
+
+    // Desloca as chaves para a direita
+    for (int j = no-&gt;total - 1; j &gt;= i; j--) {
+        no-&gt;chaves[j + 1] = no-&gt;chaves[j];
+    }
+
+    // Desloca os ponteiros dos filhos para a direita
+    for (int j = no-&gt;total; j &gt;= i + 1; j--) {
+        no-&gt;filhos[j + 1] = no-&gt;filhos[j];
+    }
+
+    // Insere a nova chave
+    no-&gt;chaves[i] = chave;
+
+    // Insere o novo filho à direita da chave
+    no-&gt;filhos[i + 1] = direita;
+
+    // Atualiza o total de chaves
+    no-&gt;total++;
+}
+</code></pre><h3 id="2207d5d3-8a13-8007-b1d0-e8cc48ad7add" class="">Transbordo, se houve overflow em um nó</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-80bf-b05d-ee4e9b02ad39" class="code"><code class="language-C">int transbordo(No *no, Arvore *arvore) {
+    return no-&gt;total &gt;= arvore-&gt;ordem;
+}</code></pre><h3 id="2207d5d3-8a13-805e-abbc-ed96e9807c47" class="">Dividi nó</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-808d-813d-de8fa250b095" class="code"><code class="language-C">No* divideNo(No* no) {
+    int meio = no-&gt;total / 2;
+    
+    // Cria novo nó (irmão direito)
+    No* novo = criaNo(arvore-&gt;ordem);  // ou passe a ordem como parâmetro
+    novo-&gt;pai = no-&gt;pai;
+
+    // Move as chaves e filhos da metade direita para o novo nó
+    for (int i = meio + 1; i &lt; no-&gt;total; i++) {
+        novo-&gt;chaves[novo-&gt;total] = no-&gt;chaves[i];
+        novo-&gt;filhos[novo-&gt;total] = no-&gt;filhos[i];
+        if (novo-&gt;filhos[novo-&gt;total] != NULL) {
+            novo-&gt;filhos[novo-&gt;total]-&gt;pai = novo;
+        }
+        novo-&gt;total++;
+    }
+
+    // Move o último filho
+    novo-&gt;filhos[novo-&gt;total] = no-&gt;filhos[no-&gt;total];
+    if (novo-&gt;filhos[novo-&gt;total] != NULL) {
+        novo-&gt;filhos[novo-&gt;total]-&gt;pai = novo;
+    }
+
+    // Reduz o total de chaves no nó original (corta fora o que foi movido)
+    no-&gt;total = meio;
+
+    return novo;
+}</code></pre><h3 id="2207d5d3-8a13-800c-b201-c4d8ad0aabc7" class="">Inserção</h3><ol type="1" id="2207d5d3-8a13-8084-9f9e-e4a350d25000" class="numbered-list" start="1"><li>Localiza-se o <strong>nó folha</strong> onde a chave deve ser inserida.</li></ol><ol type="1" id="2207d5d3-8a13-80f1-a236-e4107fb514fe" class="numbered-list" start="2"><li>A chave é inserida <strong>ordenadamente</strong> no nó.</li></ol><ol type="1" id="2207d5d3-8a13-8058-8335-fbccad458cc6" class="numbered-list" start="3"><li>Se houver <strong>overflow</strong> (exceder <code>M−1</code> chaves):<ul id="2207d5d3-8a13-80ac-b884-eb6018692bc8" class="bulleted-list"><li style="list-style-type:disc">Realiza-se uma <strong>divisão (split)</strong> do nó.</li></ul><ul id="2207d5d3-8a13-800f-b59e-f9c63576b10e" class="bulleted-list"><li style="list-style-type:disc">A <strong>chave do meio</strong> é promovida ao pai.</li></ul><ul id="2207d5d3-8a13-8092-81b8-dd5cd4c05d0d" class="bulleted-list"><li style="list-style-type:disc">A divisão pode <strong>propagar-se até a raiz</strong>, criando um novo nível.</li></ul></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-80d2-b1f5-f5ab2707d474" class="code"><code class="language-C">void adicionaChave(Arvore *arv, int chave) {
+    No* no = localizaNo(*arv, chave);  // função precisa receber a árvore
+    adicionaChaveRecursivo(no, NULL, chave);
+}
+
+void adicionaChaveRecursivo(No* no, No* direita, int chave) {
+    adicionaChaveNo(no, direita, chave);
+
+    if (transbordo(no)) {
+        int promovido = no-&gt;chaves[arvore-&gt;ordem];  // chave central
+        No* irmao = divideNo(no);  // novo nó irmão à direita
+
+        if (no-&gt;pai == NULL) {
+            // Criando nova raiz
+            No* novaRaiz = criaNo(arvore-&gt;ordem);
+            novaRaiz-&gt;filhos[0] = no;
+
+            adicionaChaveNo(novaRaiz, irmao, promovido);
+
+            no-&gt;pai = novaRaiz;
+            irmao-&gt;pai = novaRaiz;
+
+            arvore-&gt;raiz = novaRaiz;
+        } else {
+            irmao-&gt;pai = no-&gt;pai;
+            adicionaChaveRecursivo(no-&gt;pai, irmao, promovido);
+        }
+    }
+}</code></pre><h3 id="2207d5d3-8a13-809b-8119-e8ee8507c7d0" class="">Remoção</h3><ul id="2207d5d3-8a13-8099-a90d-f2fcf0a17d0c" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso 1 (folha com ocupação suficiente)</strong>: remove diretamente.</li></ul><ul id="2207d5d3-8a13-8063-a0cb-ddae5026abb5" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso 2 (nó interno)</strong>: substitui pela chave sucessora ou predecessora.</li></ul><ul id="2207d5d3-8a13-80af-b66a-d70cc712311b" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso 3 (folha com ocupação insuficiente, irmão pode ceder)</strong>: faz-se uma <strong>rotação</strong>.</li></ul><ul id="2207d5d3-8a13-8057-a56f-e088a118dc32" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso 4 (folha com ocupação insuficiente, irmãos também)</strong>: faz-se uma <strong>fusão (merge)</strong> com o irmão.</li></ul><p id="2207d5d3-8a13-8050-9f76-e8ef0bd56e8a" class="">(implementar aqui)</p><h3 id="2207d5d3-8a13-800d-8e29-eb0eda297aca" class="">Busca</h3><ul id="2207d5d3-8a13-80d7-a011-f2a19e4df753" class="bulleted-list"><li style="list-style-type:disc">Similar à busca em árvore binária, mas com múltiplos filhos.</li></ul><ul id="2207d5d3-8a13-805d-9070-fe8b4351c5c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Pesquisa binária</strong> pode ser usada dentro de um nó.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-805e-9a84-f9b78a200052" class="code"><code class="language-C">int pesquisaBinaria(No* no, int chave) {
+    int esquerda = 0;
+    int direita = no-&gt;total - 1;
+    int meio;
+
+    while (esquerda &lt;= direita) {
+        meio = (esquerda + direita) / 2;
+        if (no-&gt;chaves[meio] == chave) {
+            return meio;  // chave encontrada na posição meio
+        } else if (no-&gt;chaves[meio] &lt; chave) {
+            esquerda = meio + 1;
+        } else {
+            direita = meio - 1;
+        }
+    }
+    // chave não encontrada, retorna posição para continuar busca nos filhos
+    return esquerda;
+}
+
+int localizaChave(Arvore *arv, int chave) {
+    No *no = arv-&gt;raiz;
+    while (no != NULL) {
+        int i = pesquisaBinaria(no, chave);
+        // Verifica se encontrou a chave na posição i
+        if (i &lt; no-&gt;total &amp;&amp; no-&gt;chaves[i] == chave) {
+            return 1; // chave encontrada
+        } else {
+            no = no-&gt;filhos[i]; // desce para o filho correto
+        }
+    }
+    return 0; // chave não encontrada na árvore
+}</code></pre><h3 id="2207d5d3-8a13-80a4-964b-f85eae848407" class="">Percurso</h3><ul id="2207d5d3-8a13-80c0-b80c-cba8deb1a361" class="bulleted-list"><li style="list-style-type:disc">É possível realizar percursos <strong>em ordem</strong>, <strong>pré-ordem</strong>, ou outros, como em árvores tradicionais.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2207d5d3-8a13-8068-868d-e93d5af9e1e5" class="code"><code class="language-C">void imprimeChave(int chave) {
+    printf(&quot;%d &quot;, chave);
+}
+
+void percorreArvore(No* no, void (*visita)(int chave)) {  // em ordem
+    if (no != NULL) {
+        for (int i = 0; i &lt; no-&gt;total; i++) {
+            percorreArvore(no-&gt;filhos[i], visita);
+            visita(no-&gt;chaves[i]);
+        }
+        percorreArvore(no-&gt;filhos[no-&gt;total], visita);
+    }
+}
+
+// Depois, para percorrer:
+percorreArvore(raiz, imprimeChave);
+</code></pre><h2 id="2207d5d3-8a13-80a2-9267-c4ba39f00129" class="">Aplicações</h2><ul id="2207d5d3-8a13-80a5-a480-c13fb314fe5c" class="bulleted-list"><li style="list-style-type:disc">Bancos de dados relacionais (ex: MySQL, PostgreSQL).</li></ul><ul id="2207d5d3-8a13-803f-a228-cd717b7ad4bc" class="bulleted-list"><li style="list-style-type:disc">Sistemas de arquivos (ex: NTFS, HFS+).</li></ul><ul id="2207d5d3-8a13-80e3-96d3-d3ce5ceee4c4" class="bulleted-list"><li style="list-style-type:disc">Índices de grandes volumes de dados armazenados em disco.</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

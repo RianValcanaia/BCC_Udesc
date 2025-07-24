@@ -1,0 +1,790 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tabelas Hash </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2227d5d3-8a13-809f-849e-cb9e51702e6b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔑</span></div><h1 class="page-title">Tabelas Hash </h1><p class="page-description"></p></header><div class="page-body"><h1 id="2227d5d3-8a13-806d-bfff-ee23abd10d54" class="">Sumário</h1><nav id="2227d5d3-8a13-8091-ae3c-d7057db622a3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-806d-bfff-ee23abd10d54">Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-80e0-a802-cc33777c085b">Conceitos e Estratégia de Armazenamento</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80cc-ad3c-cb7fa5e0ef51">Problema de Busca</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80f4-bb4e-e33fc6214f8d">Acesso Direto em Vetores</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80ed-8f6c-cd9cb9b46c57">Tabelas Hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8009-a5f5-cfabee5514a0">Conceito</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8044-87cf-c86bb3139d07">Estrutura de uma tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80fc-bbfc-c7446b36afb6">Criar uma tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8016-ae78-d6e2459b8f12">Apagar/limpar a tabela hash</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-8074-81d8-e6936345ba34">Funções de Dispersão (Hashing)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8082-9ced-fb59a5748ec3">Exemplos de Funções Hash</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e5-b682-d672ce410ad1">1. Método da Divisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b4-9379-dc58c6608080">2. Método da Multiplicação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-809a-a9f8-eaf81a2ca546">3. Método da dobra</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2227d5d3-8a13-8056-b75c-c7bd06a79099">Operações</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80c5-9201-ca915daf07e9">Leitura e gravação</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80a4-9ad9-cee2cd3597d4">Insersão</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-8073-b28f-c84c220fae97">Busca</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80bd-9cd1-ca6b4f1e31c2">Tratamento de colisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8044-a2a8-c03df2c52beb">Endereçamento Aberto</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b8-b6d3-e7ecff0215f3">Vantagens</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8036-8167-f51146f4ced4">Desvantagens</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8059-9f4a-d4ba28b131e1">Endereçamento Separado (Encadeamento)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-8082-9dcf-ed59e485177a">Estrutura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2227d5d3-8a13-80b8-81dc-e16f63796c8a">Criar</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80d6-a709-f042158bc72e">Inserção com colisão</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-807d-8086-c0fa58558a46">Buscar </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2227d5d3-8a13-80ef-93dd-f5da507c219a">Vantagens das Tabelas Hash</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-80d8-9b45-cce0a0627053">Desvantagens</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e1-9adf-e7ea47a80ce4">Aplicações</a></div></nav><h1 id="2227d5d3-8a13-80e0-a802-cc33777c085b" class="">Conceitos e Estratégia de Armazenamento</h1><h3 id="2227d5d3-8a13-80cc-ad3c-cb7fa5e0ef51" class="">Problema de Busca</h3><p id="2237d5d3-8a13-8090-bf86-f16da9198437" class="">A maioria dos métodos de busca realiza <strong>comparações de chaves</strong>. Dada uma chave de pesquisa, comparam-se sucessivamente os dados armazenados.</p><ul id="2237d5d3-8a13-80ee-aeec-fe67612f9b69" class="bulleted-list"><li style="list-style-type:disc">Algoritmos eficientes requerem dados ordenados.</li></ul><ul id="2237d5d3-8a13-8003-ad88-fa9cb5b841bd" class="bulleted-list"><li style="list-style-type:disc">O limite inferior para algoritmos de ordenação é <strong>O(N log N)</strong>.</li></ul><ul id="2237d5d3-8a13-801b-873f-f92dcf2311cc" class="bulleted-list"><li style="list-style-type:disc">Algoritmos de busca eficientes possuem complexidade <strong>O(log N)</strong>.</li></ul><ul id="2237d5d3-8a13-8088-aebb-f9d5983e7d51" class="bulleted-list"><li style="list-style-type:disc">A busca ideal seria com <strong>acesso direto (O(1))</strong>, sem varredura do conjunto de dados.</li></ul><h3 id="2227d5d3-8a13-80f4-bb4e-e33fc6214f8d" class="">Acesso Direto em Vetores</h3><p id="2237d5d3-8a13-80be-9dc0-e8fd9b905077" class="">Vetores usam <strong>índices</strong> para armazenar e acessar dados com complexidade <strong>O(1)</strong>.</p><ul id="2237d5d3-8a13-80da-99a9-e82f8c2a4e7e" class="bulleted-list"><li style="list-style-type:disc">Contudo, <strong>não há mecanismo interno para calcular o índice a partir de um valor</strong>.</li></ul><ul id="2237d5d3-8a13-80d0-a1b4-d659266bd8e6" class="bulleted-list"><li style="list-style-type:disc">Assim, a busca pode se tornar <strong>O(N)</strong> no pior caso.</li></ul><ul id="2237d5d3-8a13-8044-ab4b-e29d22c44b37" class="bulleted-list"><li style="list-style-type:disc">Uma alternativa são as <strong>Tabelas Hash</strong>, que calculam o índice com base em uma <strong>função de dispersão (hashing)</strong>.</li></ul><h2 id="2227d5d3-8a13-80ed-8f6c-cd9cb9b46c57" class="">Tabelas Hash</h2><h3 id="2237d5d3-8a13-8009-a5f5-cfabee5514a0" class="">Conceito</h3><p id="2237d5d3-8a13-802f-8d72-c8fc6b672b46" class="">Também chamada de <strong>tabela de dispersão</strong>, é uma estrutura de dados que associa chaves a valores de forma eficiente, generalizando o conceito de vetor.</p><ul id="2237d5d3-8a13-8078-92b3-ca16cb1684e8" class="bulleted-list"><li style="list-style-type:disc">A posição de armazenamento é obtida por uma função de dispersão (hashing).</li></ul><ul id="2237d5d3-8a13-8006-8556-e91970043fdb" class="bulleted-list"><li style="list-style-type:disc">O objetivo é calcular um <strong>endereço único</strong> (índice) para cada chave.</li></ul><h3 id="2227d5d3-8a13-8044-87cf-c86bb3139d07" class="">Estrutura de uma tabela hash</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80a2-83e6-f63a7ad1b38b" class="code"><code class="language-C">typedef struct {
+		int chave;
+		void *valor;
+}Entrada;
+
+typedef struct {
+		int total;
+		int tamanho;
+		Entrada **elementos;
+
+} Hash;</code></pre><h3 id="2227d5d3-8a13-80fc-bbfc-c7446b36afb6" class="">Criar uma tabela hash</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-8098-81c8-f64cc00332e4" class="code"><code class="language-C">Hash *cria(int tamanho){
+		Hash *hash = malloc(sizeof(Hash));
+		hash-&gt;tamanho = tamanho;
+		hash-&gt;total = 0;
+		hash-&gt;elementos = malloc(tamanho *sizeof(Entrada*));
+		for (int i = 0; i &lt; tamanho; i++){
+				hash-&gt;elementos[i] = NULL;
+		}
+		return hash;
+}</code></pre><h3 id="2227d5d3-8a13-8016-ae78-d6e2459b8f12" class="">Apagar/limpar a tabela hash</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-8017-90e4-d35479985bd8" class="code"><code class="language-C">void liberar(Hash *hash) {
+    if (hash != NULL) {
+        for (int i = 0; i &lt; hash-&gt;tamanho; i++) {
+            if (hash-&gt;elementos[i] != NULL) {
+                free(hash-&gt;elementos[i]);
+            }
+        }
+        free(hash-&gt;elementos);
+        free(hash);
+    }
+}	</code></pre><h1 id="2237d5d3-8a13-8074-81d8-e6936345ba34" class="">Funções de Dispersão (Hashing)</h1><p id="2237d5d3-8a13-80d4-8b47-d7b53a5a7908" class="">A função hashing transforma uma <strong>chave</strong> em uma <strong>posição</strong> na tabela.</p><p id="2237d5d3-8a13-8028-aa7e-e69a408b5d07" class="">Critérios desejáveis para uma boa função de dispersão:</p><ul id="2237d5d3-8a13-806c-a527-d0198baae193" class="bulleted-list"><li style="list-style-type:disc">Poucas colisões</li></ul><ul id="2237d5d3-8a13-8034-b07c-e1bce9b68065" class="bulleted-list"><li style="list-style-type:disc">Fácil de calcular</li></ul><ul id="2237d5d3-8a13-8048-a819-e2a224fe2590" class="bulleted-list"><li style="list-style-type:disc">Distribuição uniforme</li></ul><h2 id="2237d5d3-8a13-8082-9ced-fb59a5748ec3" class="">Exemplos de Funções Hash</h2><h3 id="2237d5d3-8a13-80e5-b682-d672ce410ad1" class="">1. Método da Divisão</h3><p id="2227d5d3-8a13-8055-a8c2-d43c7aff873c" class="">Método da divisão: também conhecido como método da congruência linear, consiste em calcular a posição da chave a partir do resto da divisão. </p><ul id="2227d5d3-8a13-8089-888f-e4cf41e23541" class="bulleted-list"><li style="list-style-type:disc">H(c) = c % m</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80e4-adc0-cd6335522379" class="code"><code class="language-C">int hashingDivisao (int chave, int tamanho){
+		return (chave &amp; 0x7FFFFFFF) % tamanho;
+}</code></pre><h3 id="2237d5d3-8a13-80b4-9379-dc58c6608080" class="">2. Método da Multiplicação</h3><p id="2227d5d3-8a13-80dc-8956-c9c9e385b73e" class="">Também conhecido como método da congruência linear multiplicativo, necessário determinar uma constante A, onde 0 &lt; A &lt; 1, use-se esta constante A para: </p><ul id="2227d5d3-8a13-8018-a835-fe891853cc78" class="bulleted-list"><li style="list-style-type:disc">Multiplicar o valor da chave;</li></ul><ul id="2227d5d3-8a13-8033-9e28-f84a94a0e974" class="bulleted-list"><li style="list-style-type:disc">Parte fracionária resultate é multiplicada pelo tamanho da tabela.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80d0-a181-c344c2655faa" class="code"><code class="language-C">int hashingMultiplicacao(int chave, int tamanho){
+		float A = 0.61803387;  //constante 0 &lt; A &lt; 1
+		float i = chave * A;  //realiza a multiplicacao
+		i = i - (int)i;  //obtém a parte fracionária
+		return (int)(tamanho * i);
+}</code></pre><h3 id="2237d5d3-8a13-809a-a9f8-eaf81a2ca546" class="">3. Método da dobra</h3><p id="2227d5d3-8a13-80e0-be61-fcb8c8f0736e" class="">Utiliza um esquema de dobrar e somar os dígitos do valor para calcular a posição da chave na tabela, estratégia do método, considera uma chave como uma sequência de dígitos escritos em um papel, enquanto a chave for maior do que o tamanho da tabela, o papel é dobrado, os dígitos sobrepostos após a dobra são somados, desconsiderando dezena, forma mais fácil de implementar o método utiliza:</p><ul id="2227d5d3-8a13-8041-ad0d-fc54c262f927" class="bulleted-list"><li style="list-style-type:disc">Operador ou exclusivo (xor)</li></ul><ul id="2227d5d3-8a13-801c-a93d-d2584e2b82b2" class="bulleted-list"><li style="list-style-type:disc">Dobra é realizada de k em k bits</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80df-ba9f-cb436dee825e" class="code"><code class="language-C">int hashingDobra(int chave, int tamanho){
+		int k = 10; 
+		int parte1 = chave &gt;&gt; k;
+		int parte2 = chave &amp; (tamanho-1);
+		return (int)(parte1 ^ parte2);
+}</code></pre><h1 id="2227d5d3-8a13-8056-b75c-c7bd06a79099" class="">Operações</h1><h2 id="2227d5d3-8a13-80c5-9201-ca915daf07e9" class="">Leitura e gravação</h2><p id="2227d5d3-8a13-80da-b712-e1590354334b" class="">Quando não é necessário tratamento de colisão, utilzado em situações específicas quando o hashing é perfeito, neste cenário colisões não são aceitas, esforço computacional será O(1) sempre em todos os casos, quando conhecida a quantidade e quais dados serão armazenados, exemplo: tabela de símbolos de compiladores.</p><h2 id="2227d5d3-8a13-80a4-9ad9-cee2cd3597d4" class="">Insersão</h2><p id="2227d5d3-8a13-809a-951d-f3db5602df93" class="">Calcula a posição do elemento da tabela, a partir da função hashing, armazena o elemento na tabela na posição calculada.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80de-b0e4-cd4e30382b2c" class="code"><code class="language-C">void adicionar(Hash *hash, int chave, void *valor) {
+    if (hash != NULL &amp;&amp; hash-&gt;total &lt; hash-&gt;tamanho) {
+        int indice = hashingDivisao(chave, hash-&gt;tamanho);
+        Entrada *entrada = malloc(sizeof(Entrada));
+        entrada-&gt;chave = chave;
+        entrada-&gt;valor = valor;
+        hash-&gt;elementos[indice] = entrada;
+        hash-&gt;total++;
+    }
+}
+</code></pre><h2 id="2227d5d3-8a13-8073-b28f-c84c220fae97" class="">Busca</h2><p id="2227d5d3-8a13-8008-8466-ed6598202c7b" class="">Calculada a posição do elemento na tabela a partir da função hashing, verifica a existência de um elemento na posição obtida, caso positivo retorna o elemento encontrado, caso contrário nulo.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-80ef-9904-d1eb059048ac" class="code"><code class="language-C">void *buscar(Hash *hash, int chave) {
+    if (hash != NULL) {
+        int indice = hashingDivisao(chave, hash-&gt;tamanho);
+        if (hash-&gt;elementos[indice] != NULL) {
+            return hash-&gt;elementos[indice]-&gt;valor;
+        }
+    }
+    return NULL;
+}
+</code></pre><h2 id="2227d5d3-8a13-80bd-9cd1-ca6b4f1e31c2" class="">Tratamento de colisão</h2><h3 id="2227d5d3-8a13-8044-a2a8-c03df2c52beb" class="">Endereçamento Aberto</h3><p id="2237d5d3-8a13-80db-b399-f303bf740c23" class="">Armazena o valor no <strong>próximo espaço livre</strong> na tabela (rehash).</p><h3 id="2237d5d3-8a13-80b8-b6d3-e7ecff0215f3" class="">Vantagens</h3><ul id="2237d5d3-8a13-80fc-88e2-c9dc30932f4a" class="bulleted-list"><li style="list-style-type:disc">Busca mais rápida (própria tabela)</li></ul><ul id="2237d5d3-8a13-80bf-9c22-f7199773e09e" class="bulleted-list"><li style="list-style-type:disc">Não usa espaço adicional</li></ul><h3 id="2237d5d3-8a13-8036-8167-f51146f4ced4" class="">Desvantagens</h3><ul id="2237d5d3-8a13-80c2-a326-ef7efce47810" class="bulleted-list"><li style="list-style-type:disc">Complexidade pode chegar a O(N) na inserção</li></ul><ul id="2237d5d3-8a13-80b8-9c24-f9f980bcf14e" class="bulleted-list"><li style="list-style-type:disc">Sofre com clusters de colisão</li></ul><h2 id="2237d5d3-8a13-8059-9f4a-d4ba28b131e1" class="">Endereçamento Separado (Encadeamento)</h2><p id="2237d5d3-8a13-8023-a0f8-d5f676056d46" class="">Cada posição da tabela é uma <strong>lista encadeada</strong>.</p><figure id="2227d5d3-8a13-800f-887b-d5af757ca4c7" class="image"><a href="Tabelas%20Hash%202227d5d38a13809f849ecb9e51702e6b/image.png"><img style="width:403px" src="Tabelas%20Hash%202227d5d38a13809f849ecb9e51702e6b/image.png"/></a></figure><h3 id="2227d5d3-8a13-8082-9dcf-ed59e485177a" class="">Estrutura</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-8074-8a11-da38b4a5a028" class="code"><code class="language-C">typedef struct {
+		int chave;
+		void *valor; 
+} Entrada;
+
+typedef struct _no{
+		Entrada *entrada;
+		struct _no *próximo;
+} No; 
+
+typedef struct{
+		int total;
+		int tamanho;
+		No **elementos;
+} Hash;</code></pre><h3 id="2227d5d3-8a13-80b8-81dc-e16f63796c8a" class="">Criar</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2227d5d3-8a13-801f-b391-f446223397df" class="code"><code class="language-C">Hash *criar(int tamanho) {
+    Hash *hash = malloc(sizeof(Hash));
+    hash-&gt;tamanho = tamanho;
+    hash-&gt;total = 0;
+    hash-&gt;elementos = malloc(tamanho * sizeof(No*));
+    for (int i = 0; i &lt; tamanho; i++) {
+        hash-&gt;elementos[i] = NULL;
+    }
+    return hash;
+}	</code></pre><h3 id="2237d5d3-8a13-80d6-a709-f042158bc72e" class="">Inserção com colisão</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-8054-b910-da16da6ddfad" class="code"><code class="language-C">void adicionar(Hash *hash, int chave, void *valor) {
+    if (hash != NULL) {
+        int indice = hashingDivisao(chave, hash-&gt;tamanho);
+        Entrada *entrada = malloc(sizeof(Entrada));
+        entrada-&gt;chave = chave;
+        entrada-&gt;valor = valor;
+
+        No *no = malloc(sizeof(No));
+        no-&gt;entrada = entrada;
+        no-&gt;proximo = hash-&gt;elementos[indice];
+        hash-&gt;elementos[indice] = no;
+        hash-&gt;total++;
+    }
+}		</code></pre><h3 id="2237d5d3-8a13-807d-8086-c0fa58558a46" class="">Buscar </h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-80fb-abc3-e683fc1f4222" class="code"><code class="language-C">void *buscar(Hash *hash, int chave) {
+    if (hash != NULL) {
+        int indice = hashingDivisao(chave, hash-&gt;tamanho);
+        No *no = hash-&gt;elementos[indice];
+        while (no != NULL) {
+            if (no-&gt;entrada-&gt;chave == chave) {
+                return no-&gt;entrada-&gt;valor;
+            }
+            no = no-&gt;proximo;
+        }
+    }
+    return NULL;
+}
+</code></pre><p id="2237d5d3-8a13-8062-9888-f1dc6424a21d" class="">
+</p><h2 id="2227d5d3-8a13-80ef-93dd-f5da507c219a" class="">Vantagens das Tabelas Hash</h2><ul id="2237d5d3-8a13-809f-9ab7-c6d4202e76c9" class="bulleted-list"><li style="list-style-type:disc">Busca com tempo <strong>médio O(1)</strong></li></ul><ul id="2237d5d3-8a13-80a3-9776-c694ee5c544a" class="bulleted-list"><li style="list-style-type:disc">Simples de implementar</li></ul><ul id="2237d5d3-8a13-80b9-8486-e3290aebbcf9" class="bulleted-list"><li style="list-style-type:disc">Generalização de vetores</li></ul><h1 id="2237d5d3-8a13-80d8-9b45-cce0a0627053" class="">Desvantagens</h1><ul id="2237d5d3-8a13-8020-8db1-cf2f76a1dfb0" class="bulleted-list"><li style="list-style-type:disc">Alto custo para ordenar os dados</li></ul><ul id="2237d5d3-8a13-8001-a4a4-cfc6badb17e8" class="bulleted-list"><li style="list-style-type:disc">Necessidade de conhecer o número de elementos a priori</li></ul><ul id="2237d5d3-8a13-8054-b0b0-ff8372384b48" class="bulleted-list"><li style="list-style-type:disc">Pior caso: <strong>complexidade O(N)</strong> devido a colisões</li></ul><h1 id="2237d5d3-8a13-80e1-9adf-e7ea47a80ce4" class="">Aplicações</h1><ul id="2237d5d3-8a13-8009-999f-d1e876a6c07f" class="bulleted-list"><li style="list-style-type:disc"><strong>Cache de dados</strong> (bancos em memória)</li></ul><ul id="2237d5d3-8a13-80ad-865f-cfe60fd22680" class="bulleted-list"><li style="list-style-type:disc"><strong>Criptografia</strong> (MD5, SHA, armazenamento de senhas)</li></ul><ul id="2237d5d3-8a13-80ea-b46b-d399a4456838" class="bulleted-list"><li style="list-style-type:disc"><strong>Compiladores</strong> (tabela de símbolos)</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

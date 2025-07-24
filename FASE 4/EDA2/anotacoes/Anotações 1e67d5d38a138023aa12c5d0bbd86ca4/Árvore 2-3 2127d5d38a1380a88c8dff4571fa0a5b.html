@@ -1,0 +1,966 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Árvore 2-3 </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2127d5d3-8a13-80a8-8c8d-ff4571fa0a5b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">➕</span></div><h1 class="page-title">Árvore 2-3 </h1><p class="page-description"></p></header><div class="page-body"><h1 id="2127d5d3-8a13-806b-bf00-ec6bbaa4fc6b" class="">Sumário</h1><nav id="2127d5d3-8a13-80f9-8ad3-dec570007a71" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2127d5d3-8a13-806b-bf00-ec6bbaa4fc6b">Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2237d5d3-8a13-802c-b9d0-c5e098941b71">Árvore 2-3</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-80a0-ac3d-d908fdcdb0f4">Complexidade de Tempo</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e5-8168-c7144b0397f1">Características</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-80e0-ad44-dc3374d980af">Propriedades Importantes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8041-ae14-ccd315164022">Operações Fundamentais</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-802f-a51e-c00b99e05b58">Estrutura da árvore</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8050-be40-c7a306879b9c">Operações</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2127d5d3-8a13-8058-87de-fe5441424f19">Estrutura da árvore</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2127d5d3-8a13-8019-a502-c9eec54b3084">Criação de um novo nó</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80db-bd2f-dcb9b6333bb8">Verificação de folha</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8092-8d97-cf39c03edc29">Adiciona uma chave e subárvore em um nó com uma única chave</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8012-9e67-db7963423653">Localiza um nó a partir de uma chave</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-807b-93be-fdf9dce81ea5">Quebra de nó (split) ao inserir em um nó com duas chaves</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b8-b354-daa02a6cb314">Inserção em Árvore 2-3</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80a8-9777-f1a35af493bd">Regras de Inserção</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2237d5d3-8a13-8075-9dca-e62168d5c25e">Remoção em Árvore 2-3</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-807f-b631-d94f0ce575d9">Etapas da Remoção</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80d6-8d14-caf25f6368ca">Função de reequilíbrio</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-80b5-80b7-ec2bc82fc34d">Função recursiva de remoção</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2237d5d3-8a13-8024-8d20-ec7d65042d30">Função principal de remoção</a></div></nav><h1 id="2237d5d3-8a13-802c-b9d0-c5e098941b71" class="">Árvore 2-3</h1><p id="2237d5d3-8a13-805e-b381-db62fddcea24" class="">A <strong>árvore 2-3</strong> é uma estrutura de dados <strong>auto-balanceada</strong> utilizada para armazenar dados ordenados, oferecendo suporte eficiente para:</p><ul id="2237d5d3-8a13-8035-91fb-cce64906597b" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial</strong></li></ul><ul id="2237d5d3-8a13-805b-8791-e7c61fd56c7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório</strong> (pesquisa)</li></ul><h3 id="2237d5d3-8a13-80a0-ac3d-d908fdcdb0f4" class="">Complexidade de Tempo</h3><ul id="2237d5d3-8a13-80bd-baed-d910b48ce02c" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório</strong>: O(log n)</li></ul><ul id="2237d5d3-8a13-80dc-a5a5-ca165b4d3040" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserção</strong>: O(log n)</li></ul><ul id="2237d5d3-8a13-8025-a854-ea2fcfa5e8c8" class="bulleted-list"><li style="list-style-type:disc"><strong>Remoção</strong>: O(log n)</li></ul><p id="2237d5d3-8a13-8041-a72f-dadb8888c9c4" class="">Essa estrutura foi idealizada por <strong>J. E. Hopcroft</strong> em <strong>1970</strong>, destacando-se por sua <strong>ótima isometria</strong>: cada subárvore à esquerda, centro ou direita contém aproximadamente a mesma quantidade de dados.</p><h2 id="2237d5d3-8a13-80e5-8168-c7144b0397f1" class="">Características</h2><ul id="2237d5d3-8a13-80bb-8297-fc2f586e3d96" class="bulleted-list"><li style="list-style-type:disc">Cada <strong>nó interno</strong> pode conter <strong>uma ou duas chaves</strong>.</li></ul><ul id="2237d5d3-8a13-80c1-8c79-d4c172df2f67" class="bulleted-list"><li style="list-style-type:disc"><strong>Todas as folhas estão no mesmo nível.</strong></li></ul><ul id="2237d5d3-8a13-807b-ad23-d5ffd20fdb51" class="bulleted-list"><li style="list-style-type:disc">Quando um nó tem <strong>uma única chave</strong>, ele possui <strong>duas subárvores</strong>:<ul id="2237d5d3-8a13-8068-b48b-f7a89495b8f8" class="bulleted-list"><li style="list-style-type:circle">Subárvore à esquerda contém valores <strong>menores</strong> que a chave.</li></ul><ul id="2237d5d3-8a13-8067-9c7f-c66fea822121" class="bulleted-list"><li style="list-style-type:circle">Subárvore à direita contém valores <strong>maiores</strong> que a chave.</li></ul></li></ul><ul id="2237d5d3-8a13-80b3-a898-cc5b524ff3ae" class="bulleted-list"><li style="list-style-type:disc">Quando um nó possui <strong>duas chaves</strong>, ele terá <strong>três subárvores</strong>:<ul id="2237d5d3-8a13-809b-a44e-fdaa649fdcfc" class="bulleted-list"><li style="list-style-type:circle">Subárvore à esquerda: valores <strong>menores que a menor chave</strong>.</li></ul><ul id="2237d5d3-8a13-800f-9ad8-d95ce2da9eab" class="bulleted-list"><li style="list-style-type:circle">Subárvore central: valores <strong>entre as duas chaves</strong>.</li></ul><ul id="2237d5d3-8a13-80fa-9d42-fbc725f46698" class="bulleted-list"><li style="list-style-type:circle">Subárvore à direita: valores <strong>maiores que a maior chave</strong>.</li></ul></li></ul><ul id="2237d5d3-8a13-8047-a4d5-c2485f01088c" class="bulleted-list"><li style="list-style-type:disc">É considerada uma <strong>árvore multi-vias</strong>, pois não é limitada a dois filhos como uma árvore binária.</li></ul><h2 id="2237d5d3-8a13-80e0-ad44-dc3374d980af" class="">Propriedades Importantes</h2><ul id="2237d5d3-8a13-800a-9be5-c8c1364e016c" class="bulleted-list"><li style="list-style-type:disc"><strong>Todas as folhas estão no mesmo nível.</strong></li></ul><ul id="2237d5d3-8a13-80c8-a95b-f3a8fd14ab80" class="bulleted-list"><li style="list-style-type:disc">A árvore <strong>cresce em direção à raiz</strong>, ao contrário de estruturas como ABB, AVL ou Rubro-Negra, que crescem pelas folhas.</li></ul><ul id="2237d5d3-8a13-80fc-9ebc-fcb070a47447" class="bulleted-list"><li style="list-style-type:disc">Se um nó possui <strong>duas chaves</strong>, elas estão <strong>em ordem crescente</strong>.</li></ul><h2 id="2237d5d3-8a13-8041-ae14-ccd315164022" class="">Operações Fundamentais</h2><ul id="2237d5d3-8a13-80c4-9136-f29abee02fef" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserção de chave</strong></li></ul><ul id="2237d5d3-8a13-800f-b230-fc2682d582e5" class="bulleted-list"><li style="list-style-type:disc"><strong>Remoção de chave</strong></li></ul><ul id="2237d5d3-8a13-8071-a6f3-e83481f8087f" class="bulleted-list"><li style="list-style-type:disc"><strong>Busca de chave</strong></li></ul><ul id="2237d5d3-8a13-80eb-9e95-f7d4a48fb15c" class="bulleted-list"><li style="list-style-type:disc"><strong>Percurso da árvore</strong></li></ul><h2 id="2237d5d3-8a13-802f-a51e-c00b99e05b58" class="">Estrutura da árvore</h2><figure id="2127d5d3-8a13-809f-9ca6-eef9c426c141" class="image"><a href="A%CC%81rvore%202-3%202127d5d38a1380a88c8dff4571fa0a5b/image.png"><img style="width:477.96875px" src="A%CC%81rvore%202-3%202127d5d38a1380a88c8dff4571fa0a5b/image.png"/></a></figure><h2 id="2237d5d3-8a13-8050-be40-c7a306879b9c" class="">Operações</h2><h3 id="2127d5d3-8a13-8058-87de-fe5441424f19" class="">Estrutura da árvore</h3><p id="2237d5d3-8a13-8081-8a49-cc0446ce1487" class="">Cada nó pode conter uma ou duas chaves, e até três ponteiros para subárvores (esquerda, centro e direita).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2127d5d3-8a13-803b-86fe-c7fdd71ebb76" class="code"><code class="language-C">typedef struct _no {
+    int num_chaves;       // Número de chaves no nó (1 ou 2)
+    int chave_e, chave_d; // Chaves armazenadas
+    struct _no *esq;      // Ponteiro para subárvore esquerda
+    struct _no *centro;   // Ponteiro para subárvore central
+    struct _no *dir;      // Ponteiro para subárvore direita
+} No;</code></pre><h3 id="2127d5d3-8a13-8019-a502-c9eec54b3084" class="">Criação de um novo nó</h3><p id="2237d5d3-8a13-80c9-9e6b-f2aa9c92d772" class="">Cria e retorna um novo nó com as chaves e ponteiros fornecidos.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2127d5d3-8a13-800f-97fd-cae1f46b47a3" class="code"><code class="language-C">No *criaNo(int ch1, int ch2, int num_chaves, No *pe, No *pc, No *pd) {
+    No *novo = (No *)malloc(sizeof(No));
+    if (novo == NULL) {
+        printf(&quot;Erro ao alocar memória\n&quot;);
+        return NULL;
+    }
+    novo-&gt;chave_e = ch1;
+    novo-&gt;chave_d = ch2;
+    novo-&gt;num_chaves = num_chaves;
+    novo-&gt;esq = pe;
+    novo-&gt;centro = pc;
+    novo-&gt;dir = pd;
+    return novo;
+}
+</code></pre><h3 id="2237d5d3-8a13-80db-bd2f-dcb9b6333bb8" class="">Verificação de folha</h3><p id="2237d5d3-8a13-809f-a576-f4e4da2ee0ca" class="">Verifica se o nó atual é uma folha (ou seja, não possui filhos).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2127d5d3-8a13-80d9-98e3-eff7df8b2208" class="code"><code class="language-C">int ehFolha(No *no) {
+    return (no-&gt;esq == NULL &amp;&amp; no-&gt;centro == NULL &amp;&amp; no-&gt;dir == NULL);
+}</code></pre><h3 id="2237d5d3-8a13-8092-8d97-cf39c03edc29" class="">Adiciona uma chave e subárvore em um nó com uma única chave</h3><p id="2237d5d3-8a13-80c3-9119-fd96d9e978c9" class="">Esta função adiciona uma nova chave a um nó que possui apenas uma chave. Se necessário, reorganiza os ponteiros para preservar a ordem.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2127d5d3-8a13-801d-b078-ec6ada0fef99" class="code"><code class="language-C">void adicionaChave(No *no, int ch, No *p) {
+    if (no == NULL || no-&gt;num_chaves != 1) {
+        printf(&quot;Erro: nó nulo ou com número de chaves inválido\n&quot;);
+        return;
+    }
+
+    if (ch &lt; no-&gt;chave_e) {
+        // Nova chave vai antes da chave existente
+        no-&gt;chave_d = no-&gt;chave_e;
+        no-&gt;chave_e = ch;
+        no-&gt;dir = no-&gt;centro;
+        no-&gt;centro = p;
+    } else {
+        // Nova chave vai depois da chave existente
+        no-&gt;chave_d = ch;
+        no-&gt;dir = p;
+    }
+    no-&gt;num_chaves = 2;
+}</code></pre><h3 id="2237d5d3-8a13-8012-9e67-db7963423653" class="">Localiza um nó a partir de uma chave</h3><p id="2237d5d3-8a13-806f-b248-f7de4127ec79" class="">Busca recursivamente um nó que contenha a chave. Retorna o ponteiro para o nó se encontrado; caso contrário, retorna <code>NULL</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-8077-9ad5-e325bb6b4f48" class="code"><code class="language-C">No* localizaNo(No* no, int chave) {
+    if (no == NULL)
+        return NULL; // Não encontrou
+
+    if (chave == no-&gt;chave_e)
+        return no; // É a chave esquerda
+
+    if ((no-&gt;num_chaves == 2) &amp;&amp; (chave == no-&gt;chave_d))
+        return no; // É a chave direita
+
+    if (chave &lt; no-&gt;chave_e)
+        return localizaNo(no-&gt;esq, chave);
+
+    else if ((no-&gt;num_chaves == 1) || (chave &lt; no-&gt;chave_d))
+        return localizaNo(no-&gt;centro, chave);
+
+    else
+        return localizaNo(no-&gt;dir, chave);
+}</code></pre><h3 id="2237d5d3-8a13-807b-93be-fdf9dce81ea5" class="">Quebra de nó (split) ao inserir em um nó com duas chaves</h3><p id="2237d5d3-8a13-804f-bb21-c13feb85bc5e" class="">Quando um nó 2-3 já possui duas chaves e uma nova chave precisa ser inserida, ocorre uma <strong>quebra de nó</strong> (split). Essa operação divide o nó atual em dois nós menores e promove uma das chaves ao nível superior da árvore.</p><p id="2237d5d3-8a13-80ca-af00-c17f1e1d5365" class="">A função abaixo realiza essa quebra, reorganizando os ponteiros das subárvores adequadamente.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-80ac-ab50-e8593381b2a9" class="code"><code class="language-C">No *quebraNo(No *no, int valor, int *rval, No *subarvore) {
+    No *aux;
+
+    if (valor &gt; no-&gt;chave_d) {
+        // Novo valor é maior que todas as chaves
+        *rval = no-&gt;chave_d; // Promove a maior chave
+        aux = no-&gt;dir;
+        no-&gt;dir = NULL;
+        no-&gt;num_chaves = 1;
+        return criaNo(valor, 0, 1, aux, subarvore, NULL);
+
+    } else if (valor &gt;= no-&gt;chave_e) {
+        // Novo valor está entre as duas chaves
+        *rval = valor; // Promove o novo valor
+        aux = no-&gt;dir;
+        no-&gt;dir = NULL;
+        no-&gt;num_chaves = 1;
+        return criaNo(no-&gt;chave_d, 0, 1, subarvore, aux, NULL);
+
+    } else {
+        // Novo valor é menor que todas as chaves
+        *rval = no-&gt;chave_e; // Promove a menor chave
+        aux = criaNo(no-&gt;chave_d, 0, 1, no-&gt;centro, no-&gt;dir, NULL);
+        no-&gt;chave_e = valor;
+        no-&gt;centro = subarvore;
+        no-&gt;dir = NULL;
+        no-&gt;num_chaves = 1;
+        return aux;
+    }
+}</code></pre><h2 id="2237d5d3-8a13-80b8-b354-daa02a6cb314" class="">Inserção em Árvore 2-3</h2><p id="2237d5d3-8a13-8039-b5d5-f82799da381f" class="">A inserção em uma árvore 2-3 segue regras que garantem que a estrutura permaneça balanceada, com todas as folhas no mesmo nível.</p><h3 id="2237d5d3-8a13-80a8-9777-f1a35af493bd" class="">Regras de Inserção</h3><ul id="2237d5d3-8a13-807b-baac-f29571e6f965" class="bulleted-list"><li style="list-style-type:disc"><strong>Regra 1: Árvore vazia</strong><ul id="2237d5d3-8a13-8095-935c-fb8af1e7f498" class="bulleted-list"><li style="list-style-type:circle">Cria um novo nó e insere o valor como chave.</li></ul><ul id="2237d5d3-8a13-80ca-92bd-e2e90257fe13" class="bulleted-list"><li style="list-style-type:circle">Se não estiver vazia, busca recursivamente o local adequado para inserção.</li></ul></li></ul><ul id="2237d5d3-8a13-80a1-95ea-cfaa08a61ec8" class="bulleted-list"><li style="list-style-type:disc"><strong>Regra 2: Nó com apenas uma chave (nó simples)</strong><ul id="2237d5d3-8a13-80eb-9321-c83d4901ac0f" class="bulleted-list"><li style="list-style-type:circle">Insere o valor diretamente no nó, transformando-o em um nó com duas chaves.</li></ul><ul id="2237d5d3-8a13-80ed-84b4-d9133959d2a4" class="bulleted-list"><li style="list-style-type:circle">Não há necessidade de rebalanceamento.</li></ul></li></ul><ul id="2237d5d3-8a13-8025-b0c0-d16a641f92ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Regra 3: Nó com duas chaves (nó cheio)</strong><ul id="2237d5d3-8a13-8067-bafe-cd10bf4b29aa" class="bulleted-list"><li style="list-style-type:circle">O valor é inserido e o nó é quebrado (split).</li></ul><ul id="2237d5d3-8a13-8049-b194-fafc08eb31ab" class="bulleted-list"><li style="list-style-type:circle">A chave mediana é promovida para o nível superior (pai).</li></ul><ul id="2237d5d3-8a13-805c-946c-f5bf3bb407f2" class="bulleted-list"><li style="list-style-type:circle">Caso o pai também tenha duas chaves, a operação de quebra é repetida.</li></ul><ul id="2237d5d3-8a13-80fa-95f6-c110a8a8574b" class="bulleted-list"><li style="list-style-type:circle">Se a quebra alcançar a raiz, uma nova raiz é criada, aumentando a altura da árvore.</li></ul></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2127d5d3-8a13-80da-84f3-fba525ef8223" class="code"><code class="language-C">No *insere(No **no, int valor, int *rval) {
+    No *aux;
+    int vaux, promov;
+
+    if (*no == NULL) {
+        // Caso base: árvore (ou subárvore) vazia → cria um novo nó folha com uma chave
+        *no = criaNo(valor, 0, 1, NULL, NULL, NULL);
+        return NULL; // nada a promover
+    }
+
+    if (ehFolha(*no)) {
+        if ((*no)-&gt;num_chaves == 1) {
+            // Inserção direta no nó com uma única chave
+            adicionaChave(*no, valor, NULL);
+            return NULL;
+        } else {
+            // Nó já cheio → precisa quebrar
+            aux = quebraNo(*no, valor, &amp;vaux, NULL);
+            *rval = vaux; // chave a ser promovida
+            return aux;   // novo nó a ser ligado ao pai
+        }
+    } else {
+        // Nó interno → continua busca recursiva
+        if (valor &lt; (*no)-&gt;chave_e)
+            aux = insere(&amp;((*no)-&gt;esq), valor, &amp;vaux);
+        else if ((*no)-&gt;num_chaves == 1 || valor &lt; (*no)-&gt;chave_d)
+            aux = insere(&amp;((*no)-&gt;centro), valor, &amp;vaux);
+        else
+            aux = insere(&amp;((*no)-&gt;dir), valor, &amp;vaux);
+
+        if (aux == NULL) {
+            // Nenhuma quebra ocorreu nas subárvores
+            return NULL;
+        } else if ((*no)-&gt;num_chaves == 1) {
+            // Insere a chave promovida no nó atual
+            adicionaChave(*no, vaux, aux);
+            return NULL;
+        } else {
+            // Nó cheio → precisa quebrar e promover novamente
+            No *novo = quebraNo(*no, vaux, &amp;promov, aux);
+            *rval = promov;
+            return novo;
+        }
+    }
+}
+
+void insereArvore23(No **raiz, int valor) {
+    int promovida;
+    No *novo = insere(raiz, valor, &amp;promovida);
+    if (novo != NULL) {
+        // Quebra da raiz → cria nova raiz com a chave promovida
+        *raiz = criaNo(promovida, 0, 1, *raiz, novo, NULL);
+    }
+}
+</code></pre><h2 id="2237d5d3-8a13-8075-9dca-e62168d5c25e" class="">Remoção em Árvore 2-3</h2><p id="2237d5d3-8a13-803f-9092-e12ffcdaf1aa" class="">A remoção em árvores 2-3 é feita de forma que a estrutura continue balanceada e todas as folhas permaneçam no mesmo nível.</p><h3 id="2237d5d3-8a13-807f-b631-d94f0ce575d9" class="">Etapas da Remoção</h3><ol type="1" id="2237d5d3-8a13-80fb-a98c-e55690f42080" class="numbered-list" start="1"><li><strong>Localizar a chave a ser removida</strong><ul id="2237d5d3-8a13-800e-9207-f6572c1c491b" class="bulleted-list"><li style="list-style-type:disc">Percorre a árvore até encontrar o nó que contém a chave.</li></ul></li></ol><ol type="1" id="2237d5d3-8a13-80a2-a786-e4bdef910ab2" class="numbered-list" start="2"><li><strong>Verificar se o nó é folha</strong><ul id="2237d5d3-8a13-80bd-97c3-c48111ff2edc" class="bulleted-list"><li style="list-style-type:disc">Se <strong>não for folha</strong>, a chave é <strong>substituída pelo seu sucessor</strong> (menor da subárvore à direita) e a <strong>remoção é feita na folha</strong> que contém o sucessor.</li></ul><ul id="2237d5d3-8a13-80ce-b8bc-e4cfe8f27b3c" class="bulleted-list"><li style="list-style-type:disc">Se for <strong>folha com duas chaves</strong>, remove diretamente a chave desejada.</li></ul><ul id="2237d5d3-8a13-8049-9717-d6311acf1848" class="bulleted-list"><li style="list-style-type:disc">Se for <strong>folha com uma única chave</strong>, a chave é removida e o nó fica vazio, exigindo reequilíbrio.</li></ul></li></ol><ol type="1" id="2237d5d3-8a13-80bf-8c26-d7d6c2374a80" class="numbered-list" start="3"><li><strong>Reequilíbrio</strong><ul id="2237d5d3-8a13-8019-8d9f-e1198b1220f1" class="bulleted-list"><li style="list-style-type:disc">Necessário quando um nó fica com <strong>zero chaves</strong> após a remoção.</li></ul><ul id="2237d5d3-8a13-8087-9aa0-c6f87fccd90f" class="bulleted-list"><li style="list-style-type:disc">Duas estratégias podem ser aplicadas:</li></ul><p id="2237d5d3-8a13-80af-9058-d3f22dc1398b" class=""><strong>a) Fusão (Merge):</strong></p><ul id="2237d5d3-8a13-807f-b97b-dee3ad516b84" class="bulleted-list"><li style="list-style-type:disc">Se o nó e seu irmão têm apenas uma chave, eles são fundidos em um único nó com duas chaves.</li></ul><p id="2237d5d3-8a13-8016-9c60-ffd6a0416921" class=""><strong>b) Rotação (Redistribuição):</strong></p><ul id="2237d5d3-8a13-803a-9d53-c16e3c0af663" class="bulleted-list"><li style="list-style-type:disc">Se o irmão do nó tem duas chaves, uma rotação é feita para redistribuir as chaves entre os nós e manter o equilíbrio.</li></ul></li></ol><h3 id="2237d5d3-8a13-80d6-8d14-caf25f6368ca" class="">Função de reequilíbrio</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-8035-aafe-ec49d126c5a3" class="code"><code class="language-C">int reequilibrar(No **pai, No **filho) {
+    No *p = *pai;
+    No *f = *filho;
+
+    if (f-&gt;num_chaves &gt; 0) return 1;  // Nada a fazer
+
+    // Caso o filho esteja vazio → precisa reequilibrar
+    if (f == p-&gt;esq) {
+        if (p-&gt;centro-&gt;num_chaves == 2) {
+            // Rotação da esquerda para a direita
+            f-&gt;chave_e = p-&gt;chave_e;
+            f-&gt;num_chaves = 1;
+            p-&gt;chave_e = p-&gt;centro-&gt;chave_e;
+            p-&gt;centro-&gt;chave_e = p-&gt;centro-&gt;chave_d;
+            p-&gt;centro-&gt;num_chaves = 1;
+        } else {
+            // Fusão com o centro
+            f-&gt;chave_e = p-&gt;chave_e;
+            f-&gt;chave_d = p-&gt;centro-&gt;chave_e;
+            f-&gt;num_chaves = 2;
+            free(p-&gt;centro);
+            p-&gt;centro = NULL;
+            p-&gt;chave_e = p-&gt;chave_d;
+            p-&gt;num_chaves--;
+        }
+        return 1;
+    }
+
+    if (f == p-&gt;centro) {
+        if (p-&gt;esq-&gt;num_chaves == 2) {
+            // Rotação da direita para a esquerda
+            f-&gt;chave_e = p-&gt;chave_e;
+            f-&gt;num_chaves = 1;
+            p-&gt;chave_e = p-&gt;esq-&gt;chave_d;
+            p-&gt;esq-&gt;num_chaves = 1;
+        } else if (p-&gt;num_chaves == 2 &amp;&amp; p-&gt;dir &amp;&amp; p-&gt;dir-&gt;num_chaves == 2) {
+            // Rotação da direita
+            f-&gt;chave_e = p-&gt;chave_d;
+            f-&gt;num_chaves = 1;
+            p-&gt;chave_d = p-&gt;dir-&gt;chave_e;
+            p-&gt;dir-&gt;chave_e = p-&gt;dir-&gt;chave_d;
+            p-&gt;dir-&gt;num_chaves = 1;
+        } else {
+            // Fusão com a esquerda
+            p-&gt;esq-&gt;chave_d = p-&gt;chave_e;
+            p-&gt;esq-&gt;num_chaves = 2;
+            free(f);
+            p-&gt;centro = NULL;
+            p-&gt;chave_e = p-&gt;chave_d;
+            p-&gt;num_chaves--;
+        }
+        return 1;
+    }
+
+    if (f == p-&gt;dir) {
+        if (p-&gt;centro-&gt;num_chaves == 2) {
+            // Rotação da esquerda
+            f-&gt;chave_e = p-&gt;chave_d;
+            f-&gt;num_chaves = 1;
+            p-&gt;chave_d = p-&gt;centro-&gt;chave_d;
+            p-&gt;centro-&gt;num_chaves = 1;
+        } else {
+            // Fusão com o centro
+            p-&gt;centro-&gt;chave_d = p-&gt;chave_d;
+            p-&gt;centro-&gt;num_chaves = 2;
+            free(f);
+            p-&gt;dir = NULL;
+            p-&gt;num_chaves--;
+        }
+        return 1;
+    }
+
+    return 1;
+}
+</code></pre><h3 id="2237d5d3-8a13-80b5-80b7-ec2bc82fc34d" class="">Função recursiva de remoção</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-8037-8336-ea9815dda143" class="code"><code class="language-C">int removeRecursivo(No **no, int valor) {
+    if (*no == NULL) return 0;
+
+    No *n = *no;
+
+    // Caso: nó folha
+    if (ehFolha(n)) {
+        if (n-&gt;num_chaves == 2) {
+            if (valor == n-&gt;chave_e) {
+                n-&gt;chave_e = n-&gt;chave_d;
+                n-&gt;num_chaves = 1;
+                return 1;
+            } else if (valor == n-&gt;chave_d) {
+                n-&gt;num_chaves = 1;
+                return 1;
+            }
+            return 0;
+        } else if (n-&gt;num_chaves == 1) {
+            if (valor == n-&gt;chave_e) {
+                n-&gt;num_chaves = 0;  // marca para reequilibrar
+                return 1;
+            }
+            return 0;
+        } else return 0;
+    }
+
+    // Caso: chave está em nó interno
+    if ((n-&gt;num_chaves == 2 &amp;&amp; valor == n-&gt;chave_d) || valor == n-&gt;chave_e) {
+        // Substitui pelo sucessor
+        No **sub = (valor == n-&gt;chave_e) ? &amp;(n-&gt;centro) : &amp;(n-&gt;dir);
+        No *s = *sub;
+        while (!ehFolha(s)) s = s-&gt;esq;
+        int succ = s-&gt;chave_e;
+        if (valor == n-&gt;chave_e) n-&gt;chave_e = succ;
+        else n-&gt;chave_d = succ;
+        removeRecursivo(sub, succ);
+        return 1;
+    }
+
+    // Descida recursiva
+    No **child;
+    if (valor &lt; n-&gt;chave_e)
+        child = &amp;(n-&gt;esq);
+    else if (n-&gt;num_chaves == 1 || valor &lt; n-&gt;chave_d)
+        child = &amp;(n-&gt;centro);
+    else
+        child = &amp;(n-&gt;dir);
+
+    int ok = removeRecursivo(child, valor);
+    if (!ok) return 0;
+
+    // Reequilibra se necessário
+    return reequilibrar(no, child);
+}</code></pre><h3 id="2237d5d3-8a13-8024-8d20-ec7d65042d30" class="">Função principal de remoção</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2237d5d3-8a13-8086-a887-d1d6c23f532f" class="code"><code class="language-C">void removeArvore23(No **raiz, int valor) {
+    removeRecursivo(raiz, valor);
+
+    // Se a raiz ficou com 0 chaves e tem filho único, sobe o filho
+    if (*raiz &amp;&amp; (*raiz)-&gt;num_chaves == 0) {
+        No *tmp = (*raiz)-&gt;esq;
+        free(*raiz);
+        *raiz = tmp;
+    }
+}</code></pre><p id="2237d5d3-8a13-80ee-993c-fa4ca7f2fe4a" class="">
+</p><p id="2237d5d3-8a13-804a-9e86-e968a53a13cb" class="">
+</p><p id="2237d5d3-8a13-805d-b854-e90f641c0b19" class="">
+</p><p id="2237d5d3-8a13-805d-ae7c-e3fab87cfb94" class="">
+</p><p id="2237d5d3-8a13-8096-b902-cfa5a03f2646" class="">
+</p><p id="2237d5d3-8a13-807d-9912-c690b87958da" class="">
+</p><p id="2237d5d3-8a13-80ee-a239-e02b6d3c7f3d" class="">
+</p><p id="2237d5d3-8a13-80f4-a6e6-df77c68da82d" class="">
+</p><p id="2237d5d3-8a13-8071-81a9-ed42bcb071f6" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
