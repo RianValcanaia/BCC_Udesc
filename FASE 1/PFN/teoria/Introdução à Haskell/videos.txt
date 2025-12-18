@@ -1,0 +1,5 @@
+Introdução à Programação Funcional usando Haskell (Aula 1).
+https://www.youtube.com/watch?v=BeTItJktvOc&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 2).
+https://www.youtube.com/watch?v=XY1BgwMU1Q8&ab_channel=CristianoVasconcellos

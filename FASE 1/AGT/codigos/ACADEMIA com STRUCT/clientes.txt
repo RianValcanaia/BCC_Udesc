@@ -1,0 +1,6 @@
+Nome: rian
+Nome do Plano: Natação
+Tipo de Adesão: mensal
+Período: dia
+Valor: 220
+

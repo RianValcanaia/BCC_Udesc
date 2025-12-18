@@ -1,0 +1,14 @@
+Introdução à Programação usando Haskell (Aula 3).
+https://www.youtube.com/watch?v=CEw0Rcq2yN8&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 4).
+https://www.youtube.com/watch?v=u64mZiZtzc0&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 5).
+https://www.youtube.com/watch?v=b37_fZYyQXI&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 6).
+https://www.youtube.com/watch?v=AmPLDqSOVvs&ab_channel=CristianoVasconcellos
+
+Introdução à Programação usando Haskell (Aula 7).
+https://www.youtube.com/watch?v=REatUNtrIyc&ab_channel=CristianoVasconcellos

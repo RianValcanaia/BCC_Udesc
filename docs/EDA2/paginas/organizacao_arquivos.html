@@ -1,0 +1,777 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Organização de arquivo </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+/* ================================== */
+/*         ESTILOS TEMA DARK          */
+/* ================================== */
+@media (prefers-color-scheme: dark) {
+	/* === Cores Base === */
+	@media only screen {
+		body {
+			background-color: rgb(25, 25, 25); /* Fundo escuro */
+			color: rgb(222, 222, 222);         /* Texto claro */
+		}
+	}
+
+	/* === Elementos Gerais === */
+	hr {
+		border-bottom: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	blockquote {
+		border-left: 3px solid rgb(222, 222, 222);
+	}
+	
+	/* === Tabelas === */
+	table, th, td {
+		border: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	th {
+		color: rgba(222, 222, 222, 0.6);
+	}
+	.simple-table-header-color {
+		background: rgb(55, 53, 47);
+		color: white;
+	}
+
+	/* === Código === */
+	.code, code {
+		background: rgba(110, 110, 110, 0.3);
+	}
+	code {
+		color: #ff7979; /* Um vermelho mais vibrante para o escuro */
+	}
+
+	/* === Bookmarks e Descrições === */
+	.bookmark-description {
+		color: rgba(222, 222, 222, 0.6);
+	}
+
+	/* === Fundos de Destaque (Highlights) === */
+	.highlight-gray_background { background: rgba(81, 81, 81, 1); }
+	.highlight-brown_background { background: rgba(84, 61, 55, 1); }
+	.highlight-orange_background { background: rgba(119, 78, 43, 1); }
+	.highlight-yellow_background { background: rgba(100, 83, 33, 1); }
+	.highlight-teal_background { background: rgba(39, 78, 62, 1); }
+	.highlight-blue_background { background: rgba(38, 76, 102, 1); }
+	.highlight-purple_background { background: rgba(84, 60, 105, 1); }
+	.highlight-pink_background { background: rgba(108, 48, 81, 1); }
+	.highlight-red_background { background: rgba(113, 45, 48, 1); }
+
+	/* === Cores de Bloco (Callouts) === */
+	.block-color-gray_background { background: rgba(56, 56, 56, 1); }
+	.block-color-brown_background { background: rgba(60, 50, 50, 1); }
+	.block-color-orange_background { background: rgba(87, 58, 29, 1); }
+	.block-color-yellow_background { background: rgba(83, 71, 29, 1); }
+	.block-color-teal_background { background: rgba(29, 58, 46, 1); }
+	.block-color-blue_background { background: rgba(28, 56, 76, 1); }
+	.block-color-purple_background { background: rgba(62, 45, 78, 1); }
+	.block-color-pink_background { background: rgba(79, 36, 59, 1); }
+	.block-color-red_background { background: rgba(83, 34, 36, 1); }
+
+	/* === Checkbox === */
+	.checkbox-off {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22rgb(25,25,25)%22%20stroke%3D%22rgb(222,222,222)%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+	}
+}
+
+</style></head><body><article id="1e67d5d3-8a13-80e0-8d1c-ca263b927f11" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💿</span></div><h1 class="page-title">Organização de arquivo </h1><p class="page-description"></p></header><div class="page-body"><h1 id="1e77d5d3-8a13-8040-ab85-e25ebc3f1d74" class="">📑 Sumário</h1><nav id="1e77d5d3-8a13-8039-a9a2-c2a5850a6443" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8040-ab85-e25ebc3f1d74">📑 Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80d4-af7f-c2df2e2dcb2c">Hierarquia de memória</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-804d-a3d6-c20ef0334b4c">💾 Memória </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-801a-bb2f-fdeb1907b181">⚙️ Operações básicas</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80ca-b704-d7d372565243">🧩 Células e endereçamento</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80e9-9687-c9995250c481">🎯 Capacidade de endereçamento</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8052-b647-e39dfa36a0d6">📍Princípio da Localidade</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-806a-b226-d33c4ae04966">⏱️ 1. Localidade Temporal</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-807b-8ecd-e298f328ae21">📏 2. Localidade Espacial</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80dc-ba1d-f9f9a63193ba">Aplicações do Princípio</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8012-8e36-c8902a3b7784">🧱 Hierarquia de Memória</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8010-bb05-fc2530bc34f9">Níveis da Hierarquia</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80e9-9fc5-da8ffa89b5c5">📊 Características Importantes</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80b0-9b0c-f483c06fdda6">Resumo Visual (em formato tabela)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80bb-8caa-eb3cb23b6d99">📈  Avaliação de Eficiência da Memória Cache</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e67d5d3-8a13-800b-a398-d63338eb82da">🎯 Principais Métricas</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e67d5d3-8a13-802a-9039-ed16212b91ef">Organização de arquivos</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8022-aa61-eb6326c8dd01">📁 Organização de arquivos</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-802f-b6b3-d16a5274c320">💡 Estratégias de organização de arquivos</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8077-bf26-ed50bd161f9b">💡Definições sobre registros e arquivos</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8099-8a22-c870393fdaf5">📁Arquivo sequencial simples</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8021-ba20-fd59fead7780"><strong>💡Definição</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80c8-861b-d835617a627e">✅ <strong>Vantagem</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8019-aea2-e5cdb4471b27">❌ <strong>Desvantagem</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8035-8f2f-fd179df10dc4">📁 Arquivo sequencial ordenado</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8040-aefb-c24a98c6da4c"><strong>💡 Definição</strong>:</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-803c-85dd-d524e919f5de">⚙️ Operações em Arquivos Sequenciais Ordenados</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80e2-a17e-d9f01234da96">📖 Operação de Leitura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80fb-99af-fd37a03e318d">✏️ Operação de Gravação</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-8043-a4e6-cf331e8a7bfe">📁 Arquivo sequencial indexado</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-804e-b892-c4e13b2f770a">🧩 Estrutura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-807e-a5d9-e1d114a67500">⚙️ Operações em Arquivo Sequencial Indexado</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80d3-b68a-c020e5beb54e">📖  Operações de Leitura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80bb-8d85-f0cebd91953f">✏️ Operações de Gravação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-804d-b9af-ef256a79d05d">🔄 Reorganização</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e67d5d3-8a13-80a4-867d-c998e03f1809">📁 Arquivo indexado</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80e8-bfc7-d33818910ec6">🔍 Principais Características</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-802b-a441-e6f8512b874d">💡 Motivação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8084-aa5d-f8c1b92e8256">💡 Definição</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80ee-8826-f7df123985eb">💡 Classificação dos Índices</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-808c-a512-ee15d2ea2a9f">✅ Vantagens</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80b3-82fd-f3e1b986225d">❌ Desvantagens</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e77d5d3-8a13-809d-948b-c5bf6a424c95">⚙️ Operações em Arquivos Indexados</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-806a-8f01-ea78569facc4">📖 Leitura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8018-823b-c43cef21f223">✏️ Gravação</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e77d5d3-8a13-806d-b890-ce0f9a6aa035">Arquivo Direto</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8039-8498-db8bc4dd6602">💡  Definição</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80e4-9a3b-df6ab9a86a07">💡Motivação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-805d-ac60-e0308fdf645a">🔢 Funções para Cálculo do Endereço (Hashing)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8019-8f62-e6fc6a1e0513">💥 Tratamento de Colisões</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8015-8ebe-e051bab614bd">⚙️ Operações em Arquivos Diretos</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80c1-82dc-cf09087be899">📖 <strong>Leitura</strong>:</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-808b-acf6-ea2b6caa40ce">✏️<strong>Gravação</strong>:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e77d5d3-8a13-801c-b7e5-c0315544f964">Arquivo Invertido</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-80ab-b0ab-c034b9b85e49">💡 Motivação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8059-9814-fec7cc2b1184">🧩 Estrutura</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-804b-b118-e06233c3d8a7">✅ Vantagens</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e77d5d3-8a13-8040-834b-e94007ba2f35">❌ Desvantagens</a></div></nav><h1 id="1e77d5d3-8a13-80d4-af7f-c2df2e2dcb2c" class="">Hierarquia de memória</h1><h2 id="1e67d5d3-8a13-804d-a3d6-c20ef0334b4c" class="">💾 Memória </h2><p id="1e67d5d3-8a13-806d-9ba2-c3e9a7d38ad2" class="">A <strong>memória</strong> é um dos principais componentes de um computador, responsável por <strong>armazenar dados</strong> que estão sendo processados ou que serão utilizados futuramente. Ela também permite a <strong>recuperação de informações previamente armazenadas</strong>, quando necessário.</p><p id="1e67d5d3-8a13-8022-869c-cc56911f80ca" class="">Na prática, <strong>memória</strong> não se refere a um único componente, mas sim a um <strong>subsistema formado por diferentes tipos de memória</strong>, organizados em <strong>níveis hierárquicos</strong>. Essa hierarquia existe por dois motivos principais:</p><ol type="1" id="1e67d5d3-8a13-8082-9700-d0317b0d998c" class="numbered-list" start="1"><li><strong>Tempo de acesso:</strong> o processador é muito mais rápido do que a memória principal, então usamos memórias mais rápidas (e geralmente menores) para reduzir essa diferença.</li></ol><ol type="1" id="1e67d5d3-8a13-80a6-8b6b-d8fd090a9480" class="numbered-list" start="2"><li><strong>Capacidade de armazenamento:</strong> há necessidade de armazenar volumes cada vez maiores de dados.</li></ol><h3 id="1e67d5d3-8a13-801a-bb2f-fdeb1907b181" class="">⚙️ Operações básicas</h3><p id="1e67d5d3-8a13-802d-b900-d1f0797ade0b" class="">As duas operações fundamentais da memória são:</p><ul id="1e67d5d3-8a13-803d-a9e7-da2075e88f49" class="bulleted-list"><li style="list-style-type:disc"><strong>Leitura (read):</strong> recupera um dado da memória. É uma operação <em>não destrutiva</em>.</li></ul><ul id="1e67d5d3-8a13-80ac-8841-e87e21f3caf2" class="bulleted-list"><li style="list-style-type:disc"><strong>Escrita (write):</strong> armazena um dado na memória. É uma operação <em>destrutiva</em>, pois sobrescreve o conteúdo anterior da célula.</li></ul><h3 id="1e67d5d3-8a13-80ca-b704-d7d372565243" class="">🧩 Células e endereçamento</h3><p id="1e67d5d3-8a13-80c1-8af6-c2a4e2af25d9" class="">A memória principal é organizada em <strong>células</strong>, que são conjuntos de bits (geralmente 1 byte) tratados como uma unidade. Cada célula é identificada por um <strong>endereço</strong>, que permite acessá-la diretamente.</p><ul id="1e67d5d3-8a13-8029-9010-cf72eb9abefa" class="bulleted-list"><li style="list-style-type:disc"><strong>Somente os dados</strong> são armazenados nas células.</li></ul><ul id="1e67d5d3-8a13-80c2-bd1b-deebbf2eff15" class="bulleted-list"><li style="list-style-type:disc">Os <strong>endereços não são fisicamente gravados</strong> na memória; são gerados pelo processador e enviados pelo <strong>barramento de endereços</strong>.</li></ul><h3 id="1e67d5d3-8a13-80e9-9687-c9995250c481" class="">🎯 Capacidade de endereçamento</h3><p id="1e67d5d3-8a13-8028-a035-d4059a24dd2c" class="">A capacidade de endereçamento depende da arquitetura do processador:</p><ul id="1e67d5d3-8a13-80e9-98d3-cc74151c8b1b" class="bulleted-list"><li style="list-style-type:disc"><strong>Processadores de 32 bits:</strong> podem endereçar até 2³² células de 1 byte (≈ 4 GB).</li></ul><ul id="1e67d5d3-8a13-80cc-b11b-d0b04a897a54" class="bulleted-list"><li style="list-style-type:disc"><strong>Processadores de 64 bits:</strong> podem endereçar até 2⁶⁴ células de 1 byte (≈ 18 exabytes).</li></ul><p id="1e67d5d3-8a13-8078-8343-f42029cf4e77" class="">
+</p><h2 id="1e67d5d3-8a13-8052-b647-e39dfa36a0d6" class="">📍Princípio da Localidade</h2><p id="1e67d5d3-8a13-80ad-960b-f1234117d897" class="">O <strong>princípio da localidade</strong> descreve um comportamento comum dos programas: <strong>em um dado momento, eles acessam apenas uma parte relativamente pequena do seu espaço de endereçamento</strong>. Esse comportamento é explorado para otimizar o desempenho do sistema, especialmente na hierarquia de memória (como caches, RAM, e armazenamento secundário).</p><p id="1e67d5d3-8a13-80ca-a275-d6112d1fe67c" class="">Existem dois tipos principais de localidade:</p><h3 id="1e67d5d3-8a13-806a-b226-d33c4ae04966" class="">⏱️ 1. Localidade Temporal</h3><ul id="1e67d5d3-8a13-80a3-88ce-c9dd02848b13" class="bulleted-list"><li style="list-style-type:disc">Se um <strong>endereço de memória</strong> foi acessado recentemente, é <strong>provável que ele seja acessado novamente em um curto período de tempo</strong>.</li></ul><ul id="1e67d5d3-8a13-80a4-86e7-fe03da934f59" class="bulleted-list"><li style="list-style-type:disc">Exemplo: variáveis usadas em loops ou contadores.</li></ul><h3 id="1e67d5d3-8a13-807b-8ecd-e298f328ae21" class="">📏 2. Localidade Espacial</h3><ul id="1e67d5d3-8a13-806a-8aa0-e66860a84288" class="bulleted-list"><li style="list-style-type:disc">Se um endereço foi acessado, é <strong>provável que os endereços próximos a ele também sejam acessados em breve</strong>.</li></ul><ul id="1e67d5d3-8a13-801a-af19-df3d0185644f" class="bulleted-list"><li style="list-style-type:disc">Exemplo: elementos de um vetor ou instruções consecutivas de código.</li></ul><h3 id="1e67d5d3-8a13-80dc-ba1d-f9f9a63193ba" class="">Aplicações do Princípio</h3><p id="1e67d5d3-8a13-806a-a5b8-ee56fe934c4e" class="">Esse princípio é fundamental no projeto de:</p><ul id="1e67d5d3-8a13-8027-a5ac-f6aef4e052cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Memórias cache</strong>, que armazenam blocos recentemente usados para acesso rápido.</li></ul><ul id="1e67d5d3-8a13-808f-9bc4-d63704df3fbc" class="bulleted-list"><li style="list-style-type:disc"><strong>Sistemas de gerenciamento de memória virtual</strong>, que carregam páginas de dados ou instruções próximas de uma só vez.</li></ul><ul id="1e67d5d3-8a13-808a-bc7e-ce9ad54c0b88" class="bulleted-list"><li style="list-style-type:disc"><strong>Práticas de programação</strong>, como evitar acessos aleatórios à memória em grandes estruturas de dados.</li></ul><p id="1e67d5d3-8a13-8075-bb32-fa1c1022240a" class="">
+</p><h2 id="1e67d5d3-8a13-8012-8e36-c8902a3b7784" class="">🧱 Hierarquia de Memória</h2><p id="1e67d5d3-8a13-80ef-b212-c6a576147da5" class="">A <strong>hierarquia de memória</strong> é formada por diferentes tipos de memória organizados em camadas, do nível mais rápido (e caro) ao mais lento (e barato). Essa organização busca equilibrar <strong>velocidade</strong>, <strong>custo</strong> e <strong>capacidade</strong> de armazenamento.</p><figure id="1e67d5d3-8a13-8042-b41c-e3029bb0cb37" class="image"><a href="organizacao_arquivos/Captura_de_tela_de_2025-05-01_20-10-58.png"><img style="width:709.984375px" src="organizacao_arquivos/Captura_de_tela_de_2025-05-01_20-10-58.png"/></a></figure><figure id="1e67d5d3-8a13-8004-bc12-d27f4d7db5a9" class="image"><a href="organizacao_arquivos/Captura_de_tela_de_2025-05-01_20-11-16.png"><img style="width:709.984375px" src="organizacao_arquivos/Captura_de_tela_de_2025-05-01_20-11-16.png"/></a></figure><h3 id="1e67d5d3-8a13-8010-bb05-fc2530bc34f9" class="">Níveis da Hierarquia</h3><ol type="1" id="1e67d5d3-8a13-8031-b822-f0eb9f8aafcf" class="numbered-list" start="1"><li><strong>Registradores</strong><ul id="1e67d5d3-8a13-809e-a2de-d3a275b2404a" class="bulleted-list"><li style="list-style-type:disc">Localizados <strong>dentro do processador</strong>.</li></ul><ul id="1e67d5d3-8a13-80ac-b114-c0e7d619fdaf" class="bulleted-list"><li style="list-style-type:disc">Armazenam <strong>dados, instruções ou endereços</strong> usados imediatamente pela CPU.</li></ul><ul id="1e67d5d3-8a13-80ed-be23-e6c2ff3b1f2e" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de acesso:</strong> 1 a 2 ns (muito rápido).</li></ul><ul id="1e67d5d3-8a13-80e9-9faa-d62965b296f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Capacidade:</strong> muito pequena.</li></ul></li></ol><ol type="1" id="1e67d5d3-8a13-8092-8f52-e9916f490099" class="numbered-list" start="2"><li><strong>Memória Cache</strong><ul id="1e67d5d3-8a13-8088-b78a-f0c341cd5cc6" class="bulleted-list"><li style="list-style-type:disc">Intermediária entre registradores e a memória principal.</li></ul><ul id="1e67d5d3-8a13-8009-8b16-c8df4304486c" class="bulleted-list"><li style="list-style-type:disc">Acelera a comunicação entre CPU e RAM.</li></ul><ul id="1e67d5d3-8a13-802e-8735-c4be43bd6938" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de acesso:</strong> 5 a 20 ns.</li></ul><ul id="1e67d5d3-8a13-8082-8263-e5cb4e1c91d1" class="bulleted-list"><li style="list-style-type:disc"><strong>Tipos:</strong><ul id="1e67d5d3-8a13-802e-a4f6-df1ecdfed4e8" class="bulleted-list"><li style="list-style-type:circle"><strong>L1 (nível 1):</strong> interna, pequena (32–48 KB), muito rápida.</li></ul><ul id="1e67d5d3-8a13-8049-8fd1-df29dc59231c" class="bulleted-list"><li style="list-style-type:circle"><strong>L2 (nível 2):</strong> interna ou embarcada, até 512 KB.</li></ul><ul id="1e67d5d3-8a13-80c5-b43c-e66bbbe1ce75" class="bulleted-list"><li style="list-style-type:circle"><strong>L3 (nível 3):</strong> externa à CPU, até 4 MB ou mais.</li></ul></li></ul></li></ol><ol type="1" id="1e67d5d3-8a13-80bd-866d-d2cf589277d3" class="numbered-list" start="3"><li><strong>Memória Principal (RAM – Random Access Memory)</strong><ul id="1e67d5d3-8a13-80ce-b8bf-dab6a57515fd" class="bulleted-list"><li style="list-style-type:disc">Armazena os <strong>programas e dados</strong> em execução.</li></ul><ul id="1e67d5d3-8a13-80d6-8c8d-c5955ee6fa77" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de acesso:</strong> 50 a 80 ns.</li></ul><ul id="1e67d5d3-8a13-808a-a7cf-ea83b59a623f" class="bulleted-list"><li style="list-style-type:disc"><strong>Volátil:</strong> perde dados quando desligada.</li></ul></li></ol><ol type="1" id="1e67d5d3-8a13-805e-a70e-ccc28c261050" class="numbered-list" start="4"><li><strong>Memória Secundária</strong><ul id="1e67d5d3-8a13-807a-8e0b-fcc631555e6b" class="bulleted-list"><li style="list-style-type:disc">Usada para <strong>armazenamento permanente</strong> (disco rígido, SSD, CDs, etc.).</li></ul><ul id="1e67d5d3-8a13-80dc-a1b0-efc1e5d14f49" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de acesso:</strong><ul id="1e67d5d3-8a13-8008-adcd-c9f05abbc714" class="bulleted-list"><li style="list-style-type:circle">HDs: 8 a 30 ms.</li></ul><ul id="1e67d5d3-8a13-80a7-9063-c6e4e2891d63" class="bulleted-list"><li style="list-style-type:circle">CDs/DVDs: 120 a 300 ms.</li></ul></li></ul><ul id="1e67d5d3-8a13-8040-aacf-d512134d4310" class="bulleted-list"><li style="list-style-type:disc"><strong>Não volátil.</strong></li></ul><ul id="1e67d5d3-8a13-80d2-a238-f7ad65c491b3" class="bulleted-list"><li style="list-style-type:disc"><strong>Alta capacidade</strong> e <strong>baixo custo</strong> comparado à RAM.</li></ul></li></ol><h3 id="1e67d5d3-8a13-80e9-9fc5-da8ffa89b5c5" class="">📊 Características Importantes</h3><ul id="1e67d5d3-8a13-8076-a6f8-d421d9f1750e" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de Acesso:</strong> quanto menor, mais rápida a memória.</li></ul><ul id="1e67d5d3-8a13-8036-ad59-eabe3cc88c90" class="bulleted-list"><li style="list-style-type:disc"><strong>Capacidade:</strong> quanto maior, mais dados podem ser armazenados.</li></ul><ul id="1e67d5d3-8a13-803e-9c57-d5807ee1d918" class="bulleted-list"><li style="list-style-type:disc"><strong>Volatilidade:</strong><ul id="1e67d5d3-8a13-801e-9758-f676bebae86e" class="bulleted-list"><li style="list-style-type:circle"><strong>Volátil:</strong> perde os dados ao desligar (registradores, cache, RAM).</li></ul><ul id="1e67d5d3-8a13-80f4-ba9d-ce0b76dc1bfb" class="bulleted-list"><li style="list-style-type:circle"><strong>Não volátil:</strong> mantém os dados (ROM, HD, SSD, CDs).</li></ul></li></ul><ul id="1e67d5d3-8a13-8034-ab86-fb05af667d4d" class="bulleted-list"><li style="list-style-type:disc"><strong>Tecnologia e Custo:</strong><ul id="1e67d5d3-8a13-807f-ab5c-cc3a2a186bcf" class="bulleted-list"><li style="list-style-type:circle"><strong>Memória de semicondutores:</strong> rápida e cara (registradores, cache, SSD, ROM).</li></ul><ul id="1e67d5d3-8a13-8079-83d0-c903c9c38b00" class="bulleted-list"><li style="list-style-type:circle"><strong>Memória magnética:</strong> barata e não volátil (HDs).</li></ul><ul id="1e67d5d3-8a13-8050-a6d0-cfd95f392a67" class="bulleted-list"><li style="list-style-type:circle"><strong>Memória óptica:</strong> barata, lenta e não volátil (CDs, DVDs).</li></ul></li></ul><h3 id="1e67d5d3-8a13-80b0-9b0c-f483c06fdda6" class="">Resumo Visual (em formato tabela)</h3><table id="1e67d5d3-8a13-807f-a889-cdae274a1651" class="simple-table"><thead class="simple-table-header"><tr id="1e67d5d3-8a13-8018-afe1-dd5aacd2be1c"><th id="{xIF" class="simple-table-header-color simple-table-header">Tipo</th><th id="K=g{" class="simple-table-header-color simple-table-header">Tempo Acesso</th><th id="kSTJ" class="simple-table-header-color simple-table-header">Capacidade</th><th id="zZg]" class="simple-table-header-color simple-table-header">Volátil?</th><th id="pz]\" class="simple-table-header-color simple-table-header">Tecnologia</th><th id="XtTY" class="simple-table-header-color simple-table-header">Custo</th></tr></thead><tbody><tr id="1e67d5d3-8a13-8047-87ba-e7b566a23b12"><td id="{xIF" class="">Registradores</td><td id="K=g{" class="">1–2 ns</td><td id="kSTJ" class="">Muito baixa</td><td id="zZg]" class="">Sim</td><td id="pz]\" class="">Semicondutor</td><td id="XtTY" class="">Muito alto</td></tr><tr id="1e67d5d3-8a13-80bc-bd80-c400b0d0c390"><td id="{xIF" class="">Cache (L1/L2/L3)</td><td id="K=g{" class="">5–20 ns</td><td id="kSTJ" class="">Baixa</td><td id="zZg]" class="">Sim</td><td id="pz]\" class="">Semicondutor</td><td id="XtTY" class="">Alto</td></tr><tr id="1e67d5d3-8a13-8067-ac79-f633b68c9dff"><td id="{xIF" class="">RAM</td><td id="K=g{" class="">50–80 ns</td><td id="kSTJ" class="">Média</td><td id="zZg]" class="">Sim</td><td id="pz]\" class="">Semicondutor</td><td id="XtTY" class="">Médio</td></tr><tr id="1e67d5d3-8a13-80d6-a6a4-e6ff85bcdd19"><td id="{xIF" class="">SSD (secundária)</td><td id="K=g{" class="">&lt;1 ms</td><td id="kSTJ" class="">Alta</td><td id="zZg]" class="">Não</td><td id="pz]\" class="">Semicondutor</td><td id="XtTY" class="">Médio</td></tr><tr id="1e67d5d3-8a13-80fc-b519-cea06ea0414c"><td id="{xIF" class="">HD (secundária)</td><td id="K=g{" class="">8–30 ms</td><td id="kSTJ" class="">Alta</td><td id="zZg]" class="">Não</td><td id="pz]\" class="">Magnético</td><td id="XtTY" class="">Baixo</td></tr><tr id="1e67d5d3-8a13-8017-a890-d3a642f4b40e"><td id="{xIF" class="">CD/DVD</td><td id="K=g{" class="">120–300 ms</td><td id="kSTJ" class="">Baixa</td><td id="zZg]" class="">Não</td><td id="pz]\" class="">Óptico</td><td id="XtTY" class="">Muito baixo</td></tr></tbody></table><h2 id="1e67d5d3-8a13-80bb-8caa-eb3cb23b6d99" class="">📈  Avaliação de Eficiência da Memória Cache</h2><p id="1e67d5d3-8a13-8075-8f6c-cde7f13e567f" class="">Para medir o desempenho da <strong>memória cache</strong>, são utilizadas <strong>métricas que indicam a frequência com que os dados são encontrados ou não na cache</strong>, além dos tempos envolvidos em cada situação.</p><h3 id="1e67d5d3-8a13-800b-a398-d63338eb82da" class="">🎯 Principais Métricas</h3><ul id="1e67d5d3-8a13-80df-b0df-e478b31ad2ac" class="bulleted-list"><li style="list-style-type:disc"><strong>Hit: </strong>Ocorre quando o <strong>dado requisitado está presente</strong> no nível de cache acessado.<p id="1e67d5d3-8a13-80af-944a-ed63bbc0b3ad" class="">→ Resultado ideal, pois o acesso é rápido.</p></li></ul><ul id="1e67d5d3-8a13-80ee-93a0-c3303d772c17" class="bulleted-list"><li style="list-style-type:disc"><strong>Miss: </strong>Ocorre quando o <strong>dado não está presente</strong> no nível de cache e precisa ser buscado em um nível inferior (ex.: RAM ou disco).<p id="1e67d5d3-8a13-8079-bbc6-c25a8bb0a95f" class="">→ Mais custoso em tempo.</p></li></ul><ul id="1e67d5d3-8a13-80ed-889b-c3fb8992934f" class="bulleted-list"><li style="list-style-type:disc"><strong>Hit Rate (Taxa de acertos): </strong>Proporção de acessos em que houve <em>hit</em>.<figure id="1e67d5d3-8a13-8032-8f34-ea9d8372ee49" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Hit Rate</mtext><mo>=</mo><mfrac><mrow><mtext>N</mtext><mover accent="true"><mtext>u</mtext><mo>ˊ</mo></mover><mtext>mero de hits</mtext></mrow><mrow><mtext>N</mtext><mover accent="true"><mtext>u</mtext><mo>ˊ</mo></mover><mtext>mero total de acessos</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">\text{Hit Rate} = \frac{\text{Número de hits}}{\text{Número total de acessos}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Hit Rate</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">N</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">u</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">mero total de acessos</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">N</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">u</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">mero de hits</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></li></ul><ul id="1e67d5d3-8a13-80fa-9e09-d08d193fad4f" class="bulleted-list"><li style="list-style-type:disc"><strong>Miss Rate (Taxa de faltas): </strong>Proporção de acessos em que houve <em>miss</em>.<figure id="1e67d5d3-8a13-80aa-9e26-c9920e3d98a9" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Miss Rate</mtext><mo>=</mo><mn>1</mn><mo>−</mo><mtext>Hit Rate</mtext></mrow><annotation encoding="application/x-tex">\text{Miss Rate} = 1 - \text{Hit Rate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Miss Rate</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Hit Rate</span></span></span></span></span></span></div></figure></li></ul><ul id="1e67d5d3-8a13-8020-a447-f86e92e6d5b5" class="bulleted-list"><li style="list-style-type:disc"><strong>Hit Time (Tempo de acerto): </strong>Tempo necessário para acessar a cache <strong>e verificar</strong> se o dado está lá (inclui o tempo de leitura, comparação de endereço, etc.).<p id="1e67d5d3-8a13-8064-a835-eec7d688a8c4" class="">→ Quanto menor, melhor o desempenho da cache.</p></li></ul><ul id="1e67d5d3-8a13-8025-adb4-de58a3d9c69c" class="bulleted-list"><li style="list-style-type:disc"><strong>Miss Penalty (Penalidade de falta): Tempo adicional gasto</strong> para recuperar um dado <strong>em caso de miss</strong>, incluindo:<ul id="1e67d5d3-8a13-806f-ba0b-fb63c6280c11" class="bulleted-list"><li style="list-style-type:circle">tempo de busca no nível inferior,</li></ul><ul id="1e67d5d3-8a13-8046-ba26-d0c42535d01d" class="bulleted-list"><li style="list-style-type:circle">tempo de transferência para a cache,</li></ul><ul id="1e67d5d3-8a13-80f9-94c2-f1ace2764d44" class="bulleted-list"><li style="list-style-type:circle">possível atualização da cache.</li></ul><p id="1e77d5d3-8a13-8058-a4e3-db6d6ba7834d" class="">
+</p></li></ul><hr id="1e77d5d3-8a13-8057-ae7f-cbe9bd59dcfd"/><h1 id="1e67d5d3-8a13-802a-9039-ed16212b91ef" class="">Organização de arquivos</h1><h2 id="1e67d5d3-8a13-8022-aa61-eb6326c8dd01" class="">📁 Organização de arquivos</h2><ul id="1e77d5d3-8a13-80c2-8061-fedebc50ed04" class="bulleted-list"><li style="list-style-type:disc">Armazenamento de um <strong>pequeno volume de dados</strong>:<ul id="1e77d5d3-8a13-8093-8ce9-cc3bdfad5522" class="bulleted-list"><li style="list-style-type:circle">Distribuição simples dos registros em um arquivo, <strong>sem alguma estratégia para organização dos registros</strong>.</li></ul><ul id="1e77d5d3-8a13-8024-a2bb-f9cd8a0a72f6" class="bulleted-list"><li style="list-style-type:circle">É eficiente quando a <strong>frequência de acessos aleatórios</strong> não é elevada.</li></ul><ul id="1e77d5d3-8a13-801c-b870-e479e58d64b3" class="bulleted-list"><li style="list-style-type:circle">➤ <em>Acesso aleatório</em> é a <strong>recuperação de um registro específico</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-8045-9987-d5ec8c4beaf1" class="bulleted-list"><li style="list-style-type:disc">Armazenamento de um <strong>grande volume de dados</strong> ou com aumento da <strong>complexidade dos acessos</strong>:<ul id="1e77d5d3-8a13-80e2-9455-fccde1d474fd" class="bulleted-list"><li style="list-style-type:circle">Provoca <strong>baixa eficiência</strong> no armazenamento e nos acessos aos registros.</li></ul><ul id="1e77d5d3-8a13-8096-8d28-eafa34d4d5a0" class="bulleted-list"><li style="list-style-type:circle">Requer <strong>técnicas sofisticadas</strong> para armazenamento e recuperação.</li></ul><p id="1e77d5d3-8a13-8024-b7e8-dd8f8dcd366f" class="">
+</p></li></ul><hr id="1e77d5d3-8a13-8094-85d3-d62afe2dbaf4"/><h2 id="1e67d5d3-8a13-802f-b6b3-d16a5274c320" class="">💡 Estratégias de organização de arquivos</h2><p id="1e67d5d3-8a13-80b8-8891-ea5e593c6166" class="">Diferentes cenários ou problemas com determinadas características requerem <strong>diferentes soluções</strong> para aumentar a eficiência.</p><p id="1e77d5d3-8a13-80d1-b285-f7f82a74484a" class="">
+</p><hr id="1e77d5d3-8a13-809c-ab38-f36782dd0eab"/><h2 id="1e77d5d3-8a13-8077-bf26-ed50bd161f9b" class="">💡Definições sobre registros e arquivos</h2><ul id="1e77d5d3-8a13-805f-9704-c82b645df8cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Arquivo</strong>:<ul id="1e77d5d3-8a13-80bb-8038-e2580602c775" class="bulleted-list"><li style="list-style-type:circle">Coleção de registros lógicos.</li></ul><ul id="1e77d5d3-8a13-8081-b3c2-fb540e623f5c" class="bulleted-list"><li style="list-style-type:circle">Representa um <strong>objeto ou entidade</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-806c-9b29-e56b4547dce8" class="bulleted-list"><li style="list-style-type:disc"><strong>Registro lógico</strong>:<ul id="1e77d5d3-8a13-8022-8ded-ec98954a4fc0" class="bulleted-list"><li style="list-style-type:circle">Sequência de <strong>itens</strong> que representam <strong>campos ou atributos</strong> do registro.</li></ul><ul id="1e77d5d3-8a13-8031-ac43-d6e99885eeaf" class="bulleted-list"><li style="list-style-type:circle">Atributo é uma propriedade constituída por:<ul id="1e77d5d3-8a13-805c-bf0c-eddff4cf2454" class="bulleted-list"><li style="list-style-type:square"><strong>Nome</strong>,</li></ul><ul id="1e77d5d3-8a13-803e-8bf6-c4f4a5117bb6" class="bulleted-list"><li style="list-style-type:square"><strong>Tipo</strong> e</li></ul><ul id="1e77d5d3-8a13-8026-b203-e7e6210ba94d" class="bulleted-list"><li style="list-style-type:square"><strong>Comprimento</strong> (que pode ser constante ou variável).</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-808d-be0e-ff71b46c6a96" class="bulleted-list"><li style="list-style-type:disc"><strong>Registro físico</strong>:<ul id="1e77d5d3-8a13-8006-ae63-ef08dbf364da" class="bulleted-list"><li style="list-style-type:circle">Armazenamento dos registros lógicos (operações de <em>write</em> e <em>read</em>) em <strong>blocos</strong>.</li></ul><ul id="1e77d5d3-8a13-8037-bd72-d35c17c8336b" class="bulleted-list"><li style="list-style-type:circle">O tamanho do bloco <strong>coincide com uma unidade de armazenamento</strong> do meio físico (como <strong>setores e trilhas</strong> de um <em>hard disk</em>, por exemplo).</li></ul><ul id="1e77d5d3-8a13-8006-a374-c24d9dda0f84" class="bulleted-list"><li style="list-style-type:circle">Cada bloco armazena um <strong>número inteiro de registros</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-808e-b1c1-fa3830eca307" class="bulleted-list"><li style="list-style-type:disc"><strong>Chave</strong>:<ul id="1e77d5d3-8a13-80df-a277-f314ad4a360c" class="bulleted-list"><li style="list-style-type:circle">Sequência de <strong>um ou mais atributos</strong> de um registro.</li></ul><ul id="1e77d5d3-8a13-806b-8eb6-c55e8f459478" class="bulleted-list"><li style="list-style-type:circle"><strong>Chave primária</strong>:<ul id="1e77d5d3-8a13-80aa-a7c6-e8021da0b5dc" class="bulleted-list"><li style="list-style-type:square">Atributo que <strong>identifica exclusivamente</strong> cada registro do arquivo.</li></ul></li></ul><ul id="1e77d5d3-8a13-8039-bdc8-db1fb8d66b00" class="bulleted-list"><li style="list-style-type:circle"><strong>Chave secundária</strong>:<ul id="1e77d5d3-8a13-8085-8f48-dac7cd6716c6" class="bulleted-list"><li style="list-style-type:square">Atributo utilizado para <strong>identificação</strong>, geralmente em <strong>índices</strong>.</li></ul><ul id="1e77d5d3-8a13-808d-8479-c110c85d882d" class="bulleted-list"><li style="list-style-type:square">Pode ter seu valor <strong>repetido em diferentes registros</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-80b3-937f-cd5abc402696" class="bulleted-list"><li style="list-style-type:circle"><strong>Chave de acesso</strong>:<ul id="1e77d5d3-8a13-800d-ba71-dc9f8063fe15" class="bulleted-list"><li style="list-style-type:square">Chave utilizada para <strong>identificar registros</strong> em uma operação de leitura.</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-8000-b102-fa0c8f6b0d51" class="bulleted-list"><li style="list-style-type:disc"><strong>Argumento de pesquisa</strong>:<ul id="1e77d5d3-8a13-80d1-94ae-faf899aabe6d" class="bulleted-list"><li style="list-style-type:circle">Valor da <strong>chave de acesso</strong> em uma operação de leitura.</li></ul></li></ul><ul id="1e77d5d3-8a13-8021-b1a7-d200cd38b5d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Chave de um registro</strong>:<ul id="1e77d5d3-8a13-80d2-a36a-c54941ae864f" class="bulleted-list"><li style="list-style-type:circle">Valor de uma <strong>chave primária</strong> de um registro.</li></ul></li></ul><ul id="1e77d5d3-8a13-8024-8e30-c065830e0d5b" class="bulleted-list"><li style="list-style-type:disc"><strong>Chave de ordenação</strong>:<ul id="1e77d5d3-8a13-802b-9695-efd4e4157c61" class="bulleted-list"><li style="list-style-type:circle">Chave primária utilizada para <strong>estabelecer a sequência</strong> na qual devem ser dispostos (<strong>física ou logicamente</strong>) os registros de um arquivo.</li></ul></li></ul><hr id="1e77d5d3-8a13-80ab-a7f7-d14843fecffc"/><h2 id="1e67d5d3-8a13-8099-8a22-c870393fdaf5" class="">📁Arquivo sequencial simples</h2><h3 id="1e77d5d3-8a13-8021-ba20-fd59fead7780" class=""><strong>💡Definição</strong></h3><p id="1e77d5d3-8a13-8063-b022-ef030e277837" class="">Os registros são distribuídos em uma <strong>ordem arbitrária dentro do bloco</strong>, ou seja, são dispostos <strong>um após o outro</strong>.</p><p id="1e77d5d3-8a13-802a-aa9d-eba9bd105d40" class="">Em geral, a ordem pode ser a <strong>mesma da geração dos registros</strong>.</p><h3 id="1e77d5d3-8a13-80c8-861b-d835617a627e" class="">✅ <strong>Vantagem</strong></h3><ul id="1e77d5d3-8a13-80b1-82d8-c7ce1864379f" class="bulleted-list"><li style="list-style-type:disc"><strong>Simplicidade de implementação</strong></li></ul><h3 id="1e77d5d3-8a13-8019-aea2-e5cdb4471b27" class="">❌ <strong>Desvantagem</strong></h3><ul id="1e77d5d3-8a13-80ed-a91f-d8d43ac8a053" class="bulleted-list"><li style="list-style-type:disc">A <strong>busca de um registro</strong> é feita por meio de <strong>acesso sequencial</strong>.</li></ul><p id="1e77d5d3-8a13-8087-88c5-cbff9f22ea64" class="">➤ Em casos de arquivos com <strong>muitos registros</strong>, essa busca se torna <strong>ineficiente</strong>.</p><p id="1e77d5d3-8a13-8015-bd60-c7d1c6942fba" class="">
+</p><hr id="1e77d5d3-8a13-804b-8b37-cf0638b7b099"/><h2 id="1e67d5d3-8a13-8035-8f2f-fd179df10dc4" class="">📁 Arquivo sequencial ordenado</h2><h3 id="1e77d5d3-8a13-8040-aefb-c24a98c6da4c" class=""><strong>💡 Definição</strong>:</h3><p id="1e77d5d3-8a13-80e4-acca-fc60c0f4248d" class="">Os registros estão dispostos ordenadamente, em uma sequência definida por uma <strong>chave primária</strong> (também chamada de <strong>chave de ordenação</strong>).</p><ul id="1e77d5d3-8a13-80bb-8496-f40ee1dfb5a5" class="bulleted-list"><li style="list-style-type:disc"><strong>Principais características</strong>:<ul id="1e77d5d3-8a13-80c9-a020-ee910bf62ad4" class="bulleted-list"><li style="list-style-type:circle">Registros são gravados <strong>sequencialmente por suas respectivas chaves</strong>, seguindo uma <strong>ordenação perfeita</strong> (lógica e física).</li></ul><ul id="1e77d5d3-8a13-8079-9e2c-d132f4c49a34" class="bulleted-list"><li style="list-style-type:circle">Os registros possuem o <strong>mesmo formato</strong>.</li></ul><ul id="1e77d5d3-8a13-80aa-9ee9-fd3deb67f78e" class="bulleted-list"><li style="list-style-type:circle">O valor de um atributo está associado ao nome <strong>pela posição relativa</strong> no registro.</li></ul><ul id="1e77d5d3-8a13-80cf-af3b-d5cf693ab756" class="bulleted-list"><li style="list-style-type:circle">A estrutura do registro é <strong>externa aos dados</strong> que ela descreve.</li></ul><ul id="1e77d5d3-8a13-805e-8f80-d4af0ae504bf" class="bulleted-list"><li style="list-style-type:circle">A descrição da estrutura é <strong>declarada nos programas</strong> por meio de <strong>tipos e tamanhos</strong>.</li></ul><ul id="1e77d5d3-8a13-809a-b897-e4ca37b599e8" class="bulleted-list"><li style="list-style-type:circle"><strong>Campos alfanuméricos</strong> são dimensionados com base no <strong>tamanho máximo possível</strong>, o que pode causar <strong>desperdício de armazenamento</strong>, devido ao formato único para todas as ocorrências do registro.</li></ul></li></ul><p id="1e77d5d3-8a13-80b8-a107-ec864b1cc2da" class="">✅ <strong>Vantagens</strong>:<div class="indented"><ul id="1e77d5d3-8a13-8001-b3cd-c2f1f8ae5ea7" class="bulleted-list"><li style="list-style-type:disc">Operações de acesso sequencial são eficientes quando:<ul id="1e77d5d3-8a13-8007-97a7-ce6837853614" class="bulleted-list"><li style="list-style-type:circle">O acesso é feito a um registro cuja chave <strong>coincide com a chave de ordenação</strong>.</li></ul><ul id="1e77d5d3-8a13-802f-9dec-c1e9ab47f57c" class="bulleted-list"><li style="list-style-type:circle">A leitura ocorre na <strong>sequência da chave de ordenação</strong>.</li></ul></li></ul></div></p><p id="1e77d5d3-8a13-807a-8c66-d068709e7a75" class="">❌ <strong>Desvantagens</strong>:<div class="indented"><ul id="1e77d5d3-8a13-8045-a0d0-c86af17ac280" class="bulleted-list"><li style="list-style-type:disc"> Operações de acesso e gravação podem ser ineficientes quando:</li></ul><ul id="1e77d5d3-8a13-8034-b807-e47290d2c6b0" class="bulleted-list"><li style="list-style-type:disc">A <strong>chave de acesso não coincide</strong> com a chave de ordenação.</li></ul><ul id="1e77d5d3-8a13-8088-bc66-c3db8f48a444" class="bulleted-list"><li style="list-style-type:disc">A operação de gravação pode exigir uma <strong>reorganização</strong> do arquivo.</li></ul><ul id="1e77d5d3-8a13-8077-a481-d7bfde47a6e8" class="bulleted-list"><li style="list-style-type:disc">As operações de <strong>inserção, alteração e remoção</strong> também podem ser custosas.</li></ul><p id="1e77d5d3-8a13-80e9-9949-c12644ef999f" class="">
+</p></div></p><h3 id="1e77d5d3-8a13-803c-85dd-d524e919f5de" class="">⚙️ Operações em Arquivos Sequenciais Ordenados</h3><h3 id="1e77d5d3-8a13-80e2-a17e-d9f01234da96" class="">📖 Operação de Leitura</h3><ul id="1e77d5d3-8a13-80db-b73a-ea27083ec054" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial aos registros</strong>:<p id="1e77d5d3-8a13-808b-96da-d4372abe35f0" class="">Recupera o registro que <strong>segue ao último acessado</strong>, segundo a chave de ordenação.</p><p id="1e77d5d3-8a13-80e7-ba73-da76b2af1107" class="">➤ É eficiente, pois geralmente o próximo registro estará <strong>no mesmo bloco</strong> do anterior.</p></li></ul><ul id="1e77d5d3-8a13-8083-bdc6-f789eac82c90" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório a um registro</strong>:<p id="1e77d5d3-8a13-8021-82ab-cf48aee742e5" class="">Baseado em um <strong>argumento de pesquisa</strong> e independe da ordenação física do arquivo.</p><ul id="1e77d5d3-8a13-80a1-a071-e3fe48eea277" class="bulleted-list"><li style="list-style-type:circle">Se <strong>a chave de pesquisa ≠ chave de ordenação</strong>: o acesso será <strong>sequencial</strong>.</li></ul><ul id="1e77d5d3-8a13-809a-a920-c0430950814d" class="bulleted-list"><li style="list-style-type:circle">Se <strong>a chave de pesquisa = chave de ordenação</strong>:<ul id="1e77d5d3-8a13-80d7-8461-c1cf9dd08dc4" class="bulleted-list"><li style="list-style-type:square">Em <strong>mídias de acesso sequencial</strong>: a localização é mais rápida.</li></ul><ul id="1e77d5d3-8a13-8080-94be-e908faf808a7" class="bulleted-list"><li style="list-style-type:square">Em <strong>mídias de acesso direto</strong>: pode-se usar <strong>pesquisa binária ou interpolação</strong> para maior eficiência.</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-8015-9f3e-f1759372b020" class="bulleted-list"><li style="list-style-type:disc"><strong>Leitura exaustiva (full-scan)</strong> dos registros:<p id="1e77d5d3-8a13-80d5-a3c4-f52e4231d668" class="">Percorre todos os registros do arquivo.</p><p id="1e77d5d3-8a13-80d4-92a1-e05bf1359338" class="">
+</p></li></ul><h3 id="1e77d5d3-8a13-80fb-99af-fd37a03e318d" class="">✏️ Operação de Gravação</h3><ul id="1e77d5d3-8a13-80e8-bd21-eaea6e266521" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserção de um novo registro</strong>:<ul id="1e77d5d3-8a13-803a-b471-f7925c8ed38d" class="bulleted-list"><li style="list-style-type:circle">Utiliza a técnica chamada <strong>balance-line</strong>.</li></ul><ul id="1e77d5d3-8a13-80de-b551-d5fd5d055449" class="bulleted-list"><li style="list-style-type:circle">Inserir um único registro pode exigir o <strong>deslocamento dos demais</strong>.</li></ul><ul id="1e77d5d3-8a13-8056-a3b5-d25d9ea1ca83" class="bulleted-list"><li style="list-style-type:circle">Com balance-line:<ul id="1e77d5d3-8a13-8017-ba87-cd0687093f10" class="bulleted-list"><li style="list-style-type:square">As gravações são feitas em um <strong>arquivo temporário</strong>.</li></ul><ul id="1e77d5d3-8a13-80d4-a022-f0c155e2ab87" class="bulleted-list"><li style="list-style-type:square">Periodicamente, realiza-se a <strong>intercalação</strong> entre o arquivo mestre e o temporário, gerando um novo mestre reorganizado.</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-80fa-911e-e45e082fff8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Procedimento</strong>:<ol type="1" id="1e77d5d3-8a13-8034-a548-d0f2c21d0222" class="numbered-list" start="1"><li>Criar um <strong>arquivo de transação</strong> (temporário), contendo os registros a serem gravados.<ul id="1e77d5d3-8a13-8028-921a-c51890c70d3d" class="bulleted-list"><li style="list-style-type:disc"><em>Transação</em>: sequência de operações que conduz os dados de um <strong>estado consistente a outro</strong>.</li></ul></li></ol><ol type="1" id="1e77d5d3-8a13-80bd-865f-e528b8227ce4" class="numbered-list" start="2"><li><strong>Ordenar</strong> o arquivo temporário conforme a mesma chave do arquivo mestre.</li></ol><ol type="1" id="1e77d5d3-8a13-8035-816f-e016e5975f4a" class="numbered-list" start="3"><li><strong>Intercalar</strong> os dois arquivos para gerar um novo arquivo mestre.</li></ol></li></ul><ul id="1e77d5d3-8a13-805d-ad60-db1747de52a9" class="bulleted-list"><li style="list-style-type:disc"><strong>Exclusão de um registro existente</strong>:<ul id="1e77d5d3-8a13-80c9-91d4-dcb05a13c753" class="bulleted-list"><li style="list-style-type:circle">Pode usar <strong>balance-line</strong> ou um <strong>atributo adicional</strong>.<ul id="1e77d5d3-8a13-80d0-98c5-d76bbf960701" class="bulleted-list"><li style="list-style-type:square">Com o atributo adicional, a exclusão é <strong>lógica</strong> (não física).</li></ul><ul id="1e77d5d3-8a13-809d-953e-d56d24e25f7e" class="bulleted-list"><li style="list-style-type:square">Registros marcados como &quot;excluídos&quot; são <strong>ignorados nas leituras</strong>.</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-8046-9102-f2bee2ea23fb" class="bulleted-list"><li style="list-style-type:disc"><strong>Alteração de um registro existente</strong>:<ul id="1e77d5d3-8a13-80d8-8007-e9d499ebc564" class="bulleted-list"><li style="list-style-type:circle">Também pode usar balance-line.</li></ul><ul id="1e77d5d3-8a13-8012-9ac6-e8777b939518" class="bulleted-list"><li style="list-style-type:circle">A alteração pode:<ul id="1e77d5d3-8a13-8067-bce7-da92ee0a78c5" class="bulleted-list"><li style="list-style-type:square"><strong>Aumentar o tamanho do registro</strong>.</li></ul><ul id="1e77d5d3-8a13-805f-8a48-d88cee6230d4" class="bulleted-list"><li style="list-style-type:square"><strong>Modificar o valor do campo</strong> usado como chave de ordenação.</li></ul></li></ul></li></ul><ul id="1e77d5d3-8a13-80f0-aa98-e2d3baedbe4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Reorganização do arquivo</strong>:<ul id="1e77d5d3-8a13-80c0-ba7c-c134b635a011" class="bulleted-list"><li style="list-style-type:circle">Operação de <strong>intercalação</strong> entre o arquivo mestre e o arquivo de transação.</li></ul><p id="1e77d5d3-8a13-808b-a8aa-dd3a1ae342ca" class="">
+</p></li></ul><hr id="1e77d5d3-8a13-80d4-9431-e05e182fdacf"/><h2 id="1e67d5d3-8a13-8043-a4e6-cf331e8a7bfe" class="">📁 Arquivo sequencial indexado</h2><p id="1e77d5d3-8a13-80bc-ab95-e0a4c38f375c" class="">O <strong>arquivo sequencial indexado</strong> é uma evolução do arquivo sequencial tradicional, combinando a simplicidade da ordenação sequencial com um <strong>índice</strong> para agilizar acessos, além de contar com <strong>áreas de extensão</strong> para inserções posteriores.</p><p id="1e77d5d3-8a13-8082-8433-dd2d599f09f8" class="">Esse tipo de arquivo é dividido em três áreas principais:</p><h3 id="1e77d5d3-8a13-804e-b892-c4e13b2f770a" class="">🧩 Estrutura</h3><ol type="1" id="1e77d5d3-8a13-80f6-b353-fea3670f2a7a" class="numbered-list" start="1"><li><strong>Área de Índices</strong>:<ul id="1e77d5d3-8a13-8082-ab37-db20a6f39bf5" class="bulleted-list"><li style="list-style-type:disc">É um <strong>arquivo sequencial criado pelo sistema</strong>, contendo registros que delimitam segmentos da área primária.</li></ul><ul id="1e77d5d3-8a13-804f-a9d7-d64dcbdff831" class="bulleted-list"><li style="list-style-type:disc">Cada entrada contém:<ul id="1e77d5d3-8a13-8093-a9c9-da7c5489f2d6" class="bulleted-list"><li style="list-style-type:circle">A <strong>chave mais alta</strong> do segmento correspondente.</li></ul><ul id="1e77d5d3-8a13-8017-8b4e-f210e6cabbc8" class="bulleted-list"><li style="list-style-type:circle">O <strong>endereço de início</strong> desse segmento.</li></ul></li></ul><ul id="1e77d5d3-8a13-8091-8c73-caa73c245406" class="bulleted-list"><li style="list-style-type:disc">Permite que o sistema acesse diretamente um bloco da área primária, funcionando como o <strong>índice de um livro</strong>.</li></ul><ul id="1e77d5d3-8a13-807f-afd9-ff429d5e4a31" class="bulleted-list"><li style="list-style-type:disc">Um <strong>índice</strong> é uma coleção de pares <strong>chave–endereço</strong>, facilitando a <strong>localização rápida</strong> de registros no arquivo.</li></ul><ul id="1e77d5d3-8a13-80ab-94fc-c3391820ab7f" class="bulleted-list"><li style="list-style-type:disc">Pode haver <strong>índices para múltiplas chaves de acesso</strong>, organizados em <strong>múltiplos níveis</strong> (índice primário, secundário etc.).</li></ul></li></ol><ol type="1" id="1e77d5d3-8a13-80fa-aa78-d3c8162c2d27" class="numbered-list" start="2"><li><strong>Área Primária (Principal)</strong>:<ul id="1e77d5d3-8a13-80d1-b034-d04d8eaea95b" class="bulleted-list"><li style="list-style-type:disc">Contém os <strong>registros principais de dados</strong>, organizados <strong>em ordem crescente pela chave primária</strong>.</li></ul><ul id="1e77d5d3-8a13-8074-ae32-dc5e6ff069a0" class="bulleted-list"><li style="list-style-type:disc">É a parte principal do arquivo, onde os dados são armazenados inicialmente.</li></ul></li></ol><ol type="1" id="1e77d5d3-8a13-806b-99c7-f8fdfde5dd09" class="numbered-list" start="3"><li><strong>Área de Excedentes (Overflow)</strong>:<ul id="1e77d5d3-8a13-80a8-9c6f-e262c1b062fb" class="bulleted-list"><li style="list-style-type:disc">Guarda <strong>registros que não puderam ser inseridos na área principal</strong>, por falta de espaço ou restrições de ordenação.</li></ul></li></ol><ol type="1" id="1e77d5d3-8a13-8048-a239-dd5a47011c41" class="numbered-list" start="4"><li><strong>Área de Extensão</strong>:<ul id="1e77d5d3-8a13-80b5-8aa1-f15834096c2c" class="bulleted-list"><li style="list-style-type:disc">Armazena os <strong>registros inseridos após a criação do arquivo principal</strong>.</li></ul><ul id="1e77d5d3-8a13-806a-a93e-ecfb1ff2a5df" class="bulleted-list"><li style="list-style-type:disc">Funciona como uma <strong>extensão da área primária</strong>, permitindo inserções que seriam complexas de realizar diretamente na área principal.</li></ul><ul id="1e77d5d3-8a13-8020-9b46-dcab4c17fde6" class="bulleted-list"><li style="list-style-type:disc">Inserções podem mudar o endereço físico dos registros, o que <strong>exige atualização das entradas no índice</strong>.</li></ul><ul id="1e77d5d3-8a13-80d9-b6c7-fa7f519c6bc0" class="bulleted-list"><li style="list-style-type:disc">Podem existir <strong>várias áreas de extensão</strong> em um mesmo arquivo, uma para cada grupo de blocos.</li></ul><ul id="1e77d5d3-8a13-8030-8fa3-ff5216f77f53" class="bulleted-list"><li style="list-style-type:disc">Quando uma área de extensão está cheia, <strong>novas áreas adicionais</strong> são criadas.</li></ul><ul id="1e77d5d3-8a13-80dd-992d-edb8cba5f291" class="bulleted-list"><li style="list-style-type:disc">Modos de implementação:<ul id="1e77d5d3-8a13-8099-b782-e8910fd41e21" class="bulleted-list"><li style="list-style-type:circle"><strong>Modo 1</strong>: Cada registro possui um campo de <strong>encadeamento</strong> apontando para seu <strong>antecessor ou sucessor</strong>.</li></ul><ul id="1e77d5d3-8a13-80ca-9702-c0be08b5b517" class="bulleted-list"><li style="list-style-type:circle"><strong>Modo 2</strong>: Um <strong>atributo específico</strong> é usado para o encadeamento entre blocos de registros.</li></ul><p id="1e77d5d3-8a13-8086-836c-cea2b11ee5e7" class="">
+</p></li></ul></li></ol><h3 id="1e77d5d3-8a13-807e-a5d9-e1d114a67500" class="">⚙️ Operações em Arquivo Sequencial Indexado</h3><h3 id="1e77d5d3-8a13-80d3-b68a-c020e5beb54e" class="">📖  Operações de Leitura</h3><ul id="1e77d5d3-8a13-8064-bac3-c1b3e007ccb4" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial</strong>:<ul id="1e77d5d3-8a13-8066-bbce-d40cd247bd1f" class="bulleted-list"><li style="list-style-type:circle">Percorre diretamente a <strong>área de dados e extensão</strong>, sem uso do índice.</li></ul></li></ul><ul id="1e77d5d3-8a13-8071-b7d9-d401efd5a6ca" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório</strong>:<ul id="1e77d5d3-8a13-8066-a018-f80578380b49" class="bulleted-list"><li style="list-style-type:circle">Utiliza o <strong>índice</strong> para localizar o endereço do <strong>registro ou bloco</strong> correspondente.</li></ul><ul id="1e77d5d3-8a13-80d9-be46-c9506dccc08a" class="bulleted-list"><li style="list-style-type:circle">Se o índice aponta para um bloco, é necessário buscar o registro <strong>dentro do bloco</strong>.</li></ul><ul id="1e77d5d3-8a13-806c-b51b-ef0ecbbd3fe7" class="bulleted-list"><li style="list-style-type:circle">Caso haja registros na <strong>área de extensão</strong>, podem ser necessários <strong>acessos adicionais</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-8013-ae62-cf1a6266bb45" class="bulleted-list"><li style="list-style-type:disc"><strong>Leitura exaustiva (full-scan)</strong>:<ul id="1e77d5d3-8a13-8001-b39f-ddf53d44378c" class="bulleted-list"><li style="list-style-type:circle">Igual ao acesso sequencial, percorrendo todos os registros.</li></ul></li></ul><h3 id="1e77d5d3-8a13-80bb-8d85-f0cebd91953f" class="">✏️ Operações de Gravação</h3><ul id="1e77d5d3-8a13-803f-88d5-d48ccdb9240a" class="bulleted-list"><li style="list-style-type:disc"><strong>Inclusão</strong>:<ul id="1e77d5d3-8a13-801b-87f4-e73d2492cdc9" class="bulleted-list"><li style="list-style-type:circle">Novos registros são inseridos nas <strong>áreas de extensão</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-8019-92e9-f4b24b69aad3" class="bulleted-list"><li style="list-style-type:disc"><strong>Exclusão</strong>:<ul id="1e77d5d3-8a13-80e4-8d7a-d504e330e32b" class="bulleted-list"><li style="list-style-type:circle">Pode-se usar a <strong>técnica de exclusão lógica</strong> com um <strong>atributo adicional</strong> para marcar o registro como excluído.</li></ul></li></ul><ul id="1e77d5d3-8a13-8027-b5c3-c6a7654595c6" class="bulleted-list"><li style="list-style-type:disc"><strong>Alteração</strong>:<ul id="1e77d5d3-8a13-80b2-99ef-d7835fae9881" class="bulleted-list"><li style="list-style-type:circle">O registro é localizado.</li></ul><ul id="1e77d5d3-8a13-80c0-a641-d3839fddaf98" class="bulleted-list"><li style="list-style-type:circle">Se a <strong>chave de ordenação não mudar</strong>, o registro pode ser <strong>sobrescrito</strong>.</li></ul><ul id="1e77d5d3-8a13-80db-a31b-c6094dece0b0" class="bulleted-list"><li style="list-style-type:circle">Se a chave for alterada, realiza-se a <strong>exclusão + inclusão</strong> do registro (como se fosse novo).</li></ul></li></ul><h3 id="1e77d5d3-8a13-804d-b9af-ef256a79d05d" class="">🔄 Reorganização</h3><ul id="1e77d5d3-8a13-8068-8a11-f3d82dfb184f" class="bulleted-list"><li style="list-style-type:disc">O desempenho de leitura e gravação <strong>se degrada</strong> com o tempo, à medida que mais <strong>inclusões e exclusões</strong> ocorrem.</li></ul><ul id="1e77d5d3-8a13-805c-8b69-fab3c1b55b65" class="bulleted-list"><li style="list-style-type:disc">A reorganização tem como objetivos:<ul id="1e77d5d3-8a13-809a-9b55-cc257fc76236" class="bulleted-list"><li style="list-style-type:circle"><strong>Remover fisicamente</strong> os registros marcados como excluídos.</li></ul><ul id="1e77d5d3-8a13-8020-b247-fc0ed541a8c0" class="bulleted-list"><li style="list-style-type:circle"><strong>Limpar</strong> (sanear) a <strong>área de extensão</strong>, migrando registros para a área principal.</li></ul><ul id="1e77d5d3-8a13-80d7-8702-e175a752a724" class="bulleted-list"><li style="list-style-type:circle"><strong>Gerar um novo índice</strong>, com dados atualizados.</li></ul></li></ul><ul id="1e77d5d3-8a13-8009-8744-c1cb50390792" class="bulleted-list"><li style="list-style-type:disc">O intervalo entre as reorganizações deve ser <strong>periodicamente definido</strong>.</li></ul><ul id="1e77d5d3-8a13-8098-8292-d1441a1f24cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Atenção</strong>: a reorganização <strong>não deve ser feita com o arquivo em uso</strong>.</li></ul><p id="1e77d5d3-8a13-8066-bd34-efdca14afa98" class="">
+</p><hr id="1e77d5d3-8a13-802b-b0a2-ebfc8821042c"/><h2 id="1e67d5d3-8a13-80a4-867d-c998e03f1809" class="">📁 Arquivo indexado</h2><p id="1e77d5d3-8a13-8021-a264-d23481dff33b" class="">O <strong>arquivo indexado</strong> representa uma evolução dos métodos de organização de arquivos, permitindo múltiplas formas de acesso — tanto sequencial quanto aleatório — por meio de <strong>estruturas de índice</strong> associadas a um ou mais atributos dos registros.</p><h3 id="1e77d5d3-8a13-80e8-bfc7-d33818910ec6" class="">🔍 Principais Características</h3><ul id="1e77d5d3-8a13-801b-a741-e6b1fdd86ead" class="bulleted-list"><li style="list-style-type:disc">Permite <strong>acesso aleatório eficiente</strong> por meio de um ou mais índices.</li></ul><ul id="1e77d5d3-8a13-804b-be53-f3683a2cc07e" class="bulleted-list"><li style="list-style-type:disc">Suporta <strong>acesso sequencial eficiente pela chave primária</strong>.</li></ul><ul id="1e77d5d3-8a13-80a1-ae80-f72e89a319c0" class="bulleted-list"><li style="list-style-type:disc"><strong>Facilita inserções e exclusões</strong> graças ao uso de <strong>áreas de extensão</strong> e estrutura de índices flexíveis.</li></ul><ul id="1e77d5d3-8a13-8037-b975-f7ea3e909dfe" class="bulleted-list"><li style="list-style-type:disc"><strong>Dispensa ordenação física</strong> dos registros, o que melhora a performance de gravação.</li></ul><p id="1e77d5d3-8a13-8098-9a21-fbb75ed24580" class="">
+</p><h3 id="1e77d5d3-8a13-802b-a441-e6f8512b874d" class="">💡 Motivação</h3><ul id="1e77d5d3-8a13-8097-850b-c2e9d56fc5e5" class="bulleted-list"><li style="list-style-type:disc">Arquivos <strong>sequenciais ordenados</strong> oferecem bom desempenho <strong>somente para acessos sequenciais</strong>, exigindo:<ul id="1e77d5d3-8a13-80b2-8716-f935ce2a96fe" class="bulleted-list"><li style="list-style-type:circle">Que os registros estejam fisicamente ordenados.</li></ul><ul id="1e77d5d3-8a13-8003-9d23-fc167cdbc784" class="bulleted-list"><li style="list-style-type:circle">Inserções mais complexas.</li></ul><ul id="1e77d5d3-8a13-8032-ae4c-d79c437e9a5d" class="bulleted-list"><li style="list-style-type:circle">Reorganizações periódicas do arquivo.</li></ul></li></ul><ul id="1e77d5d3-8a13-8034-8150-c0755cd3603c" class="bulleted-list"><li style="list-style-type:disc">Essas exigências tornam-se <strong>inviáveis</strong> quando:<ul id="1e77d5d3-8a13-80f0-8801-dc6ab9fbbfc9" class="bulleted-list"><li style="list-style-type:circle">A frequência de <strong>acessos aleatórios</strong> é alta.</li></ul><ul id="1e77d5d3-8a13-8086-bb35-dbbd4ec50abe" class="bulleted-list"><li style="list-style-type:circle">A frequência de <strong>acessos sequenciais</strong> é baixa.</li></ul></li></ul><p id="1e77d5d3-8a13-8069-8ad2-dc4eceb41bca" class="">O arquivo indexado surge como <strong>solução flexível</strong> para acesso eficiente em diferentes cenários.</p><p id="1e77d5d3-8a13-8022-bd7d-c7b176fa8c68" class="">
+</p><h3 id="1e77d5d3-8a13-8084-aa5d-f8c1b92e8256" class="">💡 Definição</h3><ul id="1e77d5d3-8a13-80c3-b894-c11889144e87" class="bulleted-list"><li style="list-style-type:disc">O arquivo indexado <strong>possui um ou mais índices</strong> para permitir o acesso rápido aos registros.</li></ul><ul id="1e77d5d3-8a13-803b-a072-e35ef182eb7e" class="bulleted-list"><li style="list-style-type:disc">Não existe <strong>compromisso com a ordem física</strong> dos registros no arquivo.</li></ul><ul id="1e77d5d3-8a13-808a-8960-f8e039075e2f" class="bulleted-list"><li style="list-style-type:disc">O acesso pode ser feito por <strong>qualquer atributo</strong> do registro, desde que ele tenha um índice associado.</li></ul><ul id="1e77d5d3-8a13-8072-85fe-eb9e46a27daa" class="bulleted-list"><li style="list-style-type:disc">Cada <strong>índice</strong>:<ul id="1e77d5d3-8a13-80b6-82d9-c5d5696b9e7e" class="bulleted-list"><li style="list-style-type:circle">Contém um conjunto de <strong>entradas ordenadas pelas chaves de acesso</strong>.</li></ul><ul id="1e77d5d3-8a13-8068-b53b-f180e0aafb86" class="bulleted-list"><li style="list-style-type:circle">Cada entrada contém o <strong>valor do atributo</strong> (chave) e um <strong>ponteiro para o endereço físico</strong> do registro correspondente.</li></ul><ul id="1e77d5d3-8a13-807a-9f2b-f1ef82790055" class="bulleted-list"><li style="list-style-type:circle">Permite tanto <strong>busca eficiente</strong> quanto <strong>acesso sequencial</strong> ao arquivo.</li></ul></li></ul><p id="1e77d5d3-8a13-80c6-9d0e-d85eda710c27" class="">
+</p><h3 id="1e77d5d3-8a13-80ee-8826-f7df123985eb" class="">💡 Classificação dos Índices</h3><ul id="1e77d5d3-8a13-8046-89d7-ff75dce7893e" class="bulleted-list"><li style="list-style-type:disc"><strong>Índice Exaustivo</strong>: Possui <strong>uma entrada para cada registro</strong> do arquivo.</li></ul><ul id="1e77d5d3-8a13-80cd-a329-ce72233beff4" class="bulleted-list"><li style="list-style-type:disc"><strong>Índice Seletivo</strong>: Possui <strong>uma entrada para um subconjunto</strong> de registros, como registros com valor distinto ou maior frequência de busca.</li></ul><p id="1e77d5d3-8a13-8022-adb2-c1f856c46e99" class="">
+</p><h3 id="1e77d5d3-8a13-808c-a512-ee15d2ea2a9f" class="">✅ Vantagens</h3><ul id="1e77d5d3-8a13-8002-b236-ef95d67f93b9" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserções são mais eficientes</strong>, pois os registros podem ser gravados em qualquer posição disponível.</li></ul><ul id="1e77d5d3-8a13-80bb-ba05-e303a7fa5055" class="bulleted-list"><li style="list-style-type:disc">Permite <strong>acessos aleatórios rápidos</strong> a partir dos índices.</li></ul><ul id="1e77d5d3-8a13-802d-94fc-dfd7c46b256b" class="bulleted-list"><li style="list-style-type:disc">Suporte a <strong>múltiplas chaves de acesso</strong> com diferentes índices.</li></ul><p id="1e77d5d3-8a13-80d5-937e-faf92d272a26" class="">
+</p><h3 id="1e77d5d3-8a13-80b3-82fd-f3e1b986225d" class="">❌ Desvantagens</h3><ul id="1e77d5d3-8a13-809d-9c1e-de8081fb9c4b" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial é menos eficiente</strong> do que em arquivos ordenados.</li></ul><ul id="1e77d5d3-8a13-8016-8ca3-ce1c9a914ce7" class="bulleted-list"><li style="list-style-type:disc"><strong>Manutenção dos índices</strong> é necessária:<ul id="1e77d5d3-8a13-8084-a667-d3298ab8e2f3" class="bulleted-list"><li style="list-style-type:circle">Inserções e exclusões exigem atualizações nos índices.</li></ul><ul id="1e77d5d3-8a13-8073-8b6e-e95f65395c87" class="bulleted-list"><li style="list-style-type:circle">Alterações que afetam os atributos indexados também exigem atualizações nos índices.</li></ul><p id="1e77d5d3-8a13-80b9-b20d-f7d9c6ef6d88" class="">
+</p></li></ul><h2 id="1e77d5d3-8a13-809d-948b-c5bf6a424c95" class="">⚙️ Operações em Arquivos Indexados</h2><h3 id="1e77d5d3-8a13-806a-8f01-ea78569facc4" class="">📖 Leitura</h3><ul id="1e77d5d3-8a13-805d-96f9-f34e16c91206" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial</strong>:<ul id="1e77d5d3-8a13-8097-aa75-f1cdb1db2b5b" class="bulleted-list"><li style="list-style-type:circle">Feito a partir de um índice apropriado.</li></ul><ul id="1e77d5d3-8a13-8084-b946-f6cec3630cda" class="bulleted-list"><li style="list-style-type:circle">As <strong>entradas do índice são ordenadas</strong>, facilitando a navegação sequencial.</li></ul><ul id="1e77d5d3-8a13-80cd-963c-fa73ad60b924" class="bulleted-list"><li style="list-style-type:circle">A memória pode manter um <strong>bloco do índice carregado</strong>, reduzindo o número de leituras em disco (memória secundária).</li></ul></li></ul><ul id="1e77d5d3-8a13-80bd-be97-f800a69f96ab" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório</strong>:<ul id="1e77d5d3-8a13-80e5-bd00-e0e4c8789ebc" class="bulleted-list"><li style="list-style-type:circle">Envolve <strong>busca sobre o(s) índice(s)</strong> que suportam a chave de acesso desejada.</li></ul><ul id="1e77d5d3-8a13-80eb-b857-ff570e512c29" class="bulleted-list"><li style="list-style-type:circle">Uma vez localizado, o ponteiro direciona diretamente ao registro.</li></ul></li></ul><ul id="1e77d5d3-8a13-80e3-946d-e4ee6aa20ca1" class="bulleted-list"><li style="list-style-type:disc"><strong>Leitura exaustiva (full-scan)</strong>:<ul id="1e77d5d3-8a13-8006-a20e-d3b9c8e6010b" class="bulleted-list"><li style="list-style-type:circle">Realizada por meio de <strong>acessos sequenciais sucessivos</strong> sobre o <strong>índice exaustivo</strong>.</li></ul><p id="1e77d5d3-8a13-80ce-aa28-c15184726fef" class="">
+</p></li></ul><h3 id="1e77d5d3-8a13-8018-823b-c43cef21f223" class="">✏️ Gravação</h3><ul id="1e77d5d3-8a13-809b-89e5-ca27a6a5e0f3" class="bulleted-list"><li style="list-style-type:disc"><strong>Inclusão</strong>:<ul id="1e77d5d3-8a13-809d-973d-f53791627135" class="bulleted-list"><li style="list-style-type:circle">O novo registro é armazenado em qualquer posição disponível.</li></ul><ul id="1e77d5d3-8a13-8018-a021-e9696aa83e8d" class="bulleted-list"><li style="list-style-type:circle">Os <strong>pares chave–endereço</strong> são inseridos nos <strong>índices correspondentes</strong>.</li></ul><ul id="1e77d5d3-8a13-8098-aeab-c1d4aa1f2b49" class="bulleted-list"><li style="list-style-type:circle">A estrutura <strong>Árvore-B</strong> é comumente utilizada para gerenciar os índices de forma eficiente.</li></ul></li></ul><ul id="1e77d5d3-8a13-8081-99aa-d4d2e8cc5c10" class="bulleted-list"><li style="list-style-type:disc"><strong>Exclusão</strong>:<ul id="1e77d5d3-8a13-8047-b4e9-f0f822851330" class="bulleted-list"><li style="list-style-type:circle">Libera o <strong>espaço de dados</strong> ocupado pelo registro.</li></ul><ul id="1e77d5d3-8a13-805b-92e8-c5d48ccc53a9" class="bulleted-list"><li style="list-style-type:circle">As entradas correspondentes são <strong>removidas dos índices</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-804d-ab39-de7361bb1559" class="bulleted-list"><li style="list-style-type:disc"><strong>Alteração</strong>:<ul id="1e77d5d3-8a13-802c-907f-eaa46d305264" class="bulleted-list"><li style="list-style-type:circle">O registro é localizado via índice.</li></ul><ul id="1e77d5d3-8a13-809a-b712-e4a189a032a2" class="bulleted-list"><li style="list-style-type:circle">Os atributos são modificados e o registro é <strong>atualizado no mesmo endereço</strong>, desde que a alteração <strong>não envolva a chave de acesso</strong>.</li></ul><ul id="1e77d5d3-8a13-8044-8411-cee3185d2d70" class="bulleted-list"><li style="list-style-type:circle">Se a chave de acesso for alterada, pode ser necessário realizar <strong>exclusão + inclusão</strong>.</li></ul><p id="1e77d5d3-8a13-8097-8126-d3db51771ef9" class="">
+</p></li></ul><hr id="1e77d5d3-8a13-80ca-a231-daa441b8aa2a"/><h2 id="1e77d5d3-8a13-806d-b890-ce0f9a6aa035" class="">Arquivo Direto</h2><h3 id="1e77d5d3-8a13-8039-8498-db8bc4dd6602" class="">💡  Definição</h3><ul id="1e77d5d3-8a13-802b-89d4-ee6f8a28ee9c" class="bulleted-list"><li style="list-style-type:disc">Arquivo que <strong>dispensa estruturas auxiliares</strong> como índices.</li></ul><ul id="1e77d5d3-8a13-80cc-aa54-c6846d8558e4" class="bulleted-list"><li style="list-style-type:disc">Utiliza uma <strong>função de dispersão (hashing)</strong> para <strong>calcular diretamente</strong> o endereço físico de um registro a partir de sua chave.</li></ul><ul id="1e77d5d3-8a13-80f4-8fab-fe8de188778b" class="bulleted-list"><li style="list-style-type:disc">É uma abordagem similar ao <strong>arquivo indexado</strong> no que diz respeito ao <strong>acesso aleatório eficiente</strong>, mas com as seguintes <strong>diferenças</strong>:<ul id="1e77d5d3-8a13-80da-bd47-c6f5067e6b83" class="bulleted-list"><li style="list-style-type:circle">No <strong>arquivo direto</strong>, o endereço <strong>depende do valor da chave</strong> (via hashing).</li></ul><ul id="1e77d5d3-8a13-80a8-9be5-ef4d082cbad7" class="bulleted-list"><li style="list-style-type:circle">Não são previstos acessos sequenciais, já que os registros <strong>não seguem uma ordenação física</strong>.</li></ul><p id="1e77d5d3-8a13-80b9-bce1-db4db0696def" class="">
+</p></li></ul><h3 id="1e77d5d3-8a13-80e4-9a3b-df6ab9a86a07" class="">💡Motivação</h3><ul id="1e77d5d3-8a13-80d2-a0cb-e49bdf46d0f6" class="bulleted-list"><li style="list-style-type:disc">Buscar <strong>acesso direto e rápido</strong> aos registros com base em argumentos de pesquisa, <strong>sem a necessidade de percorrer índices ou estruturas auxiliares</strong>.</li></ul><ul id="1e77d5d3-8a13-80b2-9ca6-d750fd627017" class="bulleted-list"><li style="list-style-type:disc">Especialmente útil quando a aplicação exige <strong>acessos aleatórios frequentes</strong> e <strong>baixa complexidade na localização dos dados</strong>.</li></ul><p id="1e77d5d3-8a13-80e7-8eb1-ed6b26a8e184" class="">
+</p><h3 id="1e77d5d3-8a13-805d-ac60-e0308fdf645a" class="">🔢 Funções para Cálculo do Endereço (Hashing)</h3><ul id="1e77d5d3-8a13-80ad-9fff-e2e5e6b642a8" class="bulleted-list"><li style="list-style-type:disc"><strong>Determinísticas</strong>:<ul id="1e77d5d3-8a13-80f6-909e-ceb858b2fb1e" class="bulleted-list"><li style="list-style-type:circle">Para cada chave, sempre retornam o <strong>mesmo endereço fixo</strong>.</li></ul><ul id="1e77d5d3-8a13-806d-bf8b-e7b8692e5b75" class="bulleted-list"><li style="list-style-type:circle">Pouco interessantes na prática, pois não lidam bem com colisões.</li></ul></li></ul><ul id="1e77d5d3-8a13-80e0-9dc0-c4b55891fbe7" class="bulleted-list"><li style="list-style-type:disc"><strong>Probabilísticas</strong>:<ul id="1e77d5d3-8a13-808b-b15f-ea3e956a85f2" class="bulleted-list"><li style="list-style-type:circle">Geram endereços de forma a manter a <strong>maior unicidade possível</strong>.</li></ul><ul id="1e77d5d3-8a13-805f-987c-f7d6f4459773" class="bulleted-list"><li style="list-style-type:circle">Podem ocorrer <strong>colisões</strong>: diferentes chaves geram o mesmo endereço.</li></ul><ul id="1e77d5d3-8a13-80e7-b94e-c3e9d4f2212b" class="bulleted-list"><li style="list-style-type:circle">Objetivos:<ul id="1e77d5d3-8a13-80a7-9565-c6c973286f7a" class="bulleted-list"><li style="list-style-type:square"><strong>Preservar a ordem relativa</strong> (quando possível).</li></ul><ul id="1e77d5d3-8a13-80ae-8534-d7c065e47191" class="bulleted-list"><li style="list-style-type:square"><strong>Minimizar colisões</strong> e tornar o acesso mais eficiente.</li></ul><p id="1e77d5d3-8a13-80f2-9ffc-d1d734e9d435" class="">
+</p></li></ul></li></ul><h3 id="1e77d5d3-8a13-8019-8f62-e6fc6a1e0513" class="">💥 Tratamento de Colisões</h3><ul id="1e77d5d3-8a13-809a-ad20-c1ed16f49da2" class="bulleted-list"><li style="list-style-type:disc"><strong>Endereçamento aberto</strong>:<ul id="1e77d5d3-8a13-807b-a69f-e00650f489a0" class="bulleted-list"><li style="list-style-type:circle">Quando ocorre colisão, procura-se o <strong>próximo endereço livre</strong> para armazenar o registro.</li></ul><ul id="1e77d5d3-8a13-802d-b324-fc4658c84a37" class="bulleted-list"><li style="list-style-type:circle">Pode envolver <strong>sondagem linear, quadrática</strong> ou <strong>duplo hashing</strong>.</li></ul></li></ul><ul id="1e77d5d3-8a13-804d-8c7c-f5c82692729f" class="bulleted-list"><li style="list-style-type:disc"><strong>Encadeamento</strong>:<ul id="1e77d5d3-8a13-809c-9b5a-c20f28f48b1f" class="bulleted-list"><li style="list-style-type:circle">Registros que colidem são ligados em uma <strong>lista encadeada</strong>.</li></ul><ul id="1e77d5d3-8a13-8060-a31f-c75764d6f21e" class="bulleted-list"><li style="list-style-type:circle">Duas formas de implementação:<ul id="1e77d5d3-8a13-8092-b8ad-ebcd5e5e6026" class="bulleted-list"><li style="list-style-type:square"><strong>Encadeamento puro</strong>: a lista encadeada é formada dentro da <strong>área de dados principal</strong>.</li></ul><ul id="1e77d5d3-8a13-80b1-8111-fd924d785391" class="bulleted-list"><li style="list-style-type:square"><strong>Uso de áreas de extensão</strong>: semelhança com os arquivos sequenciais indexados, onde os registros colididos são armazenados em áreas extras.</li></ul><p id="1e77d5d3-8a13-8051-a14d-f8e06eabdd89" class="">
+</p></li></ul></li></ul><h3 id="1e77d5d3-8a13-8015-8ebe-e051bab614bd" class="">⚙️ Operações em Arquivos Diretos</h3><h3 id="1e77d5d3-8a13-80c1-82dc-cf09087be899" class="">📖 <strong>Leitura</strong>:</h3><ul id="1e77d5d3-8a13-8082-b6c4-e36d4aa1ac93" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso aleatório</strong>: aplica-se a função de hashing diretamente à chave.</li></ul><ul id="1e77d5d3-8a13-80d2-ab07-db83bcde6274" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso sequencial</strong>: só possível se a função de hashing <strong>preservar a ordem</strong> (caso raro).</li></ul><ul id="1e77d5d3-8a13-8049-98a7-ea25a723a365" class="bulleted-list"><li style="list-style-type:disc"><strong>Leitura exaustiva</strong>: semelhante ao acesso sequencial, varrendo toda a área de dados.</li></ul><h3 id="1e77d5d3-8a13-808b-acf6-ea2b6caa40ce" class="">✏️<strong>Gravação</strong>:</h3><ul id="1e77d5d3-8a13-80ca-89d3-d9bbc28ef935" class="bulleted-list"><li style="list-style-type:disc"><strong>Inserção</strong>: aplica-se a função de hashing e trata-se eventual colisão.</li></ul><ul id="1e77d5d3-8a13-802c-b2bc-cca4fc7d2845" class="bulleted-list"><li style="list-style-type:disc"><strong>Exclusão</strong>: com uso de <strong>atributo adicional de exclusão lógica</strong>.</li></ul><ul id="1e77d5d3-8a13-8067-9d1e-fce727eac5d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Alteração</strong>:<ul id="1e77d5d3-8a13-80f7-bccc-e838755a3774" class="bulleted-list"><li style="list-style-type:circle">Se <strong>não envolver a chave de acesso</strong>, basta localizar e sobrescrever.</li></ul><ul id="1e77d5d3-8a13-8003-9710-e671984aa113" class="bulleted-list"><li style="list-style-type:circle">Se <strong>envolver a chave</strong>, deve-se <strong>excluir e reinserir</strong> o registro.</li></ul></li></ul><p id="1e77d5d3-8a13-8001-8160-ce2e8c92d562" class="">
+</p><hr id="1e77d5d3-8a13-803e-a04e-e897e22ed4dc"/><h2 id="1e77d5d3-8a13-801c-b7e5-c0315544f964" class="">Arquivo Invertido</h2><h3 id="1e77d5d3-8a13-80ab-b0ab-c034b9b85e49" class="">💡 Motivação</h3><ul id="1e77d5d3-8a13-80e5-bca9-c59ba8227b56" class="bulleted-list"><li style="list-style-type:disc">As técnicas anteriores focam em <strong>chaves primárias</strong>.</li></ul><ul id="1e77d5d3-8a13-80cd-b7c2-d77f877c8611" class="bulleted-list"><li style="list-style-type:disc">O arquivo invertido surge para permitir <strong>acessos eficientes por chaves secundárias</strong>, oferecendo <strong>maior flexibilidade</strong> em buscas.</li></ul><ul id="1e77d5d3-8a13-8042-b499-f6ade1428afc" class="bulleted-list"><li style="list-style-type:disc">Cada valor da chave secundária está associado a uma <strong>lista de identificadores</strong> de registros — chamada de <strong>lista invertida</strong>.</li></ul><hr id="1e77d5d3-8a13-80ba-8bdd-c4e0a8190d1f"/><h3 id="1e77d5d3-8a13-8059-9814-fec7cc2b1184" class="">🧩 Estrutura</h3><ul id="1e77d5d3-8a13-804f-93c2-e3370368572b" class="bulleted-list"><li style="list-style-type:disc">Composto por:<ul id="1e77d5d3-8a13-80d0-9739-f0abf052ed05" class="bulleted-list"><li style="list-style-type:circle"><strong>Arquivo de dados</strong> (sem exigência de ordenação).</li></ul><ul id="1e77d5d3-8a13-80e5-80ad-ccc47bbe7ff3" class="bulleted-list"><li style="list-style-type:circle"><strong>Listas invertidas</strong>: para cada <strong>chave de acesso secundária</strong>, há uma lista de <strong>IDs dos registros</strong> correspondentes.</li></ul><ul id="1e77d5d3-8a13-80cc-9325-cb3f5f24396d" class="bulleted-list"><li style="list-style-type:circle">Conjunto dessas listas forma o que se chama de <strong>inversão</strong>.</li></ul><ul id="1e77d5d3-8a13-8065-8456-e3d7ecc4dd3d" class="bulleted-list"><li style="list-style-type:circle">Um arquivo pode ter <strong>uma ou mais inversões</strong>, conforme a quantidade de chaves secundárias usadas para acesso.</li></ul></li></ul><hr id="1e77d5d3-8a13-80b4-939a-dd250f3a6de6"/><h3 id="1e77d5d3-8a13-804b-b118-e06233c3d8a7" class="">✅ Vantagens</h3><ul id="1e77d5d3-8a13-8090-bfca-cd07f4b4a7ee" class="bulleted-list"><li style="list-style-type:disc">Permite <strong>acesso direto a um conjunto de registros</strong> a partir de uma chave secundária.</li></ul><ul id="1e77d5d3-8a13-80fd-a0a5-d99ed442ab0c" class="bulleted-list"><li style="list-style-type:disc">É útil em <strong>consultas complexas</strong>, como filtros múltiplos e buscas por atributos não únicos.</li></ul><hr id="1e77d5d3-8a13-806e-8547-c03aad77ddd5"/><h3 id="1e77d5d3-8a13-8040-834b-e94007ba2f35" class="">❌ Desvantagens</h3><ul id="1e77d5d3-8a13-8065-b2e0-e9478b9d5a6a" class="bulleted-list"><li style="list-style-type:disc">As <strong>listas invertidas são válidas apenas para uma disposição física específica</strong> dos registros.</li></ul><ul id="1e77d5d3-8a13-803c-b6d4-e774a744bec1" class="bulleted-list"><li style="list-style-type:disc">Qualquer <strong>reorganização do arquivo</strong> exige <strong>reconstrução das inversões</strong>.</li></ul><ul id="1e77d5d3-8a13-80a9-b332-d5f9a8ce2238" class="bulleted-list"><li style="list-style-type:disc">Para mitigar esse problema:<ul id="1e77d5d3-8a13-80ff-8ea0-d2892ca9c289" class="bulleted-list"><li style="list-style-type:circle">As listas podem ser implementadas com <strong>referências à chave primária</strong>, mas isso implica em <strong>perda de eficiência</strong> (exige buscas adicionais no arquivo principal).</li></ul></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

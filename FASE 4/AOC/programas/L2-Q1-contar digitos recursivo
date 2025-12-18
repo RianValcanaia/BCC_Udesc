@@ -1,0 +1,67 @@
+	.text
+	.globl main
+
+main:
+	# entrada de a0 = n -> numero de busca
+	li $v0, 5
+	syscall 
+	move $a0, $v0 
+	beqz $a0, end
+	
+	# entrada de a1 = k -> elemento a ser procurado em n
+	li $v0, 5
+	syscall
+	move $a1, $v0 
+	
+	# chamada da funcao recursiva
+	li $v0, 0
+	jal f_recursiva
+	
+	# printa o resultado
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	
+	# printa new line
+	li $v0, 11  
+	li $a0, 10
+	syscall
+	
+	j main
+	
+f_recursiva:
+	beqz $a0, f_parada  # para se a0 == 0
+	
+	li $t0, 10  # t0 = 10
+	div $a0, $t0  
+	mfhi $t1  # n % 10
+	mflo $a0   # n / 10
+
+	# salva contexto
+	addi $sp, $sp, -8
+	sw $t1, 0($sp)  # salvo n % 10
+	sw $ra, 4($sp)  # salvo $ra
+	
+	jal f_recursiva
+	
+	# recuperar na pilha
+	lw $t1, 0($sp)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 8
+	
+	beq $t1, $a1, f_igual  # se igual soma 1
+	bne $t1, $a1, f_diferente  # se diferente segue a vida
+	
+f_igual:
+	addi $v0, $v0, 1  # v0 += 1
+	jr $ra
+	
+f_diferente:
+	jr $ra
+	
+f_parada:
+	add $v0, $v0, $zero  # criterio de parada 	
+	jr $ra
+end:
+	li $v0, 10
+	syscall

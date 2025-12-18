@@ -1,0 +1,823 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Classificação Interna e Externa</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+/* ================================== */
+/*         ESTILOS TEMA DARK          */
+/* ================================== */
+@media (prefers-color-scheme: dark) {
+	/* === Cores Base === */
+	@media only screen {
+		body {
+			background-color: rgb(25, 25, 25); /* Fundo escuro */
+			color: rgb(222, 222, 222);         /* Texto claro */
+		}
+	}
+
+	/* === Elementos Gerais === */
+	hr {
+		border-bottom: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	blockquote {
+		border-left: 3px solid rgb(222, 222, 222);
+	}
+	
+	/* === Tabelas === */
+	table, th, td {
+		border: 1px solid rgba(222, 222, 222, 0.15);
+	}
+	th {
+		color: rgba(222, 222, 222, 0.6);
+	}
+	.simple-table-header-color {
+		background: rgb(55, 53, 47);
+		color: white;
+	}
+
+	/* === Código === */
+	.code, code {
+		background: rgba(110, 110, 110, 0.3);
+	}
+	code {
+		color: #ff7979; /* Um vermelho mais vibrante para o escuro */
+	}
+
+	/* === Bookmarks e Descrições === */
+	.bookmark-description {
+		color: rgba(222, 222, 222, 0.6);
+	}
+
+	/* === Fundos de Destaque (Highlights) === */
+	.highlight-gray_background { background: rgba(81, 81, 81, 1); }
+	.highlight-brown_background { background: rgba(84, 61, 55, 1); }
+	.highlight-orange_background { background: rgba(119, 78, 43, 1); }
+	.highlight-yellow_background { background: rgba(100, 83, 33, 1); }
+	.highlight-teal_background { background: rgba(39, 78, 62, 1); }
+	.highlight-blue_background { background: rgba(38, 76, 102, 1); }
+	.highlight-purple_background { background: rgba(84, 60, 105, 1); }
+	.highlight-pink_background { background: rgba(108, 48, 81, 1); }
+	.highlight-red_background { background: rgba(113, 45, 48, 1); }
+
+	/* === Cores de Bloco (Callouts) === */
+	.block-color-gray_background { background: rgba(56, 56, 56, 1); }
+	.block-color-brown_background { background: rgba(60, 50, 50, 1); }
+	.block-color-orange_background { background: rgba(87, 58, 29, 1); }
+	.block-color-yellow_background { background: rgba(83, 71, 29, 1); }
+	.block-color-teal_background { background: rgba(29, 58, 46, 1); }
+	.block-color-blue_background { background: rgba(28, 56, 76, 1); }
+	.block-color-purple_background { background: rgba(62, 45, 78, 1); }
+	.block-color-pink_background { background: rgba(79, 36, 59, 1); }
+	.block-color-red_background { background: rgba(83, 34, 36, 1); }
+
+	/* === Checkbox === */
+	.checkbox-off {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22rgb(25,25,25)%22%20stroke%3D%22rgb(222,222,222)%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+	}
+}
+
+</style></head><body><article id="1e87d5d3-8a13-80ae-876f-d03f60f282f2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📁</span></div><h1 class="page-title">Classificação Interna e Externa</h1><p class="page-description"></p></header><div class="page-body"><h1 id="1e87d5d3-8a13-8067-97ba-ea35c0588894" class="">📑 Sumário</h1><nav id="1e87d5d3-8a13-80d5-ac60-ffe4d614c319" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8067-97ba-ea35c0588894">📑 Sumário</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e87d5d3-8a13-802e-9b91-ccbdfd4942a8">📦 <strong>Classificação em Memória Principal e Secundária</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8075-ba37-cbb8d547af21">💡 <strong>Introdução</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8092-8b8d-c2ae2200a886">📑 <strong>Tipos de Classificação</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-809f-ba6f-d4eb5ef47282">💾 <strong>Classificação Interna</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80be-ace4-f767e35bbcb3">🛠️ <strong>Técnicas de Classificação Interna</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-806b-a5dd-ecab2e3db628">💽 <strong>Classificação Externa</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-807c-a2f3-ec6a04165253">🧩 <strong>Estratégia da Classificação Externa</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-805c-86fb-c91237362c57">⚙️ <strong>Procedimento da Classificação</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-808b-b0b0-ebee206a2a8a">🧪 <strong>Métodos de Classificação Externa</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8001-8ebd-f15a50585279">🔄 <strong>Seleção com Substituição</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-801a-be29-ca5eda586a43">👨🏻‍💻 Algoritmo em C++ de substituição com seleção</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8050-b11a-f81461c575c4">🌿 <strong>Seleção Natural</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8001-9559-e18b835a21b2">👨🏻‍💻 Algoritmo em C++ de seleção natural</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80c5-bfbd-ed4f7210bd6f"><strong>Comparação dos Métodos</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-800a-95a8-c5e1599bd070"><strong>Intercalação das Partições Classificadas</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80bd-8775-e83fe0adce3e">👨🏻‍💻 Algoritmo em C++ de intercalação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-800a-94f3-e5b3ec084815">🌲 <strong>Árvore Binária de Vencedores</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80db-9589-e5eba49bdf9f">📋 <strong>Pseudo-algoritmo</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8089-85e2-e4f143d02b87">👨🏻‍💻 Algoritmo em C++ de arvore binária de vencedores</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80f1-bb05-e518e0c7968b">Estágio de intercalação</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8049-96d3-fd1a955e5050">🔄 <strong>Intercalação Balanceada de N Caminhos</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8022-9337-cda80dd46175"><strong>Intercalação Ótima</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80c7-8aa8-e99e0a9070db">🕵️‍♂️ <strong>Pesquisa em Memória Principal e Secundária</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80f6-b7b5-f1af52176963">🔍 <strong>Pesquisa</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8001-8046-fb5e386d7333">🧑‍💻 <strong>Algoritmos de Pesquisa</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-800a-84f3-f5e4d7c029d1">🔎 <strong>Pesquisa Sequencial ou Linear</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80f5-b11d-c79cc2df6c22">👨🏻‍💻 Algoritmo em C++ de pesquisa sequencial ou linear</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80dc-b16a-d7f7733d432c">🔎 <strong>Pesquisa Sequencial com Sentinela</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8073-a096-e8300f61b2f6">👨🏻‍💻 Algoritmo em C++ de pesquisa sequencial com sentinela</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-8093-96e0-ca387595738f">🔎 <strong>Pesquisa binária</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80e1-b86e-c52180c1c5f0">👨🏻‍💻 Algoritmo em C++ de pesquisa binária</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-800f-9fd5-f19380319530">👨🏻‍💻 Algoritmo em C++ de pesquisa binária recursiva</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e87d5d3-8a13-806f-8e21-c1adf86412ac">🔎 <strong>Pesquisa por Interpolação</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1e87d5d3-8a13-80aa-84de-fa0fb7c6d1f1">👨🏻‍💻 Algoritmo em C++ de pesquisa  por interpolação</a></div></nav><hr id="1e87d5d3-8a13-80d1-b230-f5cd9d28e0a1"/><h1 id="1e87d5d3-8a13-802e-9b91-ccbdfd4942a8" class="">📦 <strong>Classificação em Memória Principal e Secundária</strong></h1><h2 id="1e87d5d3-8a13-8075-ba37-cbb8d547af21" class="">💡 <strong>Introdução</strong></h2><p id="1e87d5d3-8a13-80a2-96f4-d83425052d5c" class="">Relembrando o desafio do <strong>arquivo sequencial</strong>: não é possível acessar posições aleatórias diretamente.</p><p id="1e87d5d3-8a13-808f-a8d3-fb22d0af0170" class="">🔹 Exemplo: para ler o <strong>10º registro</strong>, é necessário ler os <strong>9 anteriores</strong>.</p><p id="1e87d5d3-8a13-8094-8bc5-d3a8a67cee5b" class="">⚠️ Agora imagine um arquivo com <strong>10⁹ registros</strong>… ler o último pode ser extremamente custoso.</p><p id="1e87d5d3-8a13-8008-b673-e25026ae5e0a" class="">Programas podem gastar muitos <strong>recursos computacionais</strong> e <strong>tempo</strong> com:</p><ul id="1e87d5d3-8a13-8046-a38e-f389977e20e6" class="bulleted-list"><li style="list-style-type:disc">Classificação de registros</li></ul><ul id="1e87d5d3-8a13-8096-9d63-ee705a70dc6f" class="bulleted-list"><li style="list-style-type:disc">Ordenação</li></ul><ul id="1e87d5d3-8a13-802d-8f68-ff841e6ec971" class="bulleted-list"><li style="list-style-type:disc">Pesquisas</li></ul><ul id="1e87d5d3-8a13-80ce-a298-c7a03e3ecb8e" class="bulleted-list"><li style="list-style-type:disc">Agrupamento de dados<p id="1e87d5d3-8a13-80c1-a397-e761025fa7b3" class="">🔍 Neste resumo, usaremos o termo <strong>classificação</strong> como sinônimo de <strong>ordenação</strong>.</p></li></ul><p id="1e87d5d3-8a13-8065-a25e-fb8f25b1de44" class="">
+</p><hr id="1e87d5d3-8a13-806e-8d57-f6af9e6587be"/><h2 id="1e87d5d3-8a13-8092-8b8d-c2ae2200a886" class="">📑 <strong>Tipos de Classificação</strong></h2><p id="1e87d5d3-8a13-80af-b26a-f94858d1860a" class="">A classificação dos registros de um arquivo pode ser de dois tipos:</p><ul id="1e87d5d3-8a13-8009-9b6a-fff389d64466" class="bulleted-list"><li style="list-style-type:disc">🔹 <strong>Classificação Interna</strong>: usa <strong>somente a memória principal</strong>. O arquivo inteiro cabe nela.</li></ul><ul id="1e87d5d3-8a13-800b-b782-f5e1b35fa27e" class="bulleted-list"><li style="list-style-type:disc">🔹 <strong>Classificação Externa</strong>: usa <strong>memória secundária</strong>, pois o arquivo <strong>não cabe na RAM</strong>.<p id="1e87d5d3-8a13-8059-b79b-cf9f4f131beb" class="">⚠️ Aqui, é essencial <strong>minimizar o número de operações de E/S</strong> (entrada e saída) com o disco.</p></li></ul><p id="1e87d5d3-8a13-80bb-a307-fd3aadc930ff" class="">
+</p><hr id="1e87d5d3-8a13-8075-b016-ea1c61da0a55"/><h2 id="1e87d5d3-8a13-809f-ba6f-d4eb5ef47282" class="">💾 <strong>Classificação Interna</strong></h2><p id="1e87d5d3-8a13-80f2-8927-f27529253b4a" class="">Utiliza exclusivamente a <strong>memória principal</strong>, mantendo todo o arquivo nela.</p><p id="1e87d5d3-8a13-8099-8f78-d8872ebf6706" class="">✅ <strong>Critério de eficiência</strong>: número de <strong>comparações entre chaves e registros</strong>.</p><p id="1e87d5d3-8a13-80a7-bcda-fa0e62d58596" class="">🔸 O processo consiste em:</p><ul id="1e87d5d3-8a13-8094-87ce-c2b203d9fc12" class="bulleted-list"><li style="list-style-type:disc">Ler <strong>m registros</strong> por vez.</li></ul><ul id="1e87d5d3-8a13-803f-9291-c694a7a325e5" class="bulleted-list"><li style="list-style-type:disc">Classificar esses registros.</li></ul><ul id="1e87d5d3-8a13-8062-91dc-e7ff89998c57" class="bulleted-list"><li style="list-style-type:disc">Gravar em uma <strong>partição</strong>.</li></ul><ul id="1e87d5d3-8a13-80a4-859f-ce8c79a5598d" class="bulleted-list"><li style="list-style-type:disc">Todas as partições têm <strong>m registros</strong>, exceto a <strong>última</strong>, que pode ter menos.</li></ul><p id="1e87d5d3-8a13-8007-aa1d-d49ceef36a76" class="">
+</p><figure id="1e87d5d3-8a13-80de-a285-e1f45ae7daed" class="image"><a href="classificacao_interna_externa/image.png"><img style="width:709.96875px" src="classificacao_interna_externa/image.png"/></a></figure><h3 id="1e87d5d3-8a13-80be-ace4-f767e35bbcb3" class="">🛠️ <strong>Técnicas de Classificação Interna</strong></h3><p id="1e87d5d3-8a13-8087-970c-d0d13f4fa261" class="">Organizadas por estratégia:</p><p id="1e87d5d3-8a13-80bc-b0fc-c30832debb4c" class="">🔹 <strong>Seleção</strong>:<div class="indented"><ul id="1e87d5d3-8a13-8084-bbd4-cae2ee0f38a7" class="bulleted-list"><li style="list-style-type:disc"><em>Bubble Sort</em></li></ul><ul id="1e87d5d3-8a13-809c-ae17-efa8def7996a" class="bulleted-list"><li style="list-style-type:disc"><em>Selection Sort</em></li></ul><ul id="1e87d5d3-8a13-8070-9b48-fa2c96115d0e" class="bulleted-list"><li style="list-style-type:disc"><em>Heap Sort</em></li></ul></div></p><p id="1e87d5d3-8a13-8085-9ff9-c4bac841d228" class="">🔹 <strong>Dividir para conquistar</strong>:<div class="indented"><ul id="1e87d5d3-8a13-804c-837b-d2273d7f5e0e" class="bulleted-list"><li style="list-style-type:disc"><em>Merge Sort</em></li></ul><ul id="1e87d5d3-8a13-80de-85e5-f8ea9997d8e2" class="bulleted-list"><li style="list-style-type:disc"><em>Quick Sort</em></li></ul></div></p><p id="1e87d5d3-8a13-80d9-b562-e4e01ddbf624" class="">🔹 <strong>Inserção</strong>:<div class="indented"><ul id="1e87d5d3-8a13-80d7-954d-f9dbc88e3bd0" class="bulleted-list"><li style="list-style-type:disc"><em>Insertion Sort</em></li></ul><ul id="1e87d5d3-8a13-808a-8a59-e80f9946c054" class="bulleted-list"><li style="list-style-type:disc"><em>Shell Sort</em></li></ul></div></p><p id="1e87d5d3-8a13-806b-8a5a-c988eadb5b9c" class="">🔹 <strong>Linear</strong>:<div class="indented"><ul id="1e87d5d3-8a13-80e7-b423-db4175d16353" class="bulleted-list"><li style="list-style-type:disc"><em>Bucket Sort</em></li></ul><ul id="1e87d5d3-8a13-80ca-aa84-e342d17a2200" class="bulleted-list"><li style="list-style-type:disc"><em>Radix Sort</em></li></ul><p id="1e87d5d3-8a13-80ad-baef-f6ef01fb3203" class="">
+</p></div></p><hr id="1e87d5d3-8a13-803b-8683-e677b885223c"/><h2 id="1e87d5d3-8a13-806b-a5dd-ecab2e3db628" class="">💽 <strong>Classificação Externa</strong></h2><p id="1e87d5d3-8a13-806b-a388-ec2e43370b73" class="">A <strong>classificação externa</strong> pode ser feita:</p><ul id="1e87d5d3-8a13-8016-b52c-e28c0af15763" class="bulleted-list"><li style="list-style-type:disc">🔹 <strong>Sobre o próprio arquivo</strong>:<p id="1e87d5d3-8a13-8072-bdfe-dc513b9267d7" class="">✅ Economiza espaço.</p><p id="1e87d5d3-8a13-80cb-8c60-cca569c7486a" class="">⚠️ Risco de <strong>inconsistência</strong> caso o processo termine de forma anormal.</p></li></ul><ul id="1e87d5d3-8a13-808b-870c-e22c7b1fdd3e" class="bulleted-list"><li style="list-style-type:disc">🔹 <strong>Usando armazenamento auxiliar</strong> (arquivo temporário):<p id="1e87d5d3-8a13-80bc-a663-d7b80d2828df" class="">✅ Mais seguro, mas usa mais espaço.</p></li></ul><p id="1e87d5d3-8a13-8006-80b1-cbf68ee4321a" class="">📌 A estratégia básica é:</p><ol type="1" id="1e87d5d3-8a13-8098-9869-ff1920af148c" class="numbered-list" start="1"><li><strong>Dividir</strong> o arquivo em frações menores.</li></ol><ol type="1" id="1e87d5d3-8a13-8087-a9b1-d1fb01cac0c4" class="numbered-list" start="2"><li><strong>Ordenar</strong> essas frações.</li></ol><ol type="1" id="1e87d5d3-8a13-8075-95d3-eaf753acc8ac" class="numbered-list" start="3"><li><strong>Intercalar</strong> as partes em dois estágios:<ul id="1e87d5d3-8a13-804d-b56a-d4f97772d52d" class="bulleted-list"><li style="list-style-type:disc"><strong>Classificação</strong></li></ul><ul id="1e87d5d3-8a13-807d-b4b4-ccd042707673" class="bulleted-list"><li style="list-style-type:disc"><strong>Intercalação</strong></li></ul></li></ol><figure id="1e87d5d3-8a13-80c7-ba1f-e90c4f08de66" class="image"><a href="classificacao_interna_externa/image%201.png"><img style="width:710px" src="classificacao_interna_externa/image%201.png"/></a></figure><h3 id="1e87d5d3-8a13-807c-a2f3-ec6a04165253" class="">🧩 <strong>Estratégia da Classificação Externa</strong></h3><p id="1e87d5d3-8a13-8034-90f5-ec11839a182a" class="">🔍 <strong>Definição</strong>:</p><ul id="1e87d5d3-8a13-8066-a5bc-d42834d1c497" class="bulleted-list"><li style="list-style-type:disc">Arquivo de <strong>entrada</strong>: não classificado.</li></ul><ul id="1e87d5d3-8a13-80aa-a0ee-f496853be46f" class="bulleted-list"><li style="list-style-type:disc">Arquivo de <strong>saída</strong>: classificado.</li></ul><ul id="1e87d5d3-8a13-8061-a31d-f803871e7a85" class="bulleted-list"><li style="list-style-type:disc">Uma <strong>partição</strong> é uma sequência ordenada de <em>n</em> registros.</li></ul><p id="1e87d5d3-8a13-8093-8e90-d733c50205d8" class="">
+</p><h3 id="1e87d5d3-8a13-805c-86fb-c91237362c57" class="">⚙️ <strong>Procedimento da Classificação</strong></h3><ol type="1" id="1e87d5d3-8a13-8078-b78f-c07a0930274b" class="numbered-list" start="1"><li>Os registros são <strong>lidos</strong> do arquivo de entrada ou das partições.</li></ol><ol type="1" id="1e87d5d3-8a13-8036-b6f6-ef3556925c75" class="numbered-list" start="2"><li>São <strong>classificados</strong>.</li></ol><ol type="1" id="1e87d5d3-8a13-8033-b25f-e91d1fbf8491" class="numbered-list" start="3"><li>Depois, são <strong>gravados</strong> no arquivo de saída ou em novas partições.</li></ol><p id="1e87d5d3-8a13-80c2-8d42-defc5537bb3b" class="">
+</p><h3 id="1e87d5d3-8a13-808b-b0b0-ebee206a2a8a" class="">🧪 <strong>Métodos de Classificação Externa</strong></h3><ul id="1e87d5d3-8a13-80ab-ba0b-fba7dc54caa5" class="bulleted-list"><li style="list-style-type:disc">📌 <strong>Classificação Interna</strong> (usada como etapa auxiliar)</li></ul><ul id="1e87d5d3-8a13-800b-b82e-d12edba0fc54" class="bulleted-list"><li style="list-style-type:disc">📌 <strong>Seleção com Substituição</strong></li></ul><ul id="1e87d5d3-8a13-8028-9d74-f4051dd89f8b" class="bulleted-list"><li style="list-style-type:disc">📌 <strong>Seleção Natural</strong></li></ul><p id="1e87d5d3-8a13-8040-9cc7-eafd21f98689" class="">✅ Considera-se que a memória comporta até <em>m</em> registros do arquivo.</p><p id="1e87d5d3-8a13-8079-b126-e8daafca115b" class="">
+</p><h3 id="1e87d5d3-8a13-8001-8ebd-f15a50585279" class="">🔄 <strong>Seleção com Substituição</strong></h3><p id="1e87d5d3-8a13-80f6-a6dd-e38b7a37cd0c" class="">🎯 <strong>Objetivo</strong>: aproveitar uma <strong>classificação parcial</strong> do arquivo de entrada para gerar partições maiores e mais ordenadas.</p><p id="1e87d5d3-8a13-805c-baa5-d59bb7fa2e6f" class="">
+</p><p id="1e87d5d3-8a13-80b6-ab28-d305238df72d" class="">📋 <strong>Pseudo-algoritmo</strong></p><ol type="1" id="1e87d5d3-8a13-8064-bcf1-c1e46de8749b" class="numbered-list" start="1"><li>Ler <strong>M registros</strong> do arquivo para a memória</li></ol><ol type="1" id="1e87d5d3-8a13-80a9-b483-f2d706d344de" class="numbered-list" start="2"><li>Selecionar no vetor em memória o registro <code>r</code> com menor chave</li></ol><ol type="1" id="1e87d5d3-8a13-8060-947f-c6d04e7eb9e6" class="numbered-list" start="3"><li>Gravar o registro <code>r</code> na partição de saída</li></ol><ol type="1" id="1e87d5d3-8a13-807c-b0c3-e65cfa0df993" class="numbered-list" start="4"><li>Substituir no vetor em memória o registro <code>r</code> pelo próximo registro do arquivo de entrada</li></ol><ol type="1" id="1e87d5d3-8a13-8060-ba3d-c55b811fdb60" class="numbered-list" start="5"><li>Se a chave deste último for menor do que a chave recém-gravada, considerá-lo <strong>congelado</strong> e ignorá-lo no restante do processamento</li></ol><ol type="1" id="1e87d5d3-8a13-80ba-8df1-d0c226c02df7" class="numbered-list" start="6"><li>Caso existam em memória registros <strong>não congelados</strong>, voltar ao <strong>passo 2</strong></li></ol><ol type="1" id="1e87d5d3-8a13-801c-a9ee-cc4e636c6ab8" class="numbered-list" start="7"><li>Caso contrário:<ul id="1e87d5d3-8a13-8049-ba65-f2282dc51398" class="bulleted-list"><li style="list-style-type:disc">Fechar a partição de saída</li></ul><ul id="1e87d5d3-8a13-80ab-a367-d95bc05bd460" class="bulleted-list"><li style="list-style-type:disc">Descongelar os registros congelados</li></ul><ul id="1e87d5d3-8a13-80ef-b1e3-f92b52de4839" class="bulleted-list"><li style="list-style-type:disc">Abrir nova partição de saída</li></ul><ul id="1e87d5d3-8a13-804b-8297-cf885d14f748" class="bulleted-list"><li style="list-style-type:disc">Voltar ao <strong>passo 2</strong></li></ul><p id="1e87d5d3-8a13-80a8-9bc7-dc867a917283" class="">
+</p></li></ol><p id="1e87d5d3-8a13-808b-bbb7-cbdcfb83eec7" class="">📏 <strong>Tamanho das Partições</strong></p><p id="1e87d5d3-8a13-80b4-b3c9-e6322364224b" class="">✅ Em média, as partições geradas têm tamanho <strong>≈ 2 × m</strong>,</p><p id="1e87d5d3-8a13-80fb-a984-f65cf7c27683" class="">sendo <strong>m</strong> o número de registros lidos do arquivo.</p><p id="1e87d5d3-8a13-8065-93a6-fad30d74cde8" class="">
+</p><p id="1e87d5d3-8a13-80b2-a9a2-d397072e4bb0" class="">⚠️ <strong>Desvantagem</strong></p><p id="1e87d5d3-8a13-80e8-8e21-eb40008810e9" class="">No final de uma partição, <strong>boa parte da memória</strong> pode estar ocupada com <strong>registros congelados</strong>, o que reduz a eficiência da próxima.</p><h3 id="1e87d5d3-8a13-801a-be29-ca5eda586a43" class="">👨🏻‍💻 Algoritmo em C++ de substituição com seleção</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-8003-8005-e3f2a2362560" class="code"><code class="language-C++">//Adicionar aqui</code></pre><p id="1e87d5d3-8a13-80fe-8557-ed04f344b11f" class="">
+</p><h3 id="1e87d5d3-8a13-8050-b11a-f81461c575c4" class="">🌿 <strong>Seleção Natural</strong></h3><p id="1e87d5d3-8a13-8019-b878-c0d5379eadeb" class="">A estratégia da seleção natural é reservar um espaço de <strong>memória secundária</strong> (chamado de <strong>reservatório</strong>) para armazenar os <strong>registros congelados</strong> do processo de substituição.</p><p id="1e87d5d3-8a13-8017-aeea-cdb376e7a2f9" class=""> A formação de uma partição se encerra quando:</p><ul id="1e87d5d3-8a13-802c-b4eb-f6eace5169b4" class="bulleted-list"><li style="list-style-type:disc">O <strong>reservatório estiver cheio</strong>, ou</li></ul><ul id="1e87d5d3-8a13-806d-b5ed-f5d03343d0b4" class="bulleted-list"><li style="list-style-type:disc">Os <strong>registros de entrada</strong> tiverem sido todos processados.</li></ul><p id="1e87d5d3-8a13-8033-a27a-da95b90fc37f" class="">Para uma memória com capacidade de <code>M</code> registros e um reservatório com <code>n</code> registros (normalmente <code><strong>M = n</strong></code>), o <strong>comprimento médio</strong> das partições é:</p><figure id="1e87d5d3-8a13-80c0-97f5-ecc475bce045" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mo>×</mo><mi>e</mi><mspace width="1em"/><mtext>onde </mtext><mi>e</mi><mo>≈</mo><mn>2</mn><mo separator="true" lspace="0em" rspace="0em">,</mo><mn>718</mn></mrow><annotation encoding="application/x-tex">M \times e \quad \text{onde } e \approx 2{,}718</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">onde </span></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">718</span></span></span></span></span></div></figure><p id="1e87d5d3-8a13-808d-9634-fc5712b3b2c4" class="">📋 <strong>Pseudo-algoritmo</strong></p><ol type="1" id="1e87d5d3-8a13-8063-a2c7-d2a0b8799da7" class="numbered-list" start="1"><li>Ler <code>M</code> registros do arquivo para a memória</li></ol><ol type="1" id="1e87d5d3-8a13-8041-ad11-ffd83e545908" class="numbered-list" start="2"><li>Selecionar no vetor em memória o registro <code>r</code> com menor chave ainda não gravado na partição de saída</li></ol><ol type="1" id="1e87d5d3-8a13-800b-9b4b-c963828a70ef" class="numbered-list" start="3"><li>Gravar o registro <code>r</code> na partição de saída</li></ol><ol type="1" id="1e87d5d3-8a13-80c3-bfed-dde8866a5e8c" class="numbered-list" start="4"><li>Caso o reservatório não esteja cheio, substituir no vetor em memória o registro <code>r</code> pelo próximo registro do arquivo de entrada</li></ol><ol type="1" id="1e87d5d3-8a13-8062-b8c0-e44c74da07be" class="numbered-list" start="5"><li>Enquanto a chave deste último for menor do que a chave recém-gravada:<ul id="1e87d5d3-8a13-80f3-8ce7-f36492f0be8a" class="bulleted-list"><li style="list-style-type:disc">Gravá-lo no reservatório</li></ul><ul id="1e87d5d3-8a13-801b-b1f0-f66813896045" class="bulleted-list"><li style="list-style-type:disc">Substituir no vetor em memória o registro <code>r</code> pelo próximo registro do arquivo de entrada</li></ul></li></ol><ol type="1" id="1e87d5d3-8a13-8093-b249-c70874b8737d" class="numbered-list" start="6"><li>Se ainda existir espaço livre no reservatório <strong>ou</strong> registros na memória ainda não gravados:<ul id="1e87d5d3-8a13-8089-938c-c9c99857cff6" class="bulleted-list"><li style="list-style-type:disc">Voltar ao passo 2</li></ul></li></ol><ol type="1" id="1e87d5d3-8a13-8079-b8db-fb609b575e14" class="numbered-list" start="7"><li>Caso contrário:<ul id="1e87d5d3-8a13-8075-afcb-cbf8e0e837b9" class="bulleted-list"><li style="list-style-type:disc">Fechar a partição de saída</li></ul><ul id="1e87d5d3-8a13-80f2-959b-d964119885c6" class="bulleted-list"><li style="list-style-type:disc">Copiar os registros do reservatório para o vetor em memória</li></ul><ul id="1e87d5d3-8a13-80c9-8fdd-c755ae29d896" class="bulleted-list"><li style="list-style-type:disc">Esvaziar o reservatório</li></ul><ul id="1e87d5d3-8a13-802f-a8d1-c645e0320b00" class="bulleted-list"><li style="list-style-type:disc">Abrir nova partição de saída</li></ul><ul id="1e87d5d3-8a13-809a-a450-ed9ac24cf0b2" class="bulleted-list"><li style="list-style-type:disc">Voltar ao passo 2</li></ul></li></ol><h3 id="1e87d5d3-8a13-8001-9559-e18b835a21b2" class="">👨🏻‍💻 Algoritmo em C++ de seleção natural</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-8041-bc61-dbc8a60e4a9d" class="code"><code class="language-C++">//adicionar a posteriori</code></pre><p id="1e87d5d3-8a13-8009-9fe9-caed0f3d027f" class="">
+</p><h3 id="1e87d5d3-8a13-80c5-bfbd-ed4f7210bd6f" class=""><strong>Comparação dos Métodos</strong></h3><p id="1e87d5d3-8a13-80df-9b84-cbbddded6ba7" class="">📌 A <strong>classificação interna</strong> gera as <strong>menores partições</strong>, o que implica em <strong>mais arquivos a intercalar</strong>.</p><p id="1e87d5d3-8a13-80eb-a890-eaaf49d8902f" class="">📈 Já os métodos de <strong>seleção com substituição</strong> e <strong>seleção natural</strong> geram <strong>partições maiores</strong>, o que <strong>reduz o tempo total de processamento</strong>.</p><p id="1e87d5d3-8a13-8042-8891-ecc1b495b09a" class="">⚠️ A <strong>seleção natural</strong> tem como desvantagem o uso de <strong>mais operações de entrada e saída</strong>, já que o <strong>reservatório</strong> também fica na <strong>memória secundária</strong> (arquivo).</p><p id="1e87d5d3-8a13-807e-81cd-ca075be2b521" class="">
+</p><h3 id="1e87d5d3-8a13-800a-95a8-c5e1599bd070" class=""><strong>Intercalação das Partições Classificadas</strong></h3><p id="1e87d5d3-8a13-80c6-9654-ea34e2b4d9b5" class="">🎯 O objetivo da <strong>intercalação</strong> é <strong>juntar</strong> um conjunto de partições classificadas em <strong>um único arquivo</strong>, contendo <strong>todos os registros</strong> de todas as partições originais.</p><p id="1e87d5d3-8a13-80b7-a320-d8277eb96c64" class="">📌 O arquivo final é <strong>classificado com o mesmo critério</strong> das partições que o originaram.</p><p id="1e87d5d3-8a13-8099-83d9-eeb1fb0130f6" class="">🔁 Considerando que o processo anterior gerou <code><strong>R</strong></code><strong> partições</strong>, a intercalação será feita em <strong>várias etapas</strong>, onde:</p><ul id="1e87d5d3-8a13-8092-b3cb-c09c8f5bd669" class="bulleted-list"><li style="list-style-type:disc">Os registros são <strong>lidos</strong> de um conjunto de partições,</li></ul><ul id="1e87d5d3-8a13-8017-a57c-e60a876dc4f5" class="bulleted-list"><li style="list-style-type:disc">E <strong>gravados</strong> em um novo arquivo de saída.</li></ul><figure id="1e87d5d3-8a13-8022-a130-edfa72726b2f" class="image"><a href="classificacao_interna_externa/image%202.png"><img style="width:709.984375px" src="classificacao_interna_externa/image%202.png"/></a></figure><p id="1e87d5d3-8a13-8089-8f30-ef925feb2f61" class="">
+</p><h3 id="1e87d5d3-8a13-80bd-8775-e83fe0adce3e" class="">👨🏻‍💻 Algoritmo em C++ de intercalação</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-803d-b5c5-dd50e2e43720" class="code"><code class="language-C++">//implementar a posteriori</code></pre><p id="1e87d5d3-8a13-80ae-b04d-dc2debee1135" class="">
+</p><h3 id="1e87d5d3-8a13-800a-94f3-e5b3ec084815" class="">🌲 <strong>Árvore Binária de Vencedores</strong></h3><p id="1e87d5d3-8a13-8023-bf8e-ed28850e1f6f" class="">Essa estrutura de árvore é usada para <strong>intercalar partições classificadas</strong> de forma eficiente.</p><p id="1e87d5d3-8a13-808f-9f57-ef43c9ee35bb" class=""><strong>Como funciona:</strong></p><ul id="1e87d5d3-8a13-80d2-9a9a-fb7ad8d80754" class="bulleted-list"><li style="list-style-type:disc">Os <strong>nós folha</strong> da árvore contêm as <strong>chaves no topo das pilhas</strong> das partições a serem intercaladas.</li></ul><ul id="1e87d5d3-8a13-80ef-9335-c7e1db112aff" class="bulleted-list"><li style="list-style-type:disc">Cada <strong>nó interno</strong> armazena a <strong>menor chave entre seus dois filhos</strong>.</li></ul><ul id="1e87d5d3-8a13-8049-bf4f-fc98d49d95e1" class="bulleted-list"><li style="list-style-type:disc">A <strong>raiz da árvore</strong> sempre representa o <strong>menor valor entre todas as partições</strong>.</li></ul><p id="1e87d5d3-8a13-8018-bf03-f94c298046b1" class=""><strong>Cada nó da árvore contém:</strong></p><ul id="1e87d5d3-8a13-8003-8b21-e4fddb040fb0" class="bulleted-list"><li style="list-style-type:disc">🔹 <strong>Vencedor:</strong> valor da menor chave da subárvore iniciada por esse nó;</li></ul><ul id="1e87d5d3-8a13-80dc-b979-f75795e2ebec" class="bulleted-list"><li style="list-style-type:disc">📍 <strong>Endereço do vencedor:</strong> ponteiro para a partição que possui aquela chave;</li></ul><ul id="1e87d5d3-8a13-806f-976e-eaa212b60680" class="bulleted-list"><li style="list-style-type:disc">⬅️ <strong>Esquerda:</strong> ponteiro para o filho da esquerda;</li></ul><ul id="1e87d5d3-8a13-80a8-b9e1-fe972d7e5e97" class="bulleted-list"><li style="list-style-type:disc">➡️ <strong>Direita:</strong> ponteiro para o filho da direita.</li></ul><p id="1e87d5d3-8a13-80ef-8237-c4a74ad4fbb3" class="">
+</p><h3 id="1e87d5d3-8a13-80db-9589-e5eba49bdf9f" class="">📋 <strong>Pseudo-algoritmo</strong></h3><ol type="1" id="1e87d5d3-8a13-8031-9f2a-e9527cb060b8" class="numbered-list" start="1"><li>Colocar na memória o <strong>primeiro registro</strong> de cada partição (cada registro será um nó folha da árvore);</li></ol><ol type="1" id="1e87d5d3-8a13-8007-b1d7-f3679365209a" class="numbered-list" start="2"><li>Criar um nó pai para <strong>cada par de folhas</strong>, com o menor valor entre as duas;</li></ol><ol type="1" id="1e87d5d3-8a13-8038-9106-cc5ee80a9d0e" class="numbered-list" start="3"><li>Repetir o passo 2 até formar a <strong>raiz da árvore</strong>;</li></ol><ol type="1" id="1e87d5d3-8a13-8058-a0c5-df97524335f4" class="numbered-list" start="4"><li><strong>Retirar a raiz</strong> (menor chave) e gravá-la no arquivo classificado;</li></ol><ol type="1" id="1e87d5d3-8a13-80a9-ba44-e48daf6f45d2" class="numbered-list" start="5"><li>Adicionar um novo valor no <strong>nó folha vazio</strong> correspondente;</li></ol><ol type="1" id="1e87d5d3-8a13-80e5-a390-d70eba5ecdf8" class="numbered-list" start="6"><li>Voltar ao passo 2 enquanto ainda houver registros a serem processados.</li></ol><p id="1e87d5d3-8a13-80a5-95cc-ff7fb3655cce" class="">
+</p><p id="1e87d5d3-8a13-8079-a3c8-cf7de226617b" class="">📈 <strong>Complexidade Algorítmica</strong></p><ul id="1e87d5d3-8a13-80ac-ac23-f4eb4417aae6" class="bulleted-list"><li style="list-style-type:disc">A construção inicial da árvore tem complexidade <strong>O(n)</strong>, onde <code>n</code> é o número de partições;</li></ul><ul id="1e87d5d3-8a13-8061-a2fc-c19f88fcd313" class="bulleted-list"><li style="list-style-type:disc">A cada iteração (inserção no arquivo final), são feitas <strong>log₂(n)</strong> comparações;</li></ul><ul id="1e87d5d3-8a13-8076-b81f-cae8bf27bf61" class="bulleted-list"><li style="list-style-type:disc">O número total de iterações é igual ao número de <strong>registros no arquivo</strong>.</li></ul><p id="1e87d5d3-8a13-8030-b677-d66481e79fca" class="">
+</p><p id="1e87d5d3-8a13-80bc-ac49-cb403462738b" class="">⚠️ <strong>Limitação prática:</strong></p><p id="1e87d5d3-8a13-804b-9155-f4a6485d4f82" class="">Nem sempre é possível intercalar todas as partições de uma só vez, pois a <strong>árvore pode ultrapassar a capacidade de memória</strong>. Além disso, o <strong>sistema operacional</strong> pode limitar o <strong>número de arquivos abertos simultaneamente</strong>, afetando o processo de intercalação.</p><p id="1e87d5d3-8a13-803f-b281-eca5d653469d" class="">
+</p><h3 id="1e87d5d3-8a13-8089-85e2-e4f143d02b87" class="">👨🏻‍💻 Algoritmo em C++ de arvore binária de vencedores</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-8038-87eb-fbe08b47178f" class="code"><code class="language-C++">// adicionar a posteriori</code></pre><p id="1e87d5d3-8a13-807b-ba3e-d795f351920a" class="">
+</p><h2 id="1e87d5d3-8a13-80f1-bb05-e518e0c7968b" class="">Estágio de intercalação</h2><p id="1e87d5d3-8a13-8007-91e0-c9bdf2506882" class="">🔁 A <strong>intercalação</strong> exige uma <strong>sequência de iterações</strong>:</p><ul id="1e87d5d3-8a13-80c6-ab56-c13f794dd9c6" class="bulleted-list"><li style="list-style-type:disc">Os registros são <strong>lidos de um conjunto de partições</strong>;</li></ul><ul id="1e87d5d3-8a13-8099-9f24-cca8634696cf" class="bulleted-list"><li style="list-style-type:disc">E <strong>gravados em outras partições</strong>, até que reste apenas uma totalmente classificada.</li></ul><p id="1e87d5d3-8a13-80f6-9cc7-c8217d8df7aa" class="">
+</p><p id="1e87d5d3-8a13-80ce-b3b4-f7cbbff03ee6" class="">⚙️ <strong>Estratégias de Distribuição e Intercalação</strong></p><ul id="1e87d5d3-8a13-800f-8908-ee183d24a92b" class="bulleted-list"><li style="list-style-type:disc">🔄 <strong>Intercalação balanceada de N caminhos</strong><p id="1e87d5d3-8a13-8060-9e93-d50544d932b6" class="">(N partições são intercaladas ao mesmo tempo, balanceando a entrada e saída).</p></li></ul><ul id="1e87d5d3-8a13-80c8-a3f2-fd51eeaf308b" class="bulleted-list"><li style="list-style-type:disc">🎯 <strong>Intercalação ótima</strong><p id="1e87d5d3-8a13-8061-b01b-d4f46ba33823" class="">(Busca reduzir ao mínimo o número total de passos de leitura e gravação).</p><p id="1e87d5d3-8a13-80ff-8969-c09204bbe778" class="">
+</p></li></ul><p id="1e87d5d3-8a13-80e8-987f-d56965eaeb66" class="">📏 <strong>Medida de Eficiência</strong></p><ul id="1e87d5d3-8a13-8063-9153-f0a218c1ded2" class="bulleted-list"><li style="list-style-type:disc">A eficiência da intercalação é medida pelo <strong>número de passos</strong>;</li></ul><ul id="1e87d5d3-8a13-80b0-801b-e0a47781b9b0" class="bulleted-list"><li style="list-style-type:disc">Isso representa o <strong>número médio de vezes que um registro é lido ou gravado</strong> durante todo o processo.</li></ul><figure id="1e87d5d3-8a13-80a1-9ad1-ef6fda84229c" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mtext>N</mtext><mover accent="true"><mtext>u</mtext><mo>ˊ</mo></mover><mtext>mero de passos</mtext></mrow><mo>=</mo><mfrac><mtext>Total de registros lidos</mtext><mtext>Total de registros no arquivo classificado</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Número de passos} = \frac{\text{Total de registros lidos}}{\text{Total de registros no arquivo classificado}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">N</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">u</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">mero de passos</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Total de registros no arquivo classificado</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Total de registros lidos</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><h3 id="1e87d5d3-8a13-8049-96d3-fd1a955e5050" class="">🔄 <strong>Intercalação Balanceada de N Caminhos</strong></h3><ul id="1e87d5d3-8a13-8000-9425-c175b17bd684" class="bulleted-list"><li style="list-style-type:disc">Determina-se o número de arquivos <strong>F</strong> que o algoritmo vai manipular:<ul id="1e87d5d3-8a13-80bb-9792-fe50aba23804" class="bulleted-list"><li style="list-style-type:circle">A <strong>primeira metade</strong> dos arquivos será usada para <strong>leitura (entrada)</strong>;</li></ul><ul id="1e87d5d3-8a13-80be-ac58-d8a6736895c1" class="bulleted-list"><li style="list-style-type:circle">A <strong>segunda metade</strong>, para <strong>escrita (saída)</strong>.</li></ul></li></ul><ul id="1e87d5d3-8a13-80b4-ad1e-ec490379230b" class="bulleted-list"><li style="list-style-type:disc">📊 Distribuir as partições o mais <strong>igualitariamente possível</strong> entre os arquivos de entrada.</li></ul><ul id="1e87d5d3-8a13-802e-93f4-e9207dadac02" class="bulleted-list"><li style="list-style-type:disc">🔃 Intercalar <strong>duas partições</strong> e gravar o resultado em uma <strong>nova partição</strong> em um dos arquivos de saída.</li></ul><ul id="1e87d5d3-8a13-80d3-bd41-daf6bf4aff31" class="bulleted-list"><li style="list-style-type:disc">🕘 Ao final de cada rodada:<ul id="1e87d5d3-8a13-8067-9ddb-d41f3abb25c8" class="bulleted-list"><li style="list-style-type:circle">As partições gravadas nos arquivos de <strong>saída tornam-se as de entrada</strong> na rodada seguinte.</li></ul><ul id="1e87d5d3-8a13-80a9-8239-fda641d37593" class="bulleted-list"><li style="list-style-type:circle">O processo termina quando uma única partição é gravada.</li></ul></li></ul><p id="1e87d5d3-8a13-807d-b018-c804399c5136" class="">
+</p><p id="1e87d5d3-8a13-8044-9dae-c3caff07a101" class=""><strong>Exemplo de Rodadas:</strong></p><ol type="1" id="1e87d5d3-8a13-808f-8789-c1ed1bed2bf1" class="numbered-list" start="1"><li>20 partições com 100 registros cada</li></ol><ol type="1" id="1e87d5d3-8a13-806a-8df4-fde5a0aafaa1" class="numbered-list" start="2"><li>10 partições com 200 registros cada</li></ol><ol type="1" id="1e87d5d3-8a13-805f-a4d8-e837477d13fd" class="numbered-list" start="3"><li>5 partições com 400 registros cada</li></ol><ol type="1" id="1e87d5d3-8a13-80e2-b608-f6dbb8bfb361" class="numbered-list" start="4"><li>2 partições com 800 registros cada + 1 com 400 registros</li></ol><ol type="1" id="1e87d5d3-8a13-80ae-8dfa-d4ae0eb71edb" class="numbered-list" start="5"><li>1 partição com 1600 registros + 1 com 400 registros</li></ol><ol type="1" id="1e87d5d3-8a13-8089-a87d-fb6178857185" class="numbered-list" start="6"><li>✅ <strong>Resultado final: 1 partição com 2000 registros</strong></li></ol><p id="1e87d5d3-8a13-806e-a24f-ccd24873924d" class="">
+</p><h3 id="1e87d5d3-8a13-8022-9337-cda80dd46175" class=""><strong>Intercalação Ótima</strong></h3><ul id="1e87d5d3-8a13-8007-8bf4-c39f6e50458e" class="bulleted-list"><li style="list-style-type:disc">📁 Determina-se o número de arquivos <strong>F</strong> a usar:<ul id="1e87d5d3-8a13-80bc-948b-ef1f1f3d20f8" class="bulleted-list"><li style="list-style-type:circle"><strong>F - 1</strong> arquivos para <strong>entrada</strong></li></ul><ul id="1e87d5d3-8a13-801c-8ebf-ea530efa5aa3" class="bulleted-list"><li style="list-style-type:circle"><strong>1</strong> arquivo para <strong>saída</strong></li></ul></li></ul><ul id="1e87d5d3-8a13-803d-a3dc-fed721023f1d" class="bulleted-list"><li style="list-style-type:disc">🔄 Em cada rodada, <strong>F - 1 partições</strong> são intercaladas e o resultado é gravado em <strong>um único arquivo de saída</strong>.</li></ul><ul id="1e87d5d3-8a13-80cc-9ff7-d1b03753b995" class="bulleted-list"><li style="list-style-type:disc">🧹 Após cada rodada:<ul id="1e87d5d3-8a13-8027-b135-d3b3cfc2d36d" class="bulleted-list"><li style="list-style-type:circle">As <strong>partições intercaladas</strong> são removidas;</li></ul><ul id="1e87d5d3-8a13-80e7-a13a-ca43a083354f" class="bulleted-list"><li style="list-style-type:circle">A <strong>partição gerada</strong> é adicionada a algum arquivo de entrada.</li></ul></li></ul><ul id="1e87d5d3-8a13-80ff-ab2a-cb14f521eb08" class="bulleted-list"><li style="list-style-type:disc">✅ O algoritmo termina quando o <strong>conjunto de entrada tiver apenas uma partição</strong>, ou seja, o arquivo final classificado.</li></ul><p id="1e87d5d3-8a13-802a-a954-e5b915a33ec6" class="">
+</p><hr id="1e87d5d3-8a13-8059-a7a6-f07400556ceb"/><h1 id="1e87d5d3-8a13-80c7-8aa8-e99e0a9070db" class="">🕵️‍♂️ <strong>Pesquisa em Memória Principal e Secundária</strong></h1><h2 id="1e87d5d3-8a13-80f6-b7b5-f1af52176963" class="">🔍 <strong>Pesquisa</strong></h2><p id="1e87d5d3-8a13-802b-a9f4-f45d7a8b7004" class="">A <strong>pesquisa</strong> é a ação de recuperar uma informação dentro de um conjunto de dados. Assim como a ordenação, a operação de pesquisa é de grande importância e amplamente utilizada em diversos tipos de software. O objetivo da pesquisa é encontrar uma ou mais ocorrências de registros com chaves iguais à chave de acesso. Ela pode resultar em sucesso ou falha.</p><p id="1e87d5d3-8a13-80d8-97f8-c4d2a05d8308" class="">Cada unidade de informação é mantida em uma <strong>estrutura complexa</strong>, contendo uma <strong>chave primária</strong>, além dos dados que compõem a informação. O conjunto de registros normalmente é armazenado em tipos abstratos de dados, como:</p><ul id="1e87d5d3-8a13-80fa-aadf-cfd8d87793b0" class="bulleted-list"><li style="list-style-type:disc"><strong>Estruturas lineares</strong> (listas e suas variações);</li></ul><ul id="1e87d5d3-8a13-801c-8afa-e4ea193a7570" class="bulleted-list"><li style="list-style-type:disc"><strong>Estruturas hierárquicas</strong> (árvores binárias e variações).</li></ul><p id="1e87d5d3-8a13-8041-a436-ff980f72cff4" class="">As rotinas de pesquisa devem ser <strong>eficientes</strong>, ou seja, devem realizar o processo com o menor número de iterações possível. O número de iterações depende do algoritmo de pesquisa escolhido, que deve ser selecionado com base em fatores como:</p><ul id="1e87d5d3-8a13-80d8-911b-f8a30b428342" class="bulleted-list"><li style="list-style-type:disc"><strong>Quantidade de registros envolvidos</strong>;</li></ul><ul id="1e87d5d3-8a13-8006-9f6d-f17492147817" class="bulleted-list"><li style="list-style-type:disc"><strong>Frequência de operações de inserção e exclusão</strong> de registros.</li></ul><p id="1e87d5d3-8a13-80da-9bf4-cbb4c6ac2422" class="">
+</p><hr id="1e87d5d3-8a13-80e5-a4c4-e634c41aad94"/><h2 id="1e87d5d3-8a13-8001-8046-fb5e386d7333" class="">🧑‍💻 <strong>Algoritmos de Pesquisa</strong></h2><p id="1e87d5d3-8a13-80d6-9202-e49520469a90" class=""><strong>Pesquisa em Memória Principal:</strong></p><ul id="1e87d5d3-8a13-8021-a6c6-d56e3c0f87ca" class="bulleted-list"><li style="list-style-type:disc">Pesquisa sequencial (linear) ou com sentinela;</li></ul><ul id="1e87d5d3-8a13-806e-a53f-cb970272c397" class="bulleted-list"><li style="list-style-type:disc">Pesquisa binária;</li></ul><ul id="1e87d5d3-8a13-808e-9fe3-d9361f0a137b" class="bulleted-list"><li style="list-style-type:disc">Pesquisa por interpolação;</li></ul><ul id="1e87d5d3-8a13-8001-9a82-e45f131289ee" class="bulleted-list"><li style="list-style-type:disc">Pesquisa direta (hashing).</li></ul><p id="1e87d5d3-8a13-8063-8e33-fc1c97cc996d" class=""><strong>Pesquisa em Memória Secundária:</strong></p><ul id="1e87d5d3-8a13-8034-b07f-d71a7e2cb4e6" class="bulleted-list"><li style="list-style-type:disc">Árvore binária;</li></ul><ul id="1e87d5d3-8a13-8049-858e-cbaead849a09" class="bulleted-list"><li style="list-style-type:disc">Árvore B, B+ e B*;</li></ul><ul id="1e87d5d3-8a13-8086-9d42-ffc658089bbf" class="bulleted-list"><li style="list-style-type:disc">Árvore Trie e Patricia.</li></ul><p id="1e87d5d3-8a13-8053-946b-d06938ba9601" class="">
+</p><hr id="1e87d5d3-8a13-80a4-9b50-fb6986244cdf"/><h2 id="1e87d5d3-8a13-800a-84f3-f5e4d7c029d1" class="">🔎 <strong>Pesquisa Sequencial ou Linear</strong></h2><p id="1e87d5d3-8a13-809b-83df-d325de6b1b8d" class="">Este é um método simples de pesquisa, utilizado quando os dados <strong>não estão ordenados</strong> pela chave de acesso.</p><p id="1e87d5d3-8a13-80ce-8f3a-c341f5d4bf59" class=""><strong>Princípio:</strong></p><ul id="1e87d5d3-8a13-803e-b37c-fa0e5e605516" class="bulleted-list"><li style="list-style-type:disc">A pesquisa começa pelo <strong>primeiro registro</strong> e avança <strong>sequencialmente</strong> (registro por registro), até encontrar o registro desejado.</li></ul><ul id="1e87d5d3-8a13-8005-a827-dc64cc9d1ffd" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso de sucesso</strong>: A chave pesquisada é encontrada;</li></ul><ul id="1e87d5d3-8a13-8006-9ccf-c065c0728aee" class="bulleted-list"><li style="list-style-type:disc"><strong>Caso de falha</strong>: Todos os registros são visitados e a chave não é encontrada.</li></ul><h3 id="1e87d5d3-8a13-80f5-b11d-c79cc2df6c22" class="">👨🏻‍💻 Algoritmo em C++ de pesquisa sequencial ou linear</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-8080-a519-f336a97c824b" class="code"><code class="language-C++">int linearSearch(int chave, int vetor[], int tamVetor){
+		for (int i = 0; i &lt; tamVetor; i++){
+				if (vetor[i] == chave) return i;
+		}
+		return -1; // indice inválido
+} </code></pre><hr id="1e87d5d3-8a13-809a-9796-d1daac130faa"/><h2 id="1e87d5d3-8a13-80dc-b16a-d7f7733d432c" class="">🔎 <strong>Pesquisa Sequencial com Sentinela</strong></h2><p id="1e87d5d3-8a13-808a-bd6f-d8fa8d1f048f" class="">O algoritmo de <strong>pesquisa sequencial</strong> pode ser acelerado com o uso de uma <strong>sentinela</strong>. Para isso, atribui-se a chave de pesquisa ao registro contido na posição <strong>n+1</strong> da lista. Este registro fictício funciona como uma sentinela. Mesmo no <strong>pior caso</strong>, a chave será encontrada na posição <strong>n+1</strong>.</p><ul id="1e87d5d3-8a13-8096-b7ab-f06561489543" class="bulleted-list"><li style="list-style-type:disc">Se o <strong>elemento alvo</strong> for encontrado em uma posição anterior a <strong>n+1</strong>, significa que o elemento está na lista.</li></ul><ul id="1e87d5d3-8a13-80b1-9c17-f5001fb99f01" class="bulleted-list"><li style="list-style-type:disc">Se o elemento alvo for encontrado <strong>somente na posição n+1</strong>, isso significa que o elemento <strong>não está presente na lista</strong>.</li></ul><p id="1e87d5d3-8a13-808a-b74f-efb7f0471297" class="">O objetivo do <strong>registro sentinela</strong> é usar o próprio elemento alvo como uma indicação de que não há mais registros a serem lidos, eliminando a necessidade de testar, a cada passo no laço, se já se chegou ao final da lista.</p><h3 id="1e87d5d3-8a13-8073-a096-e8300f61b2f6" class="">👨🏻‍💻 Algoritmo em C++ de pesquisa sequencial com sentinela</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-80fe-abfb-d01ffa0f2cb3" class="code"><code class="language-C++">int sentinelLinearSearch(int chave, int vetor[], int tamVetor){
+		int i = 0;
+		vetor[n] = chave;
+		
+		while(v[i] != chave) i++;
+		
+		if (i &lt; n ) return i;
+		return -1;
+}</code></pre><hr id="1e87d5d3-8a13-806e-b32a-e3db549444e0"/><h2 id="1e87d5d3-8a13-8093-96e0-ca387595738f" class="">🔎 <strong>Pesquisa binária</strong></h2><p id="1e87d5d3-8a13-80b2-8f3d-d33a7e79d0be" class="">A <strong>pesquisa binária</strong> é um algoritmo eficiente. O processo básico consiste em <strong>comparar a chave de acesso</strong> (a chave pesquisada) com o <strong>registro central</strong> da lista. O comportamento depende do resultado dessa comparação:</p><ul id="1e87d5d3-8a13-80a4-9b1e-e561767bc2fd" class="bulleted-list"><li style="list-style-type:disc">Se a chave for <strong>menor</strong>, o registro alvo está na <strong>primeira metade</strong> da lista.</li></ul><ul id="1e87d5d3-8a13-807f-bec6-f499530fd4de" class="bulleted-list"><li style="list-style-type:disc">Se a chave for <strong>maior</strong>, o registro alvo está na <strong>segunda metade</strong> da lista.</li></ul><p id="1e87d5d3-8a13-804a-b741-fff1a005dc02" class="">Esse processo é repetido até que a chave seja encontrada. Para que a pesquisa binária funcione, é <strong>necessário que o vetor esteja ordenado</strong>.</p><h3 id="1e87d5d3-8a13-80e1-b86e-c52180c1c5f0" class="">👨🏻‍💻 Algoritmo em C++ de pesquisa binária</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-80d0-818c-e15b47a7b626" class="code"><code class="language-C++">int binarySearch(int chave, int vetor[], int tamVetor){
+		int inicio = 0, meio, fim = tamVetor-1;
+		while(inicio &lt;= fim){
+				meio = (inicio + fim)/2;
+				if(chave == vetor[meio]) return meio;
+				else if (chave &lt; vetor[meio]) fim = meio - 1;
+				else inicio = meio + 1;
+		}
+		return -1;
+}</code></pre><h3 id="1e87d5d3-8a13-800f-9fd5-f19380319530" class="">👨🏻‍💻 Algoritmo em C++ de pesquisa binária recursiva</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-805d-9fab-f18b41949851" class="code"><code class="language-C++">int binarySearchRecursive(int chave, int vetor[], int inicio, int fim){
+		int meio = (inicio + fim)/2;
+		if (inicio &gt; fim) return -1;
+		if (chave == vetor[meio]) return meio;
+		else if (chave &lt; vetor[meio]) return binarySearchRecursive(chave, vetor, inicio, meio-1);
+		else return binarySearchRecursive(chave, vetor, meio+1, fim);
+}</code></pre><hr id="1e87d5d3-8a13-8060-9cd8-eabddf36ca4f"/><h2 id="1e87d5d3-8a13-806f-8e21-c1adf86412ac" class="">🔎 <strong>Pesquisa por Interpolação</strong></h2><p id="1e87d5d3-8a13-80f5-b7fd-e9a14f3c1db4" class="">A <strong>pesquisa por interpolação</strong> pode ser mais eficiente do que a pesquisa binária, <strong>especialmente quando as chaves estão uniformemente distribuídas</strong> dentro da lista. O algoritmo segue a mesma lógica da pesquisa binária, mas adota uma <strong>estratégia diferente para calcular o valor da variável &quot;meio&quot;</strong>. Neste caso, o &quot;meio&quot; não será, necessariamente, o centro da lista.</p><figure id="1e87d5d3-8a13-803c-a9d3-c7f00375ad0e" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>meio</mtext><mo>=</mo><mtext>inicio</mtext><mo>+</mo><mfrac><mrow><mo stretchy="false">(</mo><mtext>fim</mtext><mo>−</mo><mrow><mtext>in</mtext><mover accent="true"><mtext>ı</mtext><mo>ˊ</mo></mover><mtext>cio</mtext></mrow><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mtext>chave</mtext><mo>−</mo><mtext>vetor</mtext><mo stretchy="false">[</mo><mrow><mtext>in</mtext><mover accent="true"><mtext>ı</mtext><mo>ˊ</mo></mover><mtext>cio</mtext></mrow><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><mrow><mtext>vetor</mtext><mo stretchy="false">[</mo><mtext>fim</mtext><mo stretchy="false">]</mo><mo>−</mo><mtext>vetor</mtext><mo stretchy="false">[</mo><mrow><mtext>in</mtext><mover accent="true"><mtext>ı</mtext><mo>ˊ</mo></mover><mtext>cio</mtext></mrow><mo stretchy="false">]</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{meio} = \text {inicio} +\frac{(\text{fim} - \text{início}) \times(\text{chave} - \text{vetor}[\text{início}])}{\text{vetor}[\text{fim}] - \text{vetor}[\text{início}]}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mord text"><span class="mord">meio</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7512em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">inicio</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">vetor</span></span><span class="mopen">[</span><span class="mord text"><span class="mord">fim</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">vetor</span></span><span class="mopen">[</span><span class="mord text"><span class="mord">in</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord latin_fallback">ı</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">cio</span></span><span class="mclose">]</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord text"><span class="mord">fim</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">in</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord latin_fallback">ı</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">cio</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">chave</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">vetor</span></span><span class="mopen">[</span><span class="mord text"><span class="mord">in</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord latin_fallback">ı</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">cio</span></span><span class="mclose">])</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><h3 id="1e87d5d3-8a13-80aa-84de-fa0fb7c6d1f1" class="">👨🏻‍💻 Algoritmo em C++ de pesquisa  por interpolação</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e87d5d3-8a13-80b4-ad25-ca5eae5d7c30" class="code"><code class="language-C++">int interpolationSearch(int chave, int vetor[], int tamVetor) {
+		int ini = 0, meio, fim = tamVetor – 1;
+
+		while (ini &lt;= fim &amp;&amp; chave &gt;= vetor[ini] &amp;&amp; chave &lt;= vetor[fim]) {
+				if (ini == fim) return v[ini] == chave ? ini : -1;	
+				meio = ini + (((double)(fim - ini) * (chave – v[ini])) / (v[fim] - v[ini]));
+				if (chave == v[meio]) return meio;
+				else if (chave &lt; v[meio]) fim = meio – 1;
+				else inicio = meio + 1;
+		}
+	
+	return -1;
+}</code></pre><p id="1e87d5d3-8a13-8036-9e0f-ef6a5edfadd7" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

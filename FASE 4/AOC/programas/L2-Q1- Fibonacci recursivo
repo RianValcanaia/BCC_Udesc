@@ -1,0 +1,68 @@
+	.text
+	.globl main
+	
+#  int fr(int num){
+#	if (num == 0 || num == 1) return 1;
+#	else return fr(num-1) + fr(num-2);
+# }
+
+#  int main(){
+#	int num;
+#	scanf("%i", &num);
+#	printf("%i\n", fr(num));
+#}
+main: 
+	#  le o indice da seq fibonacci -> a0 = num
+	li $v0, 5
+	syscall
+	move $a0, $v0
+	
+	jal fibo_rec  # chama fibo_rec e retorna o valor em v0
+	
+	# printa o valor
+	move $a0, $v0  
+	li $v0, 1
+	syscall
+	
+	j end
+fibo_rec:
+	# se a0 == 1 | a0 == 0 -> fibo_parada
+	li $t0, 1
+	beq $a0, $t0, fibo_parada
+	beqz $a0, fibo_parada
+	
+	# salva contexto
+	add $sp, $sp, -16
+	sw $s0, 0($sp)  # salva o valor de a0
+	sw $s1, 4($sp)  # salva o valor de a0-1
+	sw $s2, 8($sp)  # salva o valor de a0-2
+	sw $ra, 12($sp) 
+	
+	move $s0, $a0  # s0 = a0, pois iremos decrementar a0 mas precisamos do valor original
+	addi $a0, $s0, -1  # a0 -= 1, usando o valor de a0 salvo
+	
+	jal fibo_rec  # chama fibo_rec(a0-1)
+	move $s1, $v0  # s1 = v0 -> apos sair da recursao salva o valor de v0
+	
+	addi $a0, $s0, -2  # a0 -= 2, usando o valor de a0 salvo
+	
+	jal fibo_rec
+	move $s2, $v0  # s2 = v0 -> apos sair da recursao salva o valor de v0
+	
+	add $v0, $s1, $s2 
+	
+	# recupera da pilha
+	lw $s0, 0($sp)
+	lw $s1, 4($sp)
+	lw $s2, 8($sp)
+	lw $ra, 12($sp)
+	add $sp, $sp, 16
+	
+	jr $ra
+fibo_parada:
+	li $v0,  1  # return 1
+	jr $ra  # volta 
+
+end:
+	li $v0, 10  # saida 
+	syscall

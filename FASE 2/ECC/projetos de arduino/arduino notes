@@ -1,0 +1,39 @@
+Funções de entrada e saida Digital
+pinMode;
+digitalWrite;
+digitalRead;
+
+Funções de Entrada Analógica
+analogReference;
+analogRead;
+
+Funções de Temporização
+millis;
+micros;
+delay;
+delayMicroseconds;
+
+Funções de Bit e Byte
+lowByte;
+highByte;
+bitRead;
+bitWrite;
+bitSet;
+bitClear;
+bit;
+
+Funções Matematicas
+max;
+min;
+abs;
+constrain;
+map;
+
+
+Funções de conversão
+char;
+byte;
+int;
+word;
+long;
+float;
