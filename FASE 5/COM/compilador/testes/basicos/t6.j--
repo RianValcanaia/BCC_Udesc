@@ -1,0 +1,5 @@
+{
+    int intx;
+    double readValue;
+    string elseVar;
+}

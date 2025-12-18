@@ -1,0 +1,7 @@
+{
+    int a;
+    string s;
+    s = "Ola";
+    
+    a = 10 + s;
+}

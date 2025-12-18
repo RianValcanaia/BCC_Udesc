@@ -1,0 +1,18 @@
+# =========  Instalando o Maven ===========
+# Verifificar se o Maven já está instalado
+mvn -v
+
+# Instalar o Maven (Ubuntu)
+sudo apt update
+sudo apt install maven -y
+
+# Verificar se o Java (JDK) está instalado
+java -version
+javac -version
+
+# Instalar o JDK 21 (caso não tenha)
+sudo apt install openjdk-21-jdk -y
+
+# ========= Rodar os testes =============
+# No diretório raiz do projeto (onde fica o pom.xml)
+mvn test

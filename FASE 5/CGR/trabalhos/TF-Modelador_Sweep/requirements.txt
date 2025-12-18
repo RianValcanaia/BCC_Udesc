@@ -1,0 +1,6 @@
+pyvista
+pyvistaqt
+PyQt6
+numpy
+
+# sudo apt-get install libxcb-cursor0

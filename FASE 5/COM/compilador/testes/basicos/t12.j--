@@ -1,0 +1,9 @@
+int soma (int a, int b){
+    return a+b;
+}
+
+{
+    int r;
+    r = 0 + soma(3, 4);
+    print(r);
+}

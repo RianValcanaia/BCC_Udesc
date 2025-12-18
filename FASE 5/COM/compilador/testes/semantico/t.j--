@@ -1,0 +1,11 @@
+{
+    double x;
+    int a;
+    a = 10;
+    
+    x = a; 
+    
+    x = 2 + 3.5;
+    
+    print(x);
+}

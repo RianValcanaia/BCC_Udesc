@@ -1,0 +1,48 @@
+double intParaDouble(int a) {
+    return a + 0.5; 
+}
+
+int doubleParaInt(double x) {
+
+    return x; 
+}
+
+{
+    int i;
+    int resInt;
+    double d;
+    double resDouble;
+
+    i = 10;
+    d = 5.5;
+
+    print("--- 1. Atribuicoes ---");
+    
+    resDouble = i; 
+    print(resDouble); 
+
+    resInt = d; 
+    print(resInt);
+
+    print("--- 2. Aritmetica ---");
+    
+    resDouble = i * d; 
+    print(resDouble); 
+
+    resInt = i + d;   
+    print(resInt);
+
+    print("--- 3. Relacional ---");
+
+    if (i > d) {
+        print("Int 10 maior que Double 5.5");
+    }
+
+    print("--- 4. Funcoes ---");
+
+    resDouble = intParaDouble(d);
+    print(resDouble); 
+
+    resDouble = doubleParaInt(i);
+    print(resDouble);
+}

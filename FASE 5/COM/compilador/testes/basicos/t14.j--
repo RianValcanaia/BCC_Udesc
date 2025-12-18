@@ -1,0 +1,21 @@
+int soma(int a, int b) {
+    return a + b;
+}
+
+void imprimeResultado(double r) {
+    print(r);
+}
+
+{
+    int x, y;
+    double z;
+    x = 5;
+    y = 10;
+    z = soma(x, y) * 2.5;
+
+    if (z >= 20 && x < y) {
+        imprimeResultado(z);
+    } else {
+        print(0);
+    }
+}

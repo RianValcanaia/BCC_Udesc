@@ -1,0 +1,19 @@
+Semana 1 e 2: Base do Sistema e Sweeps Simples (Rian)
+
+    Rian configurou o ambiente, criou a janela principal e integrou o PyVista as 14h do dia 08/11 até 15h30 do dia 08/11 levando aproximadamente 1,5 horas para cumprir a tarefa neste período.
+
+    Rian implementou a lógica das primitivas 2D e o painel lateral de seleção as 19h  do dia 08/11 até 12h00 do dia 08/11 levando aproximadamente 2 horas para cumprir a tarefa neste período.
+
+    Rian desenvolveu a classe Controller e o Sweep Linear as 19h do dia 22/11 até 21g do dia 22/11 levando aproximadamente 2 horas para cumprir a tarefa neste período.
+
+    Rian finalizou os algoritmos de Revolução e Helicoidal e ajustou a UI as 14h do dia 23/11 até 18h do dia 23/11 levando aproximadamente 4 horas para cumprir a tarefa neste período.
+
+Semana 3: Loft (Interpolação) e Finalização (Lucas)
+
+    Lucas estudou a documentação e criou a estrutura inicial do arquivo loft.py e sua interface as 20 horas do dia 26/11 até 21:30 do dia 26/11 levando aproximadamente 1,5 horas para cumprir a tarefa neste período.
+
+    Lucas implementou a primeira versão do algoritmo de Loft e a lógica de conexão no Controller as 21 horas do dia 27/11 até 23:00 do dia 27/11 levando aproximadamente 2 horas para cumprir a tarefa neste período.
+
+    Lucas corrigiu bugs de compatibilidade (Linux/PyVista) e reescreveu o algoritmo usando NumPy para equalizar vértices as 19 horas do dia 29/11 até 20:30 do dia 29/11 levando aproximadamente 1,5 horas para cumprir a tarefa neste período.
+
+    Lucas finalizou o projeto corrigindo a torção da malha (twisting), fechando as tampas (capping) e ajustando a suavização as 15 horas do dia 30/11 até 17:00 do dia 30/11 levando aproximadamente 2 horas para cumprir a tarefa neste período.

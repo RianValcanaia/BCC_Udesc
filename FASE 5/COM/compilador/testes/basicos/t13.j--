@@ -1,0 +1,13 @@
+int dobro(int x) {
+    return x * 2;
+}
+
+int triplo(int x) {
+    return x * 3;
+}
+
+{
+    int a;
+    a = dobro(5) + triplo(2);
+    print(a);
+}
